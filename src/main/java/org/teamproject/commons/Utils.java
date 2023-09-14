@@ -13,7 +13,7 @@ public class Utils {
     public boolean isMobile() {
         String ua = request.getHeader("User-Agent");
 
-        String pattern = ".*Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune.*";
+        String pattern = ".*(iPhone|iPod|iPad|BlackBerry|Android|Windows CE|LG|MOT|SAMSUNG|SonyEricsson).*";
 
         boolean isMobile = ua.matches(pattern);
 
