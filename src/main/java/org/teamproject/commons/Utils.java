@@ -1,6 +1,7 @@
 package org.teamproject.commons;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -9,10 +10,14 @@ import org.springframework.stereotype.Component;
 public class Utils {
 
     private final HttpServletRequest request;
+    private final HttpSession session;
 
     public boolean isMobile() {
-        String ua = request.getHeader("User-Agent");
+        String device = (String)session.getAttribute("device");
 
+        if (device != null) return device.equals("mobile");
+
+        String ua = request.getHeader("User-Agent");
         String pattern = ".*(iPhone|iPod|iPad|BlackBerry|Android|Windows CE|LG|MOT|SAMSUNG|SonyEricsson).*";
 
         boolean isMobile = ua.matches(pattern);
