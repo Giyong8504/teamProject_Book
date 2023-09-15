@@ -30,7 +30,7 @@
             <li>
                 <div class="address_rows">
                     <input type="text" name="zonecode" th:field="*{zonecode}" th:placeholder="#{zonecode}">
-                    <button type="button" class="search_address" th:text="#{search.address}"></button>
+                    <button type="button" class="search_address" th:text="#{btn.search.address}"></button>
                 </div>
 
                 <input type="text" name="address" th:field="*{address}" th:placeholder="#{address}">
@@ -42,11 +42,13 @@
                 <div class="error" th:each="err : ${#fields.errors('addressSub')}" th:text="${err}"></div>
             </li>
             <li>
-                <input type="text" name="email" th:field="*{email}" th:placeholder="#{email}">
-                <div class="error" th:each="err : ${#fields.errors('email')}" th:text="${err}"></div>
+                <div th:text="#{member.term}"></div>
+                <div>회원 약관...</div>
+                <input type="checkbox" name="agree" th:field="*{agree}" id="agree">
+                <label for="agree" th:text="#{member.term.agree}"></label>
             </li>
         </ul>
-
+        <button type="submit" th:text="#{btn.join}"></button>
     </form>
 </main>
 </html>
