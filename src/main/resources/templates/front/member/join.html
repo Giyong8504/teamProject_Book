@@ -46,6 +46,7 @@
                 <div>회원 약관...</div>
                 <input type="checkbox" name="agree" th:field="*{agree}" id="agree">
                 <label for="agree" th:text="#{member.term.agree}"></label>
+                <div class="error" th:each="err : ${#fields.errors('agree')}" th:text="${err}"></div>
             </li>
         </ul>
         <button type="submit" th:text="#{btn.join}"></button>
