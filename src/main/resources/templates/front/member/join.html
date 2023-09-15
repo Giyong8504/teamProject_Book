@@ -3,6 +3,50 @@
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{front/layouts/main}">
 <main layout:fragment="content">
+    <form name="frmJoin" method="POST" th:action="@{/member/join}" autocomplete="off" th:object="${joinForm}">
+        <div class="error global" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
 
+        <ul>
+            <li>
+                <input type="text" name="email" th:field="*{email}" th:placeholder="#{email}">
+                <div class="error" th:each="err : ${#fields.errors('email')}" th:text="${err}"></div>
+            </li>
+            <li>
+                <input type="password" name="userPw" th:field="*{userPw}" th:placeholder="#{password}">
+                <div class="error" th:each="err : ${#fields.errors('userPw')}" th:text="${err}"></div>
+            </li>
+            <li>
+                <input type="password" name="userPwRe" th:field="*{userPwRe}" th:placeholder="#{confirm_password}">
+                <div class="error" th:each="err : ${#fields.errors('userPwRe')}" th:text="${err}"></div>
+            </li>
+            <li>
+                <input type="text" name="userNm" th:field="*{userNm}" th:placeholder="#{userNm}">
+                <div class="error" th:each="err : ${#fields.errors('userNm')}" th:text="${err}"></div>
+            </li>
+            <li>
+                <input type="text" name="mobile" th:field="*{mobile}" th:placeholder="#{mobile}">
+                <div class="error" th:each="err : ${#fields.errors('mobile')}" th:text="${err}"></div>
+            </li>
+            <li>
+                <div class="address_rows">
+                    <input type="text" name="zonecode" th:field="*{zonecode}" th:placeholder="#{zonecode}">
+                    <button type="button" class="search_address" th:text="#{search.address}"></button>
+                </div>
+
+                <input type="text" name="address" th:field="*{address}" th:placeholder="#{address}">
+
+                <input type="text" name="addressSub" th:field="*{addressSub}" th:placeholder="#{addressSub}">
+
+                <div class="error" th:each="err : ${#fields.errors('zonecode')}" th:text="${err}"></div>
+                <div class="error" th:each="err : ${#fields.errors('address')}" th:text="${err}"></div>
+                <div class="error" th:each="err : ${#fields.errors('addressSub')}" th:text="${err}"></div>
+            </li>
+            <li>
+                <input type="text" name="email" th:field="*{email}" th:placeholder="#{email}">
+                <div class="error" th:each="err : ${#fields.errors('email')}" th:text="${err}"></div>
+            </li>
+        </ul>
+
+    </form>
 </main>
 </html>
