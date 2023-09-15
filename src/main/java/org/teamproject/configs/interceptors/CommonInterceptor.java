@@ -2,6 +2,7 @@ package org.teamproject.configs.interceptors;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -25,7 +26,9 @@ public class CommonInterceptor implements HandlerInterceptor {
          */
         String device = request.getParameter("device");
         if (device != null) {
+            HttpSession session = request.getSession();
             device = device.equals("mobile") ? "mobile" : "pc";
+            session.setAttribute("device", device);
         }
 
     }
