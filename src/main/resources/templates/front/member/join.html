@@ -43,7 +43,7 @@
             </li>
             <li>
                 <div th:text="#{member.term}"></div>
-                <div>회원 약관...</div>
+                <div th:utext="${@utils.getConfig('joinTerms')}"></div>
                 <input type="checkbox" name="agree" th:field="*{agree}" id="agree">
                 <label for="agree" th:text="#{member.term.agree}"></label>
                 <div class="error" th:each="err : ${#fields.errors('agree')}" th:text="${err}"></div>

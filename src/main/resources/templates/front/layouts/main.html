@@ -5,16 +5,22 @@
         <meta charset="UTF-8">
         <meta name="_csrf" th:content="${_csrf.token}">
         <meta name="_csrf_header" th:content="${_csrf.headerName}">
-        <title th:if="${pageTitle != null}" th:text="${pageTitle}"></title>
-        <link rel="stylesheet" type="text/css" th:href="@{/common/css/style.css}">
-        <link rel="stylesheet" type="text/css" th:each="file : ${addCommonCss}" th:href="@{/common/css/{cssFile}.css(cssFile=${file})}">
-        <link rel="stylesheet" type="text/css" th:href="@{/front/css/style.css}">
-        <link rel="stylesheet" type="text/css" th:each="file : ${addCss}" th:href="@{/front/css/{cssFile}.css(cssFile=${file})}">
+        <meta name="description" th:content="${@utils.getConfig('siteDescription')}">
+        <title>
+            <th:block th:if="${pageTitle}" th:text="${pageTitle + ' | '}"></th:block>
+            <th:block th:text="${@utils.getConfig('siteTitle')}"></th:block>
+        </title>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+        <link rel="stylesheet" type="text/css" th:href="@{/common/css/style.css?v={v}(v=${@utils.getConfig('cssJsVersion')})}">
+        <link rel="stylesheet" type="text/css" th:each="file : ${addCommonCss}" th:href="@{/common/css/{cssFile}.css?v={v}(cssFile=${file}, v=${@utils.getConfig('cssJsVersion')})}">
+        <link rel="stylesheet" type="text/css" th:href="@{/front/css/style.css?v={v}(v=${@utils.getConfig('cssJsVersion')})}">
+        <link rel="stylesheet" type="text/css" th:each="file : ${addCss}" th:href="@{/front/css/{cssFile}.css?v={v}(cssFile=${file}, v=${@utils.getConfig('cssJsVersion')})}">
         <th:block layout:fragment="addCss"></th:block>
-        <script th:src="@{/common/js/common.js}"></script>
-        <script th:each="file : ${addCommonScript}" th:src="@{/common/js/{jsFile}.js(jsFile=${file})}"></script>
-        <script th:src="@{/front/js/common.js}"></script>
-        <script th:each="file : ${addScript}" th:src="@{/front/js/{jsFile}.js(jsFile=${file})}"></script>
+
+        <script th:src="@{/common/js/common.js?v={v}(v=${@utils.getConfig('cssJsVersion')})}"></script>
+        <script th:each="jsFile : ${addCommonScript}" th:src="@{/common/js/{jsFile}.js?v={v}(jsFile=${jsFile}, v=${@utils.getConfig('cssJsVersion')})}"></script>
+        <script th:src="@{/front/js/common.js?v={v}(v=${@utils.getConfig('cssJsVersion')})}"></script>
+        <script th:each="jsFile : ${addScript}" th:src="@{/front/js/{jsFile}.js?v={v}(jsFile=${jsFile}, v=${@utils.getConfig('cssJsVersion')})}"></script>
         <th:block layout:fragment="addScript"></th:block>
     </head>
     <body>

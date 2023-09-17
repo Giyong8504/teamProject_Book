@@ -1,19 +1,22 @@
 package org.teamproject.configs.interceptors;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
-import org.teamproject.commons.Utils;
+import org.teamproject.commons.configs.ConfigInfoService;
+
+import java.util.Map;
 
 @Component
 @RequiredArgsConstructor
 public class CommonInterceptor implements HandlerInterceptor {
 
+    private final ConfigInfoService infoService;
     private final HttpServletRequest request;
-    private final Utils utils;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -45,5 +48,8 @@ public class CommonInterceptor implements HandlerInterceptor {
             session.setAttribute("device", device);
         }
 
+        // 3. 사이트 설정 조회
+        Map<String, String> siteConfigs = infoService.get("siteConfig", new TypeReference<Map<String, String>>() {});
+        request.setAttribute("siteConfig", siteConfigs);
     }
 }

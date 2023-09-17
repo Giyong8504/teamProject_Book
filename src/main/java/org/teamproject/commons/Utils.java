@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.Map;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -95,5 +96,17 @@ public class Utils {
         String ua = request.getHeader("User-Agent");
 
         return Objects.hash(ip, ua);
+    }
+
+    /**
+     * 사이트 설정 조회
+     * @param name
+     * @return
+     */
+    public String getConfig(String name) {
+        Map<String, String> siteConfig = (Map<String, String>)request.getAttribute("siteConfig");
+        String value = siteConfig == null ? "" : siteConfig.get(name);
+
+        return value;
     }
 }
