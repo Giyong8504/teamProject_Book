@@ -5,17 +5,18 @@
 <main layout:fragment="content">
     <h1 th:text="${pageTitle}"></h1>
     <form name="frmLogin" id="frmLogin" method="POST" th:action="@{/member/login}" autocomplete="off">
+        <div class="errors global" th:if="${session.globalError != null}" th:text="${session.globalError}"></div>
         <input th:if="${param.redirectURL != null}" type="hidden" name="redirectURL"
                th:value="${param.redirectURL}">
         <ul>
             <li>
                 <input type="text" name="email" th:placeholder="#{email}" th:value="${session.email}">
-                <div class="errors" th:if="${session.requiredEmail}"
+                <div class="errors" th:if="${session.requiredEmail != null}"
                      th:text="${session.requiredEmail}"></div>
             </li>
             <li>
                 <input type="password" name="userPw" th:placeholder="#{password}">
-                <div class="errors" th:if="${session.requiredUserId}"
+                <div class="errors" th:if="${session.requiredUserPw != null}"
                      th:text="${session.requiredUserPw}"></div>
             </li>
             <li>

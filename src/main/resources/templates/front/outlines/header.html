@@ -1,6 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <header th:fragment="common">
-    <h1>프론트 상단</h1>
+    <th:block sec:authorize="isAnonymous()">
+        <a th:href="@{/member/join}" th:text="#{title.join}"></a>
+        <a th:href="@{/member/login}" th:text="#{title.login}"></a>
+    </th:block>
+    <th:block sec:authorize="isAuthenticated()">
+        <span th:text="${#messages.msg('login.msg', session.userInfo.userNm, session.userInfo.email)}"></span>
+        <a th:href="@{/member/logout}" th:text="#{title.logout}"></a>
+        <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/admin}" th:text="#{title.siteAdmin}"></a>
+    </th:block>
 </header>
 </html>
