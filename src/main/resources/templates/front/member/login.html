@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/layouts/main}">
+<main layout:fragment="content">
+    <h1 th:text="${pageTitle}"></h1>
+    <form name="frmLogin" id="frmLogin" method="POST" th:action="@{/member/login}" autocomplete="off">
+        <input th:if="${param.redirectURL != null}" type="hidden" name="redirectURL"
+               th:value="${param.redirectURL}">
+        <ul>
+            <li>
+                <input type="text" name="email" th:placeholder="#{email}" th:value="${session.email}">
+                <div class="errors" th:if="${session.requiredEmail}"
+                     th:text="${session.requiredEmail}"></div>
+            </li>
+            <li>
+                <input type="password" name="userPw" th:placeholder="#{password}">
+                <div class="errors" th:if="${session.requiredUserId}"
+                     th:text="${session.requiredUserPw}"></div>
+            </li>
+            <li>
+                <button type="submit" th:text="#{btn.login}"></button>
+            </li>
+        </ul>
+
+    </form>
+</main>
