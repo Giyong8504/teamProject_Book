@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layouts/main}">
+
+<section layout:fragment="content"> <!-- ClaimController 에서 값 불러오기 -->
+    <h1 th:text="${title}"></h1>
+
+    <th:block th:replace="~{admin/commons/_message::message}"></th:block>
+
+    <form method="post" th:action="@{/admin/claim}" autocomplete="off" th:object="${configForm}">
+        <table>
+            <tr>
+                <th></th>
+            </tr>
+        </table>
+    </form>
+</section>
+</html>
