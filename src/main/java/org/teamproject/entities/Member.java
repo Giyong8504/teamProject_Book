@@ -20,6 +20,9 @@ public class Member extends BaseEntity {
     @Column(length=40, nullable = false)
     private String userNm;
 
+    @Column(length =100, nullable = false)
+    private String age;
+
     @Column(length=65, nullable = false)
     private String userPw;
 
