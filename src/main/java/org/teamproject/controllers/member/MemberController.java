@@ -2,16 +2,18 @@ package org.teamproject.controllers.member;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.teamproject.commons.CommonProcess;
 import org.teamproject.commons.Utils;
+import org.teamproject.entities.Member;
 import org.teamproject.models.member.UserSaveService;
+import org.teamproject.repositories.MemberRepository;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/member")
@@ -45,5 +47,21 @@ public class MemberController implements CommonProcess {
         commonProcess(model, "로그인");
 
         return utils.tpl("member/login");
+    }
+
+    @Autowired
+    private MemberRepository memberRepository;
+
+    @GetMapping("/data")
+    public List<Member> getMemberData(){
+        return memberRepository.findAll();
+
+        /** 데이터를 가져와 json
+         *  방식으로  반환준비
+         * 
+         *
+         *
+         */
+
     }
 }
