@@ -91,3 +91,48 @@ h2 { font-size: 18px; font-weight: bold; margin: 25px 0 10px; line-height: 1; }
 nav.submenus { background: #fff; box-shadow: 1px 1px 5px #cdced5; margin-bottom: 30px; display: flex; height: 60px; }
 nav.submenus a.on { background: #596b99; color: #fff; }
 nav.submenus a { line-height: 60px; padding: 0 40px; font-size: 18px; }
+
+
+/** 취소/교환/반품 페이지 - claim.html style S */
+.c_searchbar_2 {
+    position: relative;
+    display: inline-block;
+}
+.c_searchbar_3 {
+    padding-right: 30px;
+}
+.xi-search {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
+
+.c_search_blank {
+    display: flex;
+    flex-direction: row;
+}
+
+.c_search_period {
+    display: flex;
+    align-items: center;
+    margin-top: 12px;
+}
+
+/** 기간 선택 선택(on) , 선택x(off) */
+.c_period {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 75px; height: 26px; border-radius: 13px;
+    font-size: 12px; font-weight: 500; test-align: center;
+    margin-right: 5px; line-height: 1; cursor: pointer;
+}
+.c_period_on {
+    border: 1px solid blue; background-color: blue; color: white;
+}
+.c_period_off {
+    border: 1px solid gray; background-color: white; color: black;
+}
+
+/** 취소/교환/반품 페이지 - claim.html style E */
