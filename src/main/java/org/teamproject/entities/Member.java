@@ -44,11 +44,11 @@ public class Member extends BaseEntity {
     private Role role;
 
     //== 정보 수정 ==//
-    public void updatePassword(PasswordEncoder passwordEncoder, String password){
+    public void updatePw(PasswordEncoder passwordEncoder, String password){
         this.userPw = passwordEncoder.encode(password);
     }
 
-    public void updateName(String name){
+    public void updateNm(String name){
         this.userNm = name;
     }
 
