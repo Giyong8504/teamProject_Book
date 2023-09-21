@@ -24,6 +24,7 @@ public class statsController {
     }
 
     private void commonProcess(Model model) {
+
         String title = "통계";
         String menuCode = "stats";
         model.addAttribute("pageTitle", title);
