@@ -13,14 +13,14 @@ import org.teamproject.entities.InquiryBoard;
 @RequiredArgsConstructor
 public class InquiryController {
 
-    private InquiryBoardService boardService;
+    private final InquiryBoardService boardService;
 
     @GetMapping
     public String InquiryWriteForm() {
         return "front/InquiryReview/InquiryWrite";
     }
 
-    @PostMapping("front/InquiryReview/InquiryWrite") //문의 작성 후 넘어갈 html 필요
+    @PostMapping //문의 작성 후 넘어갈 html 필요
     public String InquiryList(InquiryBoard board) {
         boardService.write(board);
         return "";
