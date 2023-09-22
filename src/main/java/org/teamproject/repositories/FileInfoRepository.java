@@ -47,7 +47,7 @@ public interface FileInfoRepository extends JpaRepository<FileInfo, Long>, Query
 
     // gid 만 가지고 조회
     default List<FileInfo> getFiles(String gid) {
-        return getFiles(gid);
+        return getFiles(gid, null);
     }
 
     // 업로드 완료된 이후(Done이 붙은것으로 조회) 파일만 조회
@@ -56,6 +56,6 @@ public interface FileInfoRepository extends JpaRepository<FileInfo, Long>, Query
     }
 
     default List<FileInfo> getFilesDone(String gid) {
-        return getFiles(gid);
+        return getFiles(gid, null);
     }
 }
