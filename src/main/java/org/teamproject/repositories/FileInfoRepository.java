@@ -8,7 +8,6 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.teamproject.entities.FileInfo;
 import org.teamproject.entities.QFileInfo;
 
-import java.io.File;
 import java.util.List;
 
 public interface FileInfoRepository extends JpaRepository<FileInfo, Long>, QuerydslPredicateExecutor {
