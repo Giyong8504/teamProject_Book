@@ -4,7 +4,7 @@
       layout:decorate="~{admin/layouts/main}">
 <section layout:fragment="content">
     <div>
-        <form name="write" th:action="@{/InquiryWrite}"><!--문의 작성 후 넘어갈 html 필요-->
+        <form  method="POST" name="write" th:action="@{/InquiryWrite}"><!--문의 작성 후 넘어갈 html 필요-->
             <input name="title" type="text">
             <textarea name="content"></textarea>
             <button type="submit">문의 작성</button>
