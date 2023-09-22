@@ -33,4 +33,11 @@ public class FileInfo extends BaseMemberEntity{ // 로그인 아이디 비교를
     private String fileType;
 
     private boolean done; // 작성 완료시 성공여부 (성공 파일만 남겨두기)
+
+    /* 내부에서 관리 용도. 파일 정보 조회 시 같이 가져올 데이터 */
+    @Transient
+    private String filePath; // 실제 서버 업로드 경로
+
+    @Transient
+    private String fileUrl; //서버 접속 URL
 }
