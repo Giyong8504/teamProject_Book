@@ -9,6 +9,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.teamproject.commons.CommonProcess;
 import org.teamproject.commons.Utils;
+import org.teamproject.entities.Books;
 import org.teamproject.entities.Member;
 import org.teamproject.models.member.UserSaveService;
 import org.teamproject.repositories.MemberRepository;
@@ -63,4 +64,11 @@ public class MemberController implements CommonProcess {
          */
 
     }
+
+    @GetMapping("/book")
+    public String insert_Book(@ModelAttribute BookForm bookForm, Model model){
+        commonProcess(model, "책 등록");
+        return utils.tpl("member/book");
+    }
+
 }
