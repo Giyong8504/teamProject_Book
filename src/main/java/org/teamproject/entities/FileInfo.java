@@ -12,6 +12,10 @@ import java.util.UUID;
 @Entity
 @Data @Builder
 @AllArgsConstructor @NoArgsConstructor
+@Table(indexes = { // 색인을 통해 성능향상. 조회가 많이 되는 부분
+        @Index(name = "idx_fileinfo_gid", columnList = "gid"),
+        @Index(name = "idx_fileinfo_gid_location", columnList = "gid,location")
+})
 public class FileInfo extends BaseMemberEntity{ // 로그인 아이디 비교를 위한 상속
 
     @Id @GeneratedValue
