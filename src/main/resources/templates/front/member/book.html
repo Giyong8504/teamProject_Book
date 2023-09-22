@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/layouts/main}">
+<main layout:fragment="content">
+    <form name="frmBook" method="POST" th:action="@{/member/book}" autocomplete="off" th:object="${bookForm}">
+        <div class="error global" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
+
+        <ul>
+            <li>
+                <input type="text" name="bookId" th:field="*{bookId}" th:placeholder="#{bookId}">
+                <div class="error" th:each="err : ${#fields.errors('bookId')}" th:text="${err}"></div>
+            </li>
+            <li>
+                <input type="text" name="bookNm" th:field="*{bookNm}" th:placeholder="#{bookNm}">
+                <div class="error" th:each="err : ${#fields.errors('bookNm')}" th:text="${err}"></div>
+            </li>
+            <li>
+                <input type="text" name="price" th:field="*{price}" th:placeholder="#{price}">
+                <div class="error" th:each="err : ${#fields.errors('price')}" th:text="${err}"></div>
+            </li>
+        </ul>
+        <button type="submit" th:text="#{btn.reg}"></button>
+    </form>
+</main>
+</html>
