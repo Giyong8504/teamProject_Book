@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
+
 @Controller
 @RequestMapping("/admin/stats")
 @RequiredArgsConstructor
@@ -14,6 +16,7 @@ public class statsController {
 
     @GetMapping
     public String stats(Model model) {
+
         return "admin/stats";
     }
 
@@ -21,6 +24,7 @@ public class statsController {
     public String statsPs(Model model) {
 
         return "admin/stats";
+
     }
 
     private void commonProcess(Model model) {
@@ -31,6 +35,7 @@ public class statsController {
         model.addAttribute("title", title);
         model.addAttribute("menuCode", menuCode);
     }
+
 }
 
 
