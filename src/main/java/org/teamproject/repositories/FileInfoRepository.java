@@ -68,5 +68,5 @@ public interface FileInfoRepository extends JpaRepository<FileInfo, Long>, Query
 
         flush();
     }
-    
+
 }
