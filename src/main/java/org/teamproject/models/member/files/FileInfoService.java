@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.teamproject.entities.FileInfo;
 import org.teamproject.repositories.FileInfoRepository;
 
+import java.io.File;
 import java.util.List;
 
 @Service
@@ -63,7 +64,14 @@ public class FileInfoService { // 파일 개별조회 목록조회 기능.
         String fileUrl = request.getContextPath() + uploadUrl + folder + "/" + fileName;
 
         // 썸네일 경로 (thumbsPath)
+        String thumbPath = getUploadThumbPath() +  folder;
+        File thumbDir = new File(thumbPath);
+        if (!thumbDir.exists()) {
+            thumbDir.mkdirs();
+        }
 
+        //
+        String[] thumbsPath = thumbDir.list((dir, name) -> name.indexOf("_" + fileName) != -1);
     }
 
     private String getUploadThumbPath() { // thumbs/folder/가로_세로_파일명
