@@ -50,20 +50,6 @@ public class MemberController implements CommonProcess {
         return utils.tpl("member/login");
     }
 
-    @Autowired
-    private MemberRepository memberRepository;
-
-    @GetMapping("/data")
-    public List<Member> getMemberData(){
-        return memberRepository.findAll();
-        /** 데이터를 가져와 json
-         *  방식으로  반환준비
-         *
-         *
-         *
-         */
-
-    }
 
     @GetMapping("/book")
     public String insert_Book(@ModelAttribute BookForm bookForm, Model model){
