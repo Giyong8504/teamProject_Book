@@ -1,8 +1,57 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
+    <!DOCTYPE html>
+
+    <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{admin/layouts/main}">
-<section layout:fragment="content">
-    <h1>통계</h1>
-</section>
+    <section layout:fragment="content">
+         <head>
+             <h1>10대부터 60대까지의 구매 데이터 차트</h1>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+        </head>
+
+        <canvas id="myChart" width="600" height="400" ></canvas>
+        <script>
+	    var ctx = document.getElementById('myChart');
+	    var myChart = new Chart(ctx, {
+		type: 'bar',
+		data: {
+			labels: ['10대', '20대', '30대', '40대', '50대', '60대'],
+			datasets: [{
+				label: 'click 나이대별 구매목록',
+				data: [12, 15, 3, 5, 2, 3],
+				backgroundColor: [
+					'rgba(255, 99, 132, 0.2)',
+					'rgba(54, 162, 235, 0.2)',
+					'rgba(255, 206, 86, 0.2)',
+					'rgba(75, 192, 192, 0.2)',
+					'rgba(153, 102, 255, 0.2)',
+					'rgba(255, 159, 64, 0.2)'],
+				borderColor: [
+					'rgba(255, 99, 132, 1)',
+					'rgba(54, 162, 235, 1)',
+					'rgba(255, 206, 86, 1)',
+					'rgba(75, 192, 192, 1)',
+					'rgba(153, 102, 255, 1)',
+					'rgba(255, 159, 64, 1)'
+				],
+				borderWidth: 1
+			}]
+		    },
+		    options: {
+			responsive: false,
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero: true
+					}
+				}]
+			},
+		}
+
+	});
+        </script>
+    </section>
 </html>
+
+
