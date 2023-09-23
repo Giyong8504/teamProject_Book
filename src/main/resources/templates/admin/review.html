@@ -4,5 +4,25 @@
       layout:decorate="~{admin/layouts/main}">
 <section layout:fragment="content">
     <h1>고객 문의/리뷰</h1>
+    <div class="layout">
+        <table>
+            <thead>
+            <tr>
+                <th>글번호</th>
+                <th>제목</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="InquiryBoard : ${inquiryList}">
+                <td th:text="${InquiryBoard.id}"></td>
+                <td th:text="${InquiryBoard.title}"></td>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>제목이 나오는 곳</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </section>
 </html>
