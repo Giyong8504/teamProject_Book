@@ -35,7 +35,7 @@ public interface FileInfoRepository extends JpaRepository<FileInfo, Long>, Query
         if (mode.equals("done")) builder.and(fileInfo.done.eq(true));
         else if (mode.equals("undone")) builder.and(fileInfo.done.eq(false));
 
-        List<FileInfo> items = (List<FileInfo>)findAll(builder, Sort.by(Order.asc("createdBy")));
+        List<FileInfo> items = (List<FileInfo>)findAll(builder, Sort.by(Order.asc("createdAt")));
 
         return items;
     }
@@ -58,4 +58,15 @@ public interface FileInfoRepository extends JpaRepository<FileInfo, Long>, Query
     default List<FileInfo> getFilesDone(String gid) {
         return getFiles(gid, null);
     }
+
+    // 작업완료 처리
+    default void processDone(String gid) {
+        List<FileInfo> items = getFiles(gid);
+        items.stream().forEach(item -> {
+            item.setDone(true);
+        });
+
+        flush();
+    }
+    
 }
