@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import org.teamproject.entities.InquiryBoard;
 import org.teamproject.repositories.InquiryRepository;
 
+import java.util.List;
+
 @Service
 public class InquiryBoardService {
 
@@ -13,5 +15,9 @@ public class InquiryBoardService {
 
     public void write(InquiryBoard board) {
         inquiryRepository.saveAndFlush(board);
+    }
+
+    public List<InquiryBoard> inquiryList() {
+        return inquiryRepository.findAll();
     }
 }
