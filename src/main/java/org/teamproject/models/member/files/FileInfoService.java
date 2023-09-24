@@ -10,10 +10,7 @@ import org.teamproject.entities.FileInfo;
 import org.teamproject.repositories.FileInfoRepository;
 
 import java.io.File;
-<<<<<<< HEAD
 import java.util.Arrays;
-=======
->>>>>>> test1
 import java.util.List;
 
 @Service
@@ -100,18 +97,12 @@ public class FileInfoService { // 파일 개별조회 목록조회 기능.
         // 파일 서버 접속 URL (fileUrl)
         String fileUrl = request.getContextPath() + uploadUrl + folder + "/" + fileName;
 
-<<<<<<< HEAD
         //썸네일 경로 (thumbsPath)
         String thumbPath = getUploadThumbPath() + folder;
-=======
-        // 썸네일 경로 (thumbsPath)
-        String thumbPath = getUploadThumbPath() +  folder;
->>>>>>> test1
         File thumbDir = new File(thumbPath);
         if (!thumbDir.exists()) {
             thumbDir.mkdirs();
         }
-<<<<<<< HEAD
         // _1.png 포함되어 있으면 가져오기
         String[] thumbsPath = thumbDir.list((dir, name) -> name.indexOf("_" + fileName) != -1);
 
@@ -127,14 +118,6 @@ public class FileInfoService { // 파일 개별조회 목록조회 기능.
     }
 
     private String getUploadThumbPath() {
-=======
-
-        //
-        String[] thumbsPath = thumbDir.list((dir, name) -> name.indexOf("_" + fileName) != -1);
-    }
-
-    private String getUploadThumbPath() { // thumbs/folder/가로_세로_파일명
->>>>>>> test1
         return uploadPath + "thumbs/";
     }
 
