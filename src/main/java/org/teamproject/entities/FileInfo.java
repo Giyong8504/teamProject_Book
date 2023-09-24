@@ -47,8 +47,8 @@ public class FileInfo extends BaseMemberEntity{ // 로그인 아이디 비교를
     private String fileUrl; //서버 접속 URL
 
     @Transient
-    private List<String> thumbsPath; // 썸네일 이미지 경로
+    private String[] thumbsPath; // 썸네일 이미지 경로
 
     @Transient
-    private List<String> thumbsUrl; // 썸네일 이미지 접속 URL
+    private String[] thumbsUrl; // 썸네일 이미지 접속 URL
 }

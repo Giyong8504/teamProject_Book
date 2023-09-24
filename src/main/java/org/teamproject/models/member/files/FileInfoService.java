@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.teamproject.entities.FileInfo;
 import org.teamproject.repositories.FileInfoRepository;
 
+import java.io.File;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -38,9 +40,42 @@ public class FileInfoService { // 파일 개별조회 목록조회 기능.
     }
 
     public List<FileInfo> getList(Options opts) {
+        List<FileInfo> items = repository.getFiles(opts.getGid(), opts.getLocation(), opts.getMode().name());
 
+        items.stream().forEach(this::addFileInfo);
 
-        return null;
+        return items;
+    }
+
+    // 전체 조회
+    public List<FileInfo> getListAll(String gid, String location) {
+        Options opts = Options.builder()
+                .gid(gid)
+                .location(location)
+                .mode(SearchMode.ALL)
+                .build();
+
+        return getList(opts);
+    }
+
+    public List<FileInfo> getListAll(String gid) {
+        return getListAll(gid, null);
+    }
+
+    // 완료된 파일만 조회(gid,location)
+    public List<FileInfo> getListDone(String gid, String location) {
+        Options opts = Options.builder()
+                .gid(gid)
+                .location(location)
+                .mode(SearchMode.DONE)
+                .build();
+
+        return getList(opts);
+    }
+
+    // 완료된 파일만 조회(gid)
+    public List<FileInfo> getListDone(String gid) {
+        return getListDone(gid, null);
     }
 
     /**
@@ -57,10 +92,37 @@ public class FileInfoService { // 파일 개별조회 목록조회 기능.
         long folder = id % 10L; // 각각 폴더 경로
 
         // 파일 업로드 서버 경로
-        String filePath = uploadPath + "/" + folder + "/" + fileName;
+        String filePath = uploadPath + folder + "/" + fileName;
 
         // 파일 서버 접속 URL (fileUrl)
         String fileUrl = request.getContextPath() + uploadUrl + folder + "/" + fileName;
+
+        //썸네일 경로 (thumbsPath)
+        String thumbPath = getUploadThumbPath() + folder;
+        File thumbDir = new File(thumbPath);
+        if (!thumbDir.exists()) {
+            thumbDir.mkdirs();
+        }
+        // _1.png 포함되어 있으면 가져오기
+        String[] thumbsPath = thumbDir.list((dir, name) -> name.indexOf("_" + fileName) != -1);
+
+        // 썸네일 URL(thumbsUrl)
+        String[] thumbsUrl = Arrays.stream(thumbsPath)
+                .map(s -> s.replace(uploadPath, request.getContextPath() + uploadUrl))
+                .toArray(String[]::new);
+
+        item.setFilePath(filePath);
+        item.setFileUrl(fileUrl);
+        item.setThumbsPath(thumbsPath);
+        item.setThumbsUrl(thumbsUrl);
+    }
+
+    private String getUploadThumbPath() {
+        return uploadPath + "thumbs/";
+    }
+
+    private String getUploadThumbUrl() {
+        return uploadUrl + "thumbs/";
     }
 
     @Data
