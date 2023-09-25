@@ -1,4 +1,4 @@
-package org.teamproject.controllers.admin;
+package org.teamproject.controllers.statusmember;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -6,19 +6,26 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.teamproject.entities.Status;
+import org.teamproject.repositories.StatusRepository;
 
+import java.util.List;
+import java.util.Map;
 
 
 @Controller
-@RequestMapping("/admin/stats")
+
 @RequiredArgsConstructor
-public class statsController {
+public class StatsController {
 
-    @GetMapping
+    private StatusRepository statusRepository;
+
+
+    @GetMapping("/admin/stats")
     public String stats(Model model) {
-
         return "admin/stats";
     }
+    
 
     @PostMapping
     public String statsPs(Model model) {
