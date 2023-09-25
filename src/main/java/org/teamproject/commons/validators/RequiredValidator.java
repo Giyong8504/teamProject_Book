@@ -7,6 +7,10 @@ import org.teamproject.commons.BadRequestException;
  *
  */
 public interface RequiredValidator {
+    default void requiredCheck(String str, String message) {
+        requriedCheck(str, message);
+    }
+
     default void requriedCheck(String str, String message) {
         if (str == null || str.isBlank()) {
             throw new BadRequestException(message);

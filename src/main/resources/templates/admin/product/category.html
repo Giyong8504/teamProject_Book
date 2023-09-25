@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layouts/main}">
+<section layout:fragment="content">
+    <h1 th:text="${pageTitle}"></h1>
+    <form name="frmRegist" method="post" autocomplete="off" target="ifrmProcess">
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+        <input type="hidden" name="mode" value="register">
+        <table class="table-cols">
+            <tr>
+                <th>분류코드</th>
+                <td width="250">
+                    <input type="text" name="cateCd">
+                </td>
+                <th>분류명</th>
+                <td>
+                    <input type="text" name="cateNm">
+                </td>
+            </tr>
+        </table>
+        <div class="submit_btn">
+            <button type="submit">등록하기</button>
+        </div>
+    </form>
+    <h2>상품 분류 목록</h2>
+    <form name="frmList" method="post" target="ifrmProcess" autocomplete="off">
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+        <input type="hidden" name="mode" value="edit">
+        <table class="table-rows">
+            <thead>
+                <tr>
+                    <th width="30">
+                        <input type="checkbox" class="checkall" id="checkall" data-target-name="chkNo">
+                        <label for="checkall" class="standalone"></label>
+                    </th>
+                    <th width="200">분류코드</th>
+                    <th>분류명</th>
+                    <th width="300">노출여부</th>
+                    <th width="200">진열가중치</th>
+                </tr>
+            </thead>
+            <tbody>
+            <th:block th:if="${items == null || items.isEmpty()}">
+                <tr>
+                    <td colspan="5" class="no_data">등록된 분류가 없습니다.</td>
+                </tr>
+            </th:block>
+            <th:block th:unless="${items == null || items.isEmpty()}">
+                <tr th:each="item, status : ${items}" th:object="${item}">
+                    <td>
+                        <input type="checkbox" name="chkNo" th:value="${status.index}" th:id="${'id_' + status.index}">
+                        <label th:for="${'id_' + status.index}" class="standalone"></label>
+                        <input type="hidden" name="cateCds" th:value="*{cateCd}">
+                    </td>
+                    <td th:text="*{cateCd}"></td>
+                    <td>
+                        <input type="text" th:name="${'cateNm_' + status.index}" th:value="*{cateNm}">
+                    </td>
+                    <td>
+                        <input type="radio" th:name="${'open_' + status.index}" value="true" th:id="${'open_' + status.index}" th:checked="*{open}">
+                        <label th:for="${'open_' + status.index}">진열</label>
+                        <input type="radio" th:name="${'open_' + status.index}" value="false" th:id="${'open_' + status.index}" th:checked="*{!open}">
+                        <label th:for="${'open_' + status.index}" >미진열</label>
+                    </td>
+                    <td>
+                        <input type="number" th:name="${'listOrder_' + status.index}" th:value="*{listOrder}">
+                    </td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+        <div class="table-action">
+            선택 상품
+            <button type="button" class="sbtn" onclick="frmList.mode.value='delete';frmList.submit();">삭제하기</button>
+            <button type="button" class="sbtn blue" onclick="frmList.mode.value='edit'; frmList.submit();">수정하기</button>
+        </div>
+    </form>
+</section>
+</html>
