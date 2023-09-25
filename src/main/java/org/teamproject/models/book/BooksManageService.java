@@ -32,15 +32,15 @@ public class BooksManageService { // 등록, 불러오기, 수정, 삭제 서비
     public List<Books> allBookView() { // 전체 상품 list
         return booksRepository.findAll();
     }
-    /*  => 수정 필요
+    //=> 수정 필요
     public void bookUpdate(Books book, Long bookNo) { // 상품 수정
-        Books update = booksRepository.findBookById(bookNo);
+        Books update = booksRepository.findById(bookNo).orElse(null);
         update.setBookId(book.getBookId());
         update.setBookNm(book.getBookNm());
         update.setBookDesc(book.getBookDesc());
         update.setPrice(book.getPrice());
     }
-*/
+
     public void bookDelete(Long bookNo) { // 상품 삭제
         booksRepository.deleteById(bookNo);
     }

@@ -10,12 +10,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.teamproject.commons.CommonProcess;
 import org.teamproject.commons.Menu;
 import org.teamproject.commons.ScriptExceptionProcess;
+import org.teamproject.controllers.admin.dtos.CategoryForm;
+import org.teamproject.entities.product.Category;
+import org.teamproject.models.product.CategoryInfoService;
+import org.teamproject.models.product.CategoryRegistService;
+
+import java.util.List;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/admin/product")
 @RequiredArgsConstructor
 public class ProductController implements CommonProcess, ScriptExceptionProcess {
     private final HttpServletRequest request;
+    private final CategoryRegistService categoryRegistService;
+    private final CategoryInfoService categoryInfoService;
 
     /**
      * 상품 목록
@@ -25,7 +34,8 @@ public class ProductController implements CommonProcess, ScriptExceptionProcess 
     @GetMapping
     public String index(Model model) {
         commonProcess("list", model);
-
+        List<Category> items = categoryInfoService.getAll("all");
+        model.addAttribute("items", items);
         return "admin/product/index";
     }
 
@@ -48,7 +58,12 @@ public class ProductController implements CommonProcess, ScriptExceptionProcess 
      * @return
      */
     @PostMapping("/category")
-    public String categoryPs(Model model) {
+    public String categoryPs(CategoryForm form, Model model) {
+
+        String mode = Objects.requireNonNullElse(form.getMode(), "register");
+        if (mode.equals("register")) { // 카테고리 등록
+            categoryRegistService.regist(form);
+        }
 
         model.addAttribute("script", "parent.location.reload();");
         return "common/_execute_script";

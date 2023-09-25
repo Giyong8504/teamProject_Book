@@ -5,6 +5,8 @@
 <section layout:fragment="content">
     <h1 th:text="${pageTitle}"></h1>
     <form name="frmRegist" method="post" autocomplete="off" target="ifrmProcess">
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+        <input type="hidden" name="mode" value="register">
         <table class="table-cols">
             <tr>
                 <th>분류코드</th>
