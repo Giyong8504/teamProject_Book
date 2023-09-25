@@ -14,6 +14,7 @@ import org.teamproject.controllers.admin.dtos.CategoryForm;
 import org.teamproject.entities.product.Category;
 import org.teamproject.models.product.CategoryInfoService;
 import org.teamproject.models.product.CategoryRegistService;
+import org.teamproject.models.product.CategoryUpdateService;
 
 import java.util.List;
 import java.util.Objects;
@@ -25,6 +26,7 @@ public class ProductController implements CommonProcess, ScriptExceptionProcess 
     private final HttpServletRequest request;
     private final CategoryRegistService categoryRegistService;
     private final CategoryInfoService categoryInfoService;
+    private final CategoryUpdateService categoryUpdateService;
 
     /**
      * 상품 목록
@@ -34,8 +36,7 @@ public class ProductController implements CommonProcess, ScriptExceptionProcess 
     @GetMapping
     public String index(Model model) {
         commonProcess("list", model);
-        List<Category> items = categoryInfoService.getAll("all");
-        model.addAttribute("items", items);
+
         return "admin/product/index";
     }
 
@@ -47,6 +48,9 @@ public class ProductController implements CommonProcess, ScriptExceptionProcess 
     @GetMapping("/category")
     public String category(Model model) {
         commonProcess("category", model);
+
+        List<Category> items = categoryInfoService.getAll("all");
+        model.addAttribute("items", items);
 
         return "admin/product/category";
     }
@@ -63,6 +67,8 @@ public class ProductController implements CommonProcess, ScriptExceptionProcess 
         String mode = Objects.requireNonNullElse(form.getMode(), "register");
         if (mode.equals("register")) { // 카테고리 등록
             categoryRegistService.regist(form);
+        } else if (mode.equals("edit")) { // 카테고리 목록 수정
+            categoryUpdateService.update(form);
         }
 
         model.addAttribute("script", "parent.location.reload();");
