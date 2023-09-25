@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layouts/main}">
+<section layout:fragment="content">
+    <h1 th:text="${pageTitle}"></h1>
+    <form name="frmRegist" method="post" autocomplete="off" target="ifrmProcess">
+        <table class="table-cols">
+            <tr>
+                <th>분류코드</th>
+                <td width="250">
+                    <input type="text" name="cateCd">
+                </td>
+                <th>분류명</th>
+                <td>
+                    <input type="text" name="cateNm">
+                </td>
+            </tr>
+        </table>
+        <div class="submit_btn">
+            <button type="submit">등록하기</button>
+        </div>
+    </form>
+</section>
+</html>
