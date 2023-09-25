@@ -1,15 +1,86 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <header th:fragment="common">
-    <th:block sec:authorize="isAnonymous()">
-        <a th:href="@{/member/join}" th:text="#{title.join}"></a>
-        <a th:href="@{/member/login}" th:text="#{title.login}"></a>
-    </th:block>
-    <th:block sec:authorize="isAuthenticated()">
-        <span th:text="${#messages.msg('login.msg', session.userInfo.userNm, session.userInfo.email)}"></span>
-        <a th:href="@{/member/logout}" th:text="#{title.logout}"></a>
-        <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/admin}" th:text="#{title.siteAdmin}"></a>
-    </th:block>
+    <section>
+        <div class="header_layout" style="top: 0px;">
+            <div class="headerTop">
+                <div class="headerTopContainer">
+                    <div class="top_menu">
+                        <a th:href="@{/}" class="menu_item">장바구니</a>
+                    </div>
+                    <div class="top_menu">
+                        <a th:href="@{/member/{id}}" class="menu_item">마이페이지</a>
+                    </div>
+                    <div class="top_menu">
+                        <!-- 일단은 admin 쪽으로 연결시켰는데 페이지 하나 만드는게 좋을까요? -->
+                        <a th:href="@{/admin/review}" class="menu_item">고객문의</a>
+                    </div>
+                    <th:block sec:authorize="isAnonymous()"> <!--로그인 X-->
+                        <div class="top_menu">
+                            <a th:href="@{/member/join}" th:text="#{title.join}" class="menu_item">회원가입</a>
+                        </div>
+                        <div class="top_menu">
+                            <a th:href="@{/member/login}" th:text="#{title.login}" class="menu_item">로그인</a>
+                        </div>
+                    </th:block>
+                    <th:block sec:authorize="isAuthenticated()"> <!--로그인 O-->
+                        <div class="top_menu">
+                            <a th:href="@{/member/logout}" th:text="#{title.logout}" class="menu_item">로그아웃</a>
+                        </div>
+                        <div class="top_menu">
+                            <span th:text="${#messages.msg('login.msg', session.userInfo.userNm, session.userInfo.email)}" id="wel_message"></span>
+                        </div>
+                        <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/admin}" th:text="#{title.siteAdmin}" class="menu_item"></a>
+                    </th:block>
+                    <!--                    </div>-->
+                </div>
+            </div>
+
+            <div class="headerMiddle">
+                <h1 class="headL">
+                    <a th:href="@{/}" id="logo">로고 영역
+                        <!-- 로고 src 주소만 변경하면 됩니다. -->
+                        <img src="/front/images/logo.png" alt="북따옴">
+                    </a>
+                </h1>
+                <div class="search_field">
+                    <div id="searchbar">
+                        <div class="search">
+                            <input class="searchbar_1">
+                            <i class="xi-search"></i>
+                            <!-- js 추가해서 클릭시 검색창 기능 구현 예정 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="headerBottom">
+                <div class="view_list">
+                    <div class="menu_bottom" style="padding: 0 28px;">
+                        <div class="menu_item">
+                            <a th:href="@{/}" class="menu_bts">전체보기</a>
+                        </div>
+                    </div>
+                    <div class="menu_bottom" style="padding: 0 28px;">
+                        <div class="menu_item">
+                            <a th:href="@{/}" class="menu_bts">베스트도서</a>
+                        </div>
+                    </div>
+                    <div class="menu_bottom" style="padding: 0 28px;">
+                        <div class="menu_item">
+                            <a th:href="@{/}" class="menu_bts">이벤트</a>
+                        </div>
+                    </div>
+                    <div class="menu_bottom" style="padding: 0 28px;">
+                        <div class="menu_item">
+                            <a th:href="@{/}" class="menu_bts">나의서점</a>
+                            <!-- 나의 서점은 판매자가 손쉽게 자신이 판매하고 있는 상품을 볼 수 있도록 하기 위해 넣었습니다. -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </header>
 </html>
