@@ -17,9 +17,9 @@ public abstract class BaseMemberEntity extends BaseEntity {
 
     @CreatedBy
     @Column(updatable = false)
-    private Long createdBy;
+    private String createdBy;
 
     @LastModifiedBy
     @Column(insertable = false)
-    private Long modifiedBy;
+    private String modifiedBy;
 }
