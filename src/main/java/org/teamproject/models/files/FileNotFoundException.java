@@ -1,4 +1,4 @@
-package org.teamproject.models.member.files;
+package org.teamproject.models.files;
 
 import org.springframework.http.HttpStatus;
 import org.teamproject.commons.CommonException;

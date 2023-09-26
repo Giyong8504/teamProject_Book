@@ -1,4 +1,4 @@
-package org.teamproject.models.member.files;
+package org.teamproject.models.files;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -6,6 +6,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.teamproject.entities.FileInfo;
 import org.teamproject.repositories.FileInfoRepository;
 
+
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -13,7 +16,6 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class FileUploadService { // 파일정보를 저장하고 업로드 처리 방법을 사용
-
 
     private final FileInfoRepository repository;
     private final FileInfoService infoService;
@@ -45,17 +47,26 @@ public class FileUploadService { // 파일정보를 저장하고 업로드 처�
             infoService.addFileInfo(item); // 파일 저장 처리 완료.
 
 
-            /** 파일 업로드 처리 작업예정. */
+            // 파일 업로드 처리 s
+            try {
+                File _file = new File(item.getFilePath());
+                file.transferTo(_file);
+
+                if (fileType.indexOf("image") != -1) { // 이미지 형식 파일
+
+                }
+
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-
-
 
         return null;
     }
 
 
-
-    //
     public List<FileInfo> upload(MultipartFile[] files, String gid) {
         return upload(files, gid, null);
     }
