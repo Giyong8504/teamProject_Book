@@ -20,17 +20,11 @@ public class FileDeleteService {
     public void delete(Long id) {
         FileInfo item = infoService.get(id); // id 파이 정보 조회.
 
-        /**
-         * 아이디가 email이므로 String으로 바꿔야 할 부분. 담당자에게 체크 후 변경 예정
-         * isBlank() 추가예정.
-         *
-         */
-
         /* 파일 삭제 권한 체크 S */
         //업로드한 사용자와 로그인한 회원이 같은지 확인.관리자 권한 인지 확인.
-        Long createBy = item.getCreatedBy();
+        String createBy = item.getCreatedBy();
         UserInfo user = memberUtil.getMember();
-        if (createBy != null && !memberUtil.isAdmin()
+        if (createBy != null && createBy.isBlank() && !memberUtil.isAdmin()
                 && (!memberUtil.isLogin() || memberUtil.isLogin() && user.getEmail().equals(createBy))) {
 
             throw new ArithmeticException("UnAuthorized.delete.file");
