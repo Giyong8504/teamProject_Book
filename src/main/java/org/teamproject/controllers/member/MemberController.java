@@ -24,6 +24,7 @@ public class MemberController implements CommonProcess {
     private final UserSaveService saveService;
     private final Utils utils;
 
+
     @GetMapping("/join")
     public String join(@ModelAttribute JoinForm form, Model model) {
         commonProcess(model, "회원가입");
@@ -51,10 +52,10 @@ public class MemberController implements CommonProcess {
     }
 
 
+
     @GetMapping("/book")
     public String insert_Book(@ModelAttribute BookForm bookForm, Model model){
         commonProcess(model, "책 등록");
         return utils.tpl("member/book");
     }
-
 }
