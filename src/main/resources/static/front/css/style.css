@@ -36,7 +36,7 @@ h2 { font-size: 18px; font-weight: bold; margin: 25px 0 10px; line-height: 1; }
 
 /** header_top 부분 */
 .header_layout {
-    height: 245px; width: 100%;
+    height: 300px; width: 100%;
 }
 .header_layout .headerTop {
     background: #4591e6; width: 100%;
@@ -55,26 +55,18 @@ h2 { font-size: 18px; font-weight: bold; margin: 25px 0 10px; line-height: 1; }
     color: #fff; font-weight: 400; line-height: 36px;
 }
 
-/* 중간 헤더 */
-.headerMiddle {
-    width: 1030px; height: 88px; margin: 0 auto; display: flex; position: relative; margin-top: 20px;
+.header_layout .search_field {
+    background: #4591e6; width: 100%;
 }
-.headerMiddle .headL {
-    width: 212px; height: 100%; flex-shrink: 0; font-size: 0px; margin: 0; padding: 0;
-}
-#logo img {
-    display: block; width: 100%; height: 100%; object_fit: cover; /* 이미지를 꽉 채우면서 비율 유지 */
-}
-#logo {
-    display: block; width: 100%; height: 100%;
+.header_layout .headerTop .search_field {
+    height: 52px; max-width: 1140px; margin: 0 auto;
 }
 
 .search_field {
-    margin-left: 50px;
-    margin-top: 23px;
+    position: relative;
 }
-#search_bar {
-    width: 535px; position: relative; top: 28px; height: 41px;
+.search_field .searchbar {
+    position: absolute; right: 0; height: 41px;
 }
 .search {
     position: relative;
@@ -100,6 +92,20 @@ h2 { font-size: 18px; font-weight: bold; margin: 25px 0 10px; line-height: 1; }
     cursor: pointer;
     font-size: 24px;
 }
+
+/* 중간 헤더 */
+.headerMiddle {
+    width: 100% height: 88px; display: flex; margin-top: 20px; justify-content: center;
+}
+.headerMiddle .headL {
+    width: 212px; height: 100%; flex-shrink: 0; font-size: 0px; margin: 0; padding: 0;
+    display: flex; align-items: center;
+}
+#logo img {
+    display: block; width: 100%; height: 100%; object_fit: contain; /* 이미지를 꽉 채우면서 비율 유지 */
+}
+
+
 
 /* bottom header */
 .headerBottom {
