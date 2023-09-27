@@ -3,25 +3,12 @@
 - 프로젝트명 : Book' (북따옴)
 - 개발 기간 : 2023.09.16 ~ 2023.10.10
 - 개발 인원 : 6명
+<br>
 
-## 2. 기획
-- 개발자는 항상 책과 함께하는 직업으로 
+<img src="https://blogfiles.pstatic.net/MjAyMzA5MjhfMTEz/MDAxNjk1ODQxOTQ4MDA2.uLPLvFcfGnvAbGFXCvj3QawjfEDEG46I730AhcjFnlAg.VAnivc5MENfYDTcU0AgfVCTBXYb_xMfXzPvqpaZl2yIg.JPEG.kky5163/readme1.jpg" wight="700" height="743">
 
-# 🧰 기술 스택 및 툴
-- Stacks
-  - Java
-  - SpringBoot
-  - Thymeleaf
-  - JavaScript
-  - HTML5
-  - CSS
+<br>
 
-
-- Tools
-  - IntelliJ
-  - MySQL
-  - Maven
-  - Git
 
 # 📋 기능 명세서
 ## 1. 관리자 페이지
