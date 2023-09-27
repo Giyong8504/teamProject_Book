@@ -1,4 +1,4 @@
-package org.teamproject.models.member.files;
+package org.teamproject.models.files;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.Builder;
@@ -92,7 +92,15 @@ public class FileInfoService { // 파일 개별조회 목록조회 기능.
         long folder = id % 10L; // 각각 폴더 경로
 
         // 파일 업로드 서버 경로
-        String filePath = uploadPath + folder + "/" + fileName;
+        String fileDir = uploadPath + folder;
+        String filePath = fileDir + "/" +fileName;
+
+        // 파일경로 체크 후 없을 경우 생성.
+        File _fileDir = new File(fileDir);
+        if (!_fileDir.exists()) {
+            _fileDir.mkdir();
+        }
+
 
         // 파일 서버 접속 URL (fileUrl)
         String fileUrl = request.getContextPath() + uploadUrl + folder + "/" + fileName;

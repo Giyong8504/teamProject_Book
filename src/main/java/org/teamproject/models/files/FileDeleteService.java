@@ -1,4 +1,4 @@
-package org.teamproject.models.member.files;
+package org.teamproject.models.files;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
