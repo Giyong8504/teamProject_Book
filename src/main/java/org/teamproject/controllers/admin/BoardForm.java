@@ -21,9 +21,9 @@ public class BoardForm {
 
     private boolean use; // 사용 여부
 
-    private int rowOfPage = 20; // 1페이지당 게시글 수
+    private int rowsOfPage = 20; // 1페이지당 게시글 수
 
-    private int showViewList; // 게시글 하단 목록 노출
+    private boolean showViewList; // 게시글 하단 목록 노출
 
     private String category; // 게시판 분류
 
