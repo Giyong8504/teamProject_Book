@@ -20,7 +20,7 @@ public class FileInfoService { // 파일 개별조회 목록조회 기능.
     @Value("${file.upload.path}")
     private String uploadPath;
 
-    @Value("file.upload.url")
+    @Value("${file.upload.url}")
     private String uploadUrl;
 
     private final HttpServletRequest request;
@@ -88,12 +88,12 @@ public class FileInfoService { // 파일 개별조회 목록조회 기능.
         String extension = item.getExtension();
 
         // 확장자 있을 경우 .확장자 , 없을경우 Id만.
-        String fileName = extension == null || extension.isBlank() ? "" + id : id + "." + extension;
+        String fileName = getFileName(id, extension);
         long folder = id % 10L; // 각각 폴더 경로
 
         // 파일 업로드 서버 경로
         String fileDir = uploadPath + folder;
-        String filePath = fileDir + "/" +fileName;
+        String filePath = fileDir + "/" + fileName;
 
         // 파일경로 체크 후 없을 경우 생성.
         File _fileDir = new File(fileDir);
@@ -112,7 +112,8 @@ public class FileInfoService { // 파일 개별조회 목록조회 기능.
             thumbDir.mkdirs();
         }
         // _1.png 포함되어 있으면 가져오기
-        String[] thumbsPath = thumbDir.list((dir, name) -> name.indexOf("_" + fileName) != -1);
+        String[] thumbsPath = Arrays.stream(thumbDir.list((dir,name) -> name.indexOf("_" + fileName) != -1))
+                .map(n -> thumbPath + "/" + n).toArray(String[]::new);
 
         // 썸네일 URL(thumbsUrl)
         String[] thumbsUrl = Arrays.stream(thumbsPath)
@@ -131,6 +132,23 @@ public class FileInfoService { // 파일 개별조회 목록조회 기능.
 
     private String getUploadThumbUrl() {
         return uploadUrl + "thumbs/";
+    }
+
+    public String getThumbUrl(long id, String extension, int width, int height) {
+        long folder = id % 10L;
+
+        return String.format(getUploadThumbUrl() + folder + "/%d_%d_%s", width, height, getFileName(id, extension));
+
+    }
+
+    public String getThumbPath(long id, String extension, int width, int height) {
+        long folder = id % 10L;
+
+        return String.format(getUploadThumbPath() + folder + "/%d_%d_%s", width, height, getFileName(id, extension));
+    }
+
+    private String getFileName(long id, String extension) {
+        return extension == null || extension.isBlank() ? "" + id : id + "." + extension;
     }
 
     @Data
