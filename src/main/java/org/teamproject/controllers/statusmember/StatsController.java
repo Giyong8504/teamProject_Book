@@ -14,7 +14,6 @@ import java.util.Map;
 
 
 @Controller
-
 @RequiredArgsConstructor
 public class StatsController {
 
