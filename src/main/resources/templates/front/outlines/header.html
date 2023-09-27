@@ -33,8 +33,18 @@
                         </div>
                         <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/admin}" th:text="#{title.siteAdmin}" class="menu_item"></a>
                     </th:block>
-                    <!--                    </div>-->
                 </div>
+
+                <div class="search_field">
+                    <div class="searchbar">
+                        <div class="search">
+                            <input class="searchbar_1">
+                            <i class="xi-search"></i>
+                            <!-- js 추가해서 클릭시 검색창 기능 구현 예정 -->
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
             <div class="headerMiddle">
@@ -44,15 +54,6 @@
                         <img src="/front/images/logo.png" alt="북따옴">
                     </a>
                 </h1>
-                <div class="search_field">
-                    <div id="searchbar">
-                        <div class="search">
-                            <input class="searchbar_1">
-                            <i class="xi-search"></i>
-                            <!-- js 추가해서 클릭시 검색창 기능 구현 예정 -->
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <div class="headerBottom">
