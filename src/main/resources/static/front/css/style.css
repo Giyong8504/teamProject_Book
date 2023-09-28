@@ -125,3 +125,18 @@ h2 { font-size: 18px; font-weight: bold; margin: 25px 0 10px; line-height: 1; }
 .menu_bts { text-decoration: none; }
 
 /* header E  */
+
+/* event 부분 시작  */
+.icon-container {
+  text-align: center; margin: 50px auto; justify-content: center; display: inline-block
+}
+.icon-text{
+text-align: center;
+}
+.event {
+text-align: center;
+background-image: url('#');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}

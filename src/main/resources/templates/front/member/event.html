@@ -3,6 +3,40 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
 <section layout:fragment="content">
-<h1>이벤트</h1>
+<header>
+    <link rel="stylesheet" type="text/css" href="/front/css/style.css">
+    <div class="event">
+        <img src="/front/images/event.png" alt="북따옴">
+    </div>
+</header>
+    <body>
+<center>
+    <div class="icon-container">
+
+        <a th:href="@{/}"><img th:src="@{/front/images/logo.png}"alt="북따옴"></a>
+
+    </div>
+    <!-- 상품 또는 연령별의 따라 바뀔수 있기에 이미지 링크만 경로없이 만들어 놓았습니다 -->
+    <div class="icon-container">
+        <a th:href="@{/}"><img th:src="@{/front/images/logo.png}" alt="북따옴"></a>
+    </div><h1>이벤트 화면 준비중</h1>
+    <!-- -->
+    <div class="icon-container">
+        <a th:href="@{/}"><img th:src="@{/front/images/logo.png}" alt="북따옴"></a>
+    </div>
+    <!--  -->
+    <div class="icon-container">
+        <a th:href="@{/}"><img th:src="@{/front/images/logo.png}" alt="북따옴"></a>
+    </div>
+    <!--  -->
+    <div class="icon-container">
+    <a th:href="@{/}"><img th:src="@{/front/images/logo.png}" alt="북따옴"></a>
+        </h1>
+    </div>
+    <!-- -->
+ </center>
+    </body>
+
 </section>
+
 </html>
