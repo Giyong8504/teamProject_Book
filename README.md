@@ -3,26 +3,12 @@
 - 프로젝트명 : Book' (북따옴)
 - 개발 기간 : 2023.09.16 ~ 2023.10.10
 - 개발 인원 : 6명
-- 소개 : 
+<br>
 
-## 2. 기획
-- 개발자는 항상 책과 함께하는 직업으로 
+<img src="https://blogfiles.pstatic.net/MjAyMzA5MjhfMTEz/MDAxNjk1ODQxOTQ4MDA2.uLPLvFcfGnvAbGFXCvj3QawjfEDEG46I730AhcjFnlAg.VAnivc5MENfYDTcU0AgfVCTBXYb_xMfXzPvqpaZl2yIg.JPEG.kky5163/readme1.jpg" wight="700" height="743">
 
-# 🧰 기술 스택 및 툴
-- Stacks
-  - Java
-  - SpringBoot
-  - Thymeleaf
-  - JavaScript
-  - HTML5
-  - CSS
+<br>
 
-
-- Tools
-  - IntelliJ
-  - MySQL
-  - Maven
-  - Git
 
 # 📋 기능 명세서
 ## 1. 관리자 페이지
@@ -91,13 +77,17 @@
 - 고객현황
 - 연령별 선호도
 
+## 7. 이벤트
+### 이벤트 관리
+- 이벤트 쿠폰
+
 # 💡 담당 파트
 - 관리자, 회원 : 윤여찬
 - 상품 등록 : 장준
 - 주문 관리 : 김기용
 - 취소/반품/교환 : 김혜주
 - 게시판 관리 : 전성우
-- 통계 : 김형석
+- 통계, 이벤트 : 김형석
 
 # 유스케이스 다이어그램
 
