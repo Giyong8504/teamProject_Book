@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layouts/main}">
+
+<section layout:fragment="content"> <!-- ClaimController 에서 값 불러오기 -->
+    <h1 th:text="${title}"></h1>
+
+    <th:block th:replace="~{admin/commons/_message::message}"></th:block>
+
+    <form method="post" th:action="@{/admin/claim}" autocomplete="off" th:object="${configForm}">
+        <h2>주문목록</h2>
+        <div class="c_searchbar">
+            <div class="c_searchbar_1">
+                <div class="c_searchbar_2">
+                    <input placeholder="주문한 상품을 검색하세요." class="c_searchbar_3">
+                    <i class="xi-search"></i>
+                </div>
+            </div>
+            <div class="c_sb_b_blank">
+                <div class="c_search_period">
+                    <div width="75px" class="c_period c_period_on" onclick="togglePeriod(this)">최근 1개월</div>
+                    <div width="75px" class="c_period c_period_off" onclick="togglePeriod(this)">최근 3개월</div>
+                    <div width="75px" class="c_period c_period_off" onclick="togglePeriod(this)">최근 6개월</div>
+                    <div class="c_period c_period_off" onclick="togglePeriod(this)">2023</div>
+                    <div class="c_period c_period_off" onclick="togglePeriod(this)">2022</div>
+                    <div class="c_period c_period_off" onclick="togglePeriod(this)">2021</div>
+                </div>
+            </div>
+        </div>
+        <table>
+            <tr>
+                <th></th>
+            </tr>
+        </table>
+    </form>
+</section>
+</html>

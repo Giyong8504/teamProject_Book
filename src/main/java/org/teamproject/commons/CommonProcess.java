@@ -13,6 +13,7 @@ public interface CommonProcess {
      * @param pageTitle 페이지 제목
      */
     default void commonProcess(Model model, String pageTitle) {
+
         model.addAttribute("pageTitle", pageTitle);
     }
 }

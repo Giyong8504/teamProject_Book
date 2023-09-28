@@ -12,4 +12,6 @@ public interface MemberRepository extends JpaRepository<Member, Long>, QuerydslP
 
         return exists(QMember.member.email.eq(email));
     }
+
+
 }
