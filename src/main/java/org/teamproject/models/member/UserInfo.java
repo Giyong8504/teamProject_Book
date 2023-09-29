@@ -14,7 +14,6 @@ public class UserInfo implements UserDetails {
     private String email;
     private String userPw;
     private String userNm;
-    private int age;
     private String mobile;
     private Role role;
     private Collection<GrantedAuthority> authorities;
