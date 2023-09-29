@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.teamproject.commons.constants.BookStatus;
 import org.teamproject.commons.constants.Role;
 
 @Entity
@@ -21,10 +22,24 @@ public class Books extends BaseEntity{
     @Column(length = 100, nullable = false)
     private String bookNm;
 
-    private String bookDesc; // 상품에 대한 설명
+    @Column(length = 50)
+    private String category;
 
-    @Column(nullable = false)
-    private Long price;
+    @Column(length = 50, nullable = false)
+    private String gid;
+
+    private String bookDesc; // 상품에 대한 설명
+    private int price;
+    private int stock; // 재고
+
+    @Enumerated(EnumType.STRING)
+    @Column(length = 25, nullable = false)
+    private BookStatus status;
+
+    @Lob
+    private String description;
+
+    private long listOrder;
 
     @ManyToOne
     @JoinColumn(name="user_email")

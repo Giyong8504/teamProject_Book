@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <th:block th:fragment="form" th:object="${bookForm}">
+        <input type="file" id="file">
+        <dl>
+            <dt>상품 이미지(상세)</dt>
+            <dd>
+                <div class="uploaded_images" id="book_main_images"></div>
+                <button type="button" class="sbtn upload_files" data-location="book_main" data-image-only="true">이미지 추가</button>
+            </dd>
+        </dl>
+        <dl>
+            <dt>상품 이미지(목록)</dt>
+            <dd>
+                <div class="uploaded_images" id="book_list_images"></div>
+                <button type="button" class="sbtn upload_files" data-location="book_list" data-image-only="true">이미지 추가</button>
+            </dd>
+        </dl>
+    </th:block>
+</html>
+

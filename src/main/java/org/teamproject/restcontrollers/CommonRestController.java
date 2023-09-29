@@ -31,7 +31,7 @@ public class CommonRestController {
                 .message(e.getMessage())
                 .status(status)
                 .build();
-
+        e.printStackTrace();
         return ResponseEntity.status(status).body(jsonData);
     }
 }
