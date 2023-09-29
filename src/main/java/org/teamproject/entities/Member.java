@@ -1,10 +1,11 @@
 package org.teamproject.entities;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.teamproject.commons.constants.Role;
-
-import java.util.ArrayList;
 
 @Entity
 @Data @Builder
@@ -18,9 +19,6 @@ public class Member extends BaseEntity {
 
     @Column(length=40, nullable = false)
     private String userNm;
-
-    @Column(length = 100, nullable = false)
-    private int age;
 
     @Column(length=65, nullable = false)
     private String userPw;
@@ -39,10 +37,4 @@ public class Member extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private Role role;
-
-    private boolean expired;
-    private boolean locked;
-    private boolean credentialExpired;
-    private boolean enabled;
-
 }
