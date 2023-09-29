@@ -21,6 +21,7 @@ public class Menu {
         } else if (code.equals("product")) { // 상품관리 하위 메뉴
             menus.add(new MenuDetail("product", "상품 목록", "/admin/product"));
             menus.add(new MenuDetail("add", "상품 등록", "/admin/product/add"));
+            menus.add(new MenuDetail("edit", "상품 수정", "/admin/product/edit"));
             menus.add(new MenuDetail("category", "상품 분류", "/admin/product/category"));
         }
 
