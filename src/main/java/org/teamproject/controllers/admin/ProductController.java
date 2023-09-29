@@ -50,7 +50,11 @@ public class ProductController implements CommonProcess, ScriptExceptionProcess 
      */
     @GetMapping("/add")
     public String add(@ModelAttribute ProductForm productForm, Model model) {
-        commonProcess(model, "add");
+        commonProcess("add", model);
+
+        List<Category> items = categoryInfoService.getAll("all");
+        model.addAttribute("items", items);
+
         return "admin/product/add";
     }
 
@@ -63,14 +67,14 @@ public class ProductController implements CommonProcess, ScriptExceptionProcess 
 
     @GetMapping("/edit/{bookNo}")
     public String edit(@PathVariable Long bookNo, Model model) {
-        commonProcess(model, "edit");
+        commonProcess("edit", model);
         return "admin/product/edit";
     }
 
 
     @PostMapping("/save")
     public String bookSave(@Valid ProductForm productForm, Errors errors, Model model) {
-        commonProcess(model, "save");
+        commonProcess("save",model);
 
         String mode = productForm.getMode();
         if (errors.hasErrors()) {
@@ -116,7 +120,7 @@ public class ProductController implements CommonProcess, ScriptExceptionProcess 
     }
 
     public void commonProcess(String mode, Model model) {
-        String pageTitle = "상품관리";
+        String pageTitle = "상품 관리";
         if (mode.equals("category")) {
             pageTitle = "상품 분류";
         }else if (mode.equals("add")) {
