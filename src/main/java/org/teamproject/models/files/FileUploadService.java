@@ -35,7 +35,7 @@ public class FileUploadService { // 파일정보를 저장하고 업로드 처�
         for(MultipartFile file : files) {
             String fileType = file.getContentType();
             String fileName = file.getOriginalFilename();
-            String extension = fileName.substring(fileName.lastIndexOf(".")+1);
+            String extension = fileName.substring(fileName.lastIndexOf("."),-1);
 
             // 파일 정보를 저장.
             FileInfo item = FileInfo.builder()
