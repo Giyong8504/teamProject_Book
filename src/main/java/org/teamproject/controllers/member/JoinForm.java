@@ -15,6 +15,8 @@ public class JoinForm {
     @Size(min=8)
     private String userPw;
     @NotBlank
+    private int age;
+    @NotBlank
     private String userPwRe;
     @NotBlank
     private String userNm;

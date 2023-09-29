@@ -1,0 +1,7 @@
+<update id="findPw" >
+    update MP_MEMBER set MEMBER_PW = #{memberPw} where MEMBER_EMAIL = #{memberEmail} and MEMBER_ID = #{memberId}
+</update>
+
+<select id="findPwCheck" resultType="int">
+select count(*) from MP_MEMBER where MEMBER_EMAIL = #{memberEmail} and MEMBER_NM = #{memberNm}
+</select>
