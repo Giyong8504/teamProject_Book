@@ -8,22 +8,20 @@
     <!-- 같은 페이지 내에서 처리하고 갱신하기 위한 hidden 프레임 : target -->
     <form name="frmSave" method="post" autocomplete="off" target="ifrmProcess">
 
-        <!-- _form을 가져와 사용. -->
-        <th:block th:replace="~{admin/product/_form::form}"></th:block>
-        <div class="btns">
-            <button type="reset">다시입력</button>
-            <button type="submit">등록하기</button>
-        </div>
-
-   <!-- <form name="frmSave" id=frmSave method="post" th:action="@{/admin/product/save"} autocomplete="off" th:object="${productForm}">
-        <input type="hidden" name="mode" value="add">
-        <input type="hidden" name="gid" th:field="*{gid}">
-        <th:block replace="~{admin/product/_form::form}"></th:block>
-        <div class="btns">
-            <button type="reset">다시입력</button>
-            <button type="submit">등록하기</button>
-        </div>
-    </form> -->
-    </form>
+    <!-- _form을 가져와 사용. -->
+    <th:block th:replace="~{admin/product/_form::form}"></th:block>
+    <div class="btns">
+        <button type="reset">다시입력</button>
+        <button type="submit">등록하기</button>
+    </div>
+    <!-- <form name="frmSave" id=frmSave method="post" th:action="@{/admin/product/save"} autocomplete="off" th:object="${productForm}">
+     <input type="hidden" name="mode" value="add">
+     <input type="hidden" name="gid" th:field="*{gid}">
+     <th:block replace="~{admin/product/_form::form}"></th:block>
+     <div class="btns">
+         <button type="reset">다시입력</button>
+         <button type="submit">등록하기</button>
+     </div>
+ </form> -->
 </section>
 </html>

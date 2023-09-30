@@ -27,4 +27,10 @@ public class ProductForm {
 
     private long listOrder;
 
+    private boolean dc; // 할인 사용 여부
+    private boolean sp; // 판매 기간 사용 여부
+    private boolean ps; // 새제품, 중고품 여부
+
+
+
 }
