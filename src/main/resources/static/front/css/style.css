@@ -123,3 +123,34 @@ h2 { font-size: 18px; font-weight: bold; margin: 25px 0 10px; line-height: 1; }
 .menu_bottom { flex: 1; padding: 0 28px; box-sizing: border-box; }
 .menu_item { text-align: center; }
 .menu_bts { text-decoration: none; }
+
+/* 카테고리 */
+.headerBottom .view_list .menu_bottom .menu_item .all_categories {
+    background: #fff; border: 1px solid #EEE; display: none; cursor: default; position: absolute; line-height: 24px; min-height: 194px; width: 150px; padding: 15px; left: 0; right: 865px; margin: 0 auto; text-align: center; z-index: 999;
+}
+.headerBottom .view_list .menu_bottom .menu_item .all_categories .category {
+    height: 24px; padding-bottom: 10px;
+}
+
+.headerBottom .view_list .menu_bottom .menu_item .all_categories_event {
+    background: #fff; border: 1px solid #EEE; display: none; cursor: default; position: absolute; line-height: 30px; min-height: 100px; width: 100px; padding: 15px; left: 660px; margin: 0 auto; text-align: center; z-index: 999;
+}
+
+/* 마우스를 올릴때 동작 */
+.headerBottom .view_list .menu_bottom .menu_item:hover .all_categories {
+    display: block; /* 카테고리 보이도록 */
+}
+.headerBottom .view_list .menu_bottom .menu_item:hover .all_categories_event {
+    display: block;
+}
+.headerBottom .view_list .menu_bottom .menu_item:hover .category {
+    display: block;
+}
+.headerBottom .view_list .menu_bottom .menu_item .menu_bts:hover {
+    text-decoration: underline 4px solid yellow; /* 글자 밑에 밑줄 */
+}
+.headerBottom .view_list .menu_bottom .menu_item .category:hover {
+    text-decoration: underline 4px solid yellow; /* 글자 밑에 밑줄 */
+}
+
+/* header E  */
