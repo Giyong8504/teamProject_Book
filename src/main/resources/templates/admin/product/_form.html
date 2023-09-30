@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <th:block th:fragment="form" th:object="${productForm}">
+        <table class="table-cols">
+            <th>상품명</th>
+                <td width="700">
+                <input type="text" name="cateCd">
+            </td>
+        </table>
+        <br>
+        <h2>판매가</h2>
+        <table class="table-cols">
+            <tr>
+                <th>판매가</th>
+                <td width="700">
+                    <input type="text" name="cateCd">
+                </td>
+            </tr>
+            <tr>
+                <th>할인</th>
+                <td width="700">
+                    <input type="radio" name="discount" value="true" id="dc_true" th:field="*{dc}">
+                    <label for="dc_true">설정함</label>
+                    <input type="radio" name="discount" value="false" id="dc_false" th:field="*{dc}">
+                    <label for="dc_false">설정안함</label>
+                </td>
+            </tr>
+            <tr>
+                <th>판매기간</th>
+                <td width="700">
+                    <input type="radio" name="sales_period" value="true" id="sp_true" th:field="*{sp}">
+                    <label for="sp_true">설정함</label>
+                    <input type="radio" name="sales_period" value="false" id="sp_false" th:field="*{sp}">
+                    <label for="sp_false">설정안함</label>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <h2>재고수량</h2>
+        <table class="table-cols">
+            <tr>
+                <th>수량</th>
+                <td width="700">
+                    <input type="text" name="cateCd">
+                </td>
+            </tr>
+        </table>
+        <br>
+        <h2>상품 이미지</h2>
+        <table class="table-cols">
+            <tr>
+                <th>대표 이미지</th>
+                <td width="700">
+                    <input type="file" id="thumb_file">
+                    <dl>
+                        <dt>상품 이미지(대표)</dt>
+                        <dd>
+                            <div class="uploaded_images" id="thumb_images"></div>
+                            <button type="button" class="sbtn upload_files" data-location="main" data-image-only="true">이미지 추가</button>
+                        </dd>
+                    </dl>
+                </td>
+            </tr>
+            <tr>
+                <th>상세 이미지</th>
+                <td width="700">
+                    <input type="file" id="detail_file">
+                    <dl>
+                        <dt>상품 이미지(상세페이지)</dt>
+                        <dd>
+                            <div class="uploaded_images" id="detail_images"></div>
+                            <button type="button" class="sbtn upload_files" data-location="main" data-image-only="true">이미지 추가</button>
+                        </dd>
+                    </dl>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <h2>도서</h2>
+        <table class="table-cols">
+            <tr>
+                <th>도서번호</th>
+                <td width="700">
+                    <input type="text" name="cateCd">
+                </td>
+            </tr>
+            <tr>
+                <th>도서이름</th>
+                <td width="700">
+                    <input type="text" name="cateCd">
+                </td>
+            </tr>
+            <tr>
+                <th>출간일</th>
+                <td width="700">
+                    <input type="text" name="cateCd">
+                </td>
+            </tr>
+            <tr>
+                <th>저자</th>
+                <td width="700">
+                    <input type="text" name="cateCd">
+                </td>
+            </tr>
+            <tr>
+                <th>출판사</th>
+                <td width="700">
+                    <input type="text" name="cateCd">
+                </td>
+            </tr>
+            <tr>
+                <th>원산지</th>
+                <td width="700">
+                    <input type="text" name="cateCd">
+                </td>
+            </tr>
+            <tr>
+                <th>상품상태</th>
+                <td width="700">
+                    <input type="radio" name="product_status" value="true" id="ps_true" th:field="*{ps}">
+                    <label for="ps_true">설정함</label>
+                    <input type="radio" name="product_status" value="false" id="ps_false" th:field="*{ps}">
+                    <label for="ps_false">설정안함</label>
+                </td>
+            </tr>
+        </table>
+    </th:block>
+</html>
+

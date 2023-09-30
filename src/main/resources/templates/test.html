@@ -1,0 +1,8 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<form method="POST" action="/file/upload" enctype="multipart/form-data">
+    <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+    <input type="hidden" name="gid" value="1234">
+    <input type="file" name="files" multiple>
+    <button type="submit">업로드</button>
+</form>
+</html>

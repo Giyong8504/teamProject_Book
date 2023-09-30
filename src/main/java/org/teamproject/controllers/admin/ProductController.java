@@ -1,12 +1,12 @@
 package org.teamproject.controllers.admin;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.*;
 import org.teamproject.commons.CommonProcess;
 import org.teamproject.commons.Menu;
 import org.teamproject.commons.ScriptExceptionProcess;
@@ -16,6 +16,7 @@ import org.teamproject.models.product.CategoryInfoService;
 import org.teamproject.models.product.CategoryRegistService;
 import org.teamproject.models.product.CategoryUpdateService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -39,6 +40,49 @@ public class ProductController implements CommonProcess, ScriptExceptionProcess 
 
         return "admin/product/index";
     }
+
+
+    /**
+     * 상품 등록
+     * @param productForm
+     * @param model
+     * @return
+     */
+    @GetMapping("/add")
+    public String add(@ModelAttribute ProductForm productForm, Model model) {
+        commonProcess("add", model);
+
+        List<Category> items = categoryInfoService.getAll("all");
+        model.addAttribute("items", items);
+
+        return "admin/product/add";
+    }
+
+    /**
+     * 상품 수정
+     * @param bookNo
+     * @param model
+     * @return
+     */
+
+    @GetMapping("/edit/{bookNo}")
+    public String edit(@PathVariable Long bookNo, Model model) {
+        commonProcess("edit", model);
+        return "admin/product/edit";
+    }
+
+
+    @PostMapping("/save")
+    public String bookSave(@Valid ProductForm productForm, Errors errors, Model model) {
+        commonProcess("save",model);
+
+        String mode = productForm.getMode();
+        if (errors.hasErrors()) {
+            return mode != null && mode.equals("edit") ? "admin/product/" + "add" : "admin/product/" + "edit";
+        }
+        return "redirect:/admin/product";
+    }
+
 
     /**
      * 상품 분류 등록, 조회, 수정,
@@ -76,15 +120,32 @@ public class ProductController implements CommonProcess, ScriptExceptionProcess 
     }
 
     public void commonProcess(String mode, Model model) {
-        String pageTitle = "상품관리";
-        if (mode.equals("category")) pageTitle = "상품 분류";
+        String pageTitle = "상품 관리";
+        if (mode.equals("category")) {
+            pageTitle = "상품 분류";
+        }else if (mode.equals("add")) {
+            pageTitle = "상품 등록";
+        }else if (mode.equals("edit")) {
+            pageTitle = "상품 수정";
+        }
 
 
         CommonProcess.super.commonProcess(model, pageTitle);
 
-
         String subMenuCode = Menu.getSubMenuCode(request);
         model.addAttribute("subMenuCode", subMenuCode);
         model.addAttribute("submenus", Menu.gets("product"));
+
+        List<String> addCommonScript = new ArrayList<>();
+        List<String> addScript = new ArrayList<>();
+        if (mode.equals("add") || mode.equals("edit") || model.equals("save")) {
+            addCommonScript.add("ckeditor/ckeditor");
+            addCommonScript.add("fileManager");
+            addScript.add("book/form");
+        }
+
+        model.addAttribute("menuCode", "product");
+        model.addAttribute("addCommonScript", addCommonScript);
+        model.addAttribute("addScript", addScript);
     }
 }
