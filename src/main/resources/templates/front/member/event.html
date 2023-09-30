@@ -3,23 +3,23 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
 <section layout:fragment="content">
-<header>
-    <link rel="stylesheet" type="text/css" href="/front/css/style.css">
+   <!-- 할인 이벤트 이미지 시작부분 -->
+    <header>
     <div class="event">
         <img src="/front/images/event.png" alt="북따옴">
     </div>
-</header>
+    </header>
+    <!-- 할인 이벤트 끝 -->
     <body>
-<center>
-    <div class="icon-container">
-
-        <a th:href="@{/}"><img th:src="@{/front/images/logo.png}"alt="북따옴"></a>
+    <!-- 바디 부분 시작 -->
+    <!-- 상품 또는 연령별의 따라 바뀔수 있기에 이미지 링크만 경로없이 만들어 놓았습니다 -->
+    <center>
+    <div class="icon-container"><a th:href="@{/}"><img th:src="@{/front/images/logo.png}"alt="북따옴"></a>
 
     </div>
-    <!-- 상품 또는 연령별의 따라 바뀔수 있기에 이미지 링크만 경로없이 만들어 놓았습니다 -->
-    <div class="icon-container">
-        <a th:href="@{/}"><img th:src="@{/front/images/logo.png}" alt="북따옴"></a>
-    </div><h1>이벤트 화면 준비중</h1>
+    <div class="icon-container"><a th:href="@{/}"><img th:src="@{/front/images/logo.png}" alt="북따옴"></a>
+    </div>
+    <h1>이벤트 화면 준비중</h1>
     <!-- -->
     <div class="icon-container">
         <a th:href="@{/}"><img th:src="@{/front/images/logo.png}" alt="북따옴"></a>
@@ -31,11 +31,140 @@
     <!--  -->
     <div class="icon-container">
     <a th:href="@{/}"><img th:src="@{/front/images/logo.png}" alt="북따옴"></a>
-        </h1>
+
     </div>
-    <!-- -->
+        <!--룰렛 구현 준비중-->
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script type='text/javascript' src='https://www.jestina.co.kr/content/js/swiper.3.4.1/swiper.jquery.min.js'></script>
+    <link rel="stylesheet" type="text/css" href="https://www.jestina.co.kr/content/css/reset2.css">
+    <link rel="stylesheet" type="text/css" href="https://www.jestina.co.kr/content/ux/content/css/common.css">
+    <link rel="stylesheet" type="text/css" href="https://www.jestina.co.kr/content/css/swiper.min.css">
+    <!--이벤트/기획 공통-->
+    <script type="text/javascript" src="https://webimg.jestina.co.kr/UpData/jestina/event/@assets/sub.common.version.02.js"></script>
+    <link rel="stylesheet" href="https://webimg.jestina.co.kr/UpData/jestina/event/@assets/sub.common.version.01.css">
+    </head>
+
+    <div class="roulette-wrapper">
+        <div class="resultLayer">
+            <!--이벤트 종료되었을 경우-->
+            <img id="resultImg" src="http://webimg.jestina.co.kr/UpData/jestina/event/201201_jWeek/roulette_product_end.png" alt="이벤트종료">
+
+            <!--이미 응모했을 경우-->
+            <!--<img id="resultImg" src="http://webimg.jestina.co.kr/UpData/jestina/event/201201_jWeek/roulette_product_07.png" alt="이미참여하셨습니다/">-->
+
+            <<button id="closeLayer">
+            <img src="http://webimg.jestina.co.kr/UpData/jestina/event/201201_jWeek/popup_close__btn.png" alt="닫기">
+        </button>
+
+        </div>
+
+        <img id="roulette-bg"
+             src="http://webimg.jestina.co.kr/UpData/jestina/event/201201_jWeek/roulette_bg.png">
+        <img id="roulette-gift"
+             src="http://webimg.jestina.co.kr/UpData/jestina/event/201201_jWeek/roulette_product.png">
+        <img id="roulette-niddle"
+             src="http://webimg.jestina.co.kr/UpData/jestina/event/201201_jWeek/roulette_niddle.png">
+        <button id="start-rotate">
+            <img id="roulette-startBtn" src="http://webimg.jestina.co.kr/UpData/jestina/event/201201_jWeek/roulette_btn.png">
+        </button>
+        </div>
+
+
+        <script type='text/javascript' src='http://php-jestina2.azurewebsites.net/scripts/jQueryRotate.js'></script>
+        <script>
+        $(document).ready(function () {
+                    var prize = 'product05';
+                    var prize = 'product06';
+                    // roulette_product_end = 이벤트 종료 : 룰렛엔 없어용
+
+                    // product01 = 조엘 컬러바
+                    // product02 = 크리스피기프티콘
+                    // product03 = 스타벅스 기프티콘
+                    // product04 = 더블 5,000원 쿠폰번호 1397
+                    // product05 = 더블 3,000원 쿠폰번호 1396
+                    // product06 = 더블 1,000원 쿠폰번호 1395
+
+                    // product07 = 이미참여하셨습니다
+
+                    $('#start-rotate').click(function () {
+                    if (prize == 'product01') {
+                    var degrees = 65;
+                    rotate(degrees);
+                    $('#resultImg').attr('src',
+                    'http://webimg.jestina.co.kr/UpData/jestina/event/201201_jWeek/roulette_product_01.png'
+                     );
+                     window.setTimeout(resultLayer, 5400);
+                     } else if (prize == 'product02') {
+                     var degrees = 120;
+                     rotate(degrees);
+
+                     $('#resultImg').attr('src',
+                     'http://webimg.jestina.co.kr/UpData/jestina/event/201201_jWeek/roulette_product_02.png'
+                     );
+
+                     window.setTimeout(resultLayer, 5400);
+                     } else if (prize == 'product03') {
+                     var degrees = 0;
+                     rotate(degrees);
+                     $('#resultImg').attr('src',
+                    'http://webimg.jestina.co.kr/UpData/jestina/event/201201_jWeek/roulette_product_03.png'
+                     );
+                     window.setTimeout(resultLayer, 5400);
+                     } else if (prize == 'product04') {
+                     var degrees = 220;
+                     rotate(degrees);
+
+                     $('#resultImg').attr('src',
+                    'http://webimg.jestina.co.kr/UpData/jestina/event/201201_jWeek/roulette_product_04.png'
+                     );
+                     window.setTimeout(resultLayer, 5400);
+                     } else if (prize == 'product05') {
+                     var degrees = 290;
+                     rotate(degrees);
+                     $('#resultImg').attr('src',
+                    'http://webimg.jestina.co.kr/UpData/jestina/event/201201_jWeek/roulette_product_05.png'
+                     );
+
+                     
+                     window.setTimeout(resultLayer, 5400);
+                     } else if (prize == 'product06') {
+                     var degrees = 160;
+                     rotate(degrees);
+                            $('#resultImg').attr('src',
+                      'http://webimg.jestina.co.kr/UpData/jestina/event/201201_jWeek/roulette_product_06.png'
+                            );
+                            window.setTimeout(resultLayer, 5400);
+                        }
+                        });
+
+                        function rotate(degrees) {
+                        $("#roulette-gift").rotate({
+                            angle: 0,
+                            animateTo: 360 * 5 + degrees,
+                            easing: $.easing.easeInOutElastic,
+                            duration: 5000
+                        });
+                        };
+
+                    function resultLayer() {
+                    $('.resultLayer').css('display', 'block');
+                    };
+
+                    $('#closeLayer').click(function () {
+                    $('.resultLayer').css('display', 'none');
+
+                    $("#roulette-gift").rotate({
+                            angle: 0,
+                            duration: 0
+                        });
+                    });
+                });
+    </script>
+    <!--룰렛 끝부분  -->
  </center>
-    </body>
+
+
+</body>
 
 </section>
 
