@@ -25,6 +25,14 @@ public class Menu {
             menus.add(new MenuDetail("category", "상품 분류", "/admin/product/category"));
         }
 
+        // 주문 관리 하위 메뉴
+        if (code.equals("order")) {
+            menus.add(new MenuDetail("order", "배송 관리", "/admin/order"));
+            menus.add(new MenuDetail("search", "주문 조회", "/admin/search"));
+            menus.add(new MenuDetail("return", "반품 관리", "admin/return"));
+            menus.add(new MenuDetail("exchange", "교환 관리", "admin/exchange"));
+        }
+
         // 게시판 하위 메뉴
         if (code.equals("board")){
             menus.add(new MenuDetail("board", "게시판 목록", "/admin/board"));
