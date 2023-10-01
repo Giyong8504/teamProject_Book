@@ -5,6 +5,8 @@
 - 개발 인원 : 6명
 <br>
 
+📌[click! 프로젝트 협업 관리 페이지 (notion)](https://low-fisherman-ad6.notion.site/Team-Project_Book-845242c6cf794c498a449a01a79072e6?pvs=4)
+
 <img src="https://blogfiles.pstatic.net/MjAyMzA5MjhfMTEz/MDAxNjk1ODQxOTQ4MDA2.uLPLvFcfGnvAbGFXCvj3QawjfEDEG46I730AhcjFnlAg.VAnivc5MENfYDTcU0AgfVCTBXYb_xMfXzPvqpaZl2yIg.JPEG.kky5163/readme1.jpg" wight="700" height="743">
 
 <br>
