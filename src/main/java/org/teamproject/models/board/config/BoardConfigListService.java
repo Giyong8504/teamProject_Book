@@ -36,17 +36,24 @@ public class BoardConfigListService {
         String sopt = boardSearch.getSopt();
         String skey = boardSearch.getSkey();
         if (sopt != null && !sopt.isBlank() && skey != null && !skey.isBlank()) {
+
+            skey = skey.trim();
+            sopt = sopt.trim();
+
             if (sopt.equals("all")) { // 통합 검색 - bId, bName
                 BooleanBuilder orBuilder = new BooleanBuilder();
-                orBuilder.or(board.bId.contains(skey));
+                orBuilder.or(board.bId.contains(skey))
+                        .or(board.bName.contains(skey));
+                andBuilder.and(orBuilder);
+
             } else if (sopt.equals("bId")) { // 게시판 bId
-
+                andBuilder.and(board.bName.contains(skey));
             } else if (sopt.equals("bName")) { // 게시판 bName
-
+                andBuilder.and(board.bName.contains(skey));
             }
         }
 
-        Pageable pageable = PageRequest.of(page - 1, limit, Sort.by(desc("createdAt")));
+        Pageable pageable = PageRequest.of(page - 1, limit, Sort.by(desc("createdBy")));
         Page<Board> data = boardRepository.findAll(andBuilder, pageable);
 
         return data;

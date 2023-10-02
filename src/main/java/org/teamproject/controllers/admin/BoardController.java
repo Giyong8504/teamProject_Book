@@ -4,6 +4,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -13,6 +14,7 @@ import org.teamproject.commons.Menu;
 import org.teamproject.commons.MenuDetail;
 import org.teamproject.entities.Board;
 import org.teamproject.models.board.config.BoardConfigInfoService;
+import org.teamproject.models.board.config.BoardConfigListService;
 import org.teamproject.models.board.config.BoardConfigSaveService;
 
 import java.util.List;
@@ -25,11 +27,15 @@ public class BoardController {
     private final HttpServletRequest request;
     private final BoardConfigSaveService configSaveService;
     private final BoardConfigInfoService boardconfigInfoService;
+    private final BoardConfigListService boardConfigListService;
 
     // 게시판 목록
     @GetMapping
     public String index(@ModelAttribute BoardSearch boardSearch, Model model) {
         commonProcess(model, "게시판 목록");
+
+        Page<Board> data = boardConfigListService.gets(boardSearch);
+        model.addAttribute("items", data.getContent());
 
         return  "admin/board/index";
     }
