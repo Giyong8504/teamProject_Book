@@ -28,7 +28,7 @@ public class BoardController {
 
     // 게시판 목록
     @GetMapping
-    public String index(Model model) {
+    public String index(@ModelAttribute BoardSearch boardSearch, Model model) {
         commonProcess(model, "게시판 목록");
 
         return  "admin/board/index";
