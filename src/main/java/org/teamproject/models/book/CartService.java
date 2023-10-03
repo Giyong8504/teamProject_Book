@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.teamproject.controllers.admin.dtos.CartItemForm;
+import org.teamproject.controllers.admin.dtos.CartListForm;
 import org.teamproject.entities.Books;
 import org.teamproject.entities.Cart;
 import org.teamproject.entities.CartItem;
@@ -13,6 +14,10 @@ import org.teamproject.repositories.BooksRepository;
 import org.teamproject.repositories.CartItemRepository;
 import org.teamproject.repositories.CartRepository;
 import org.teamproject.repositories.MemberRepository;
+import org.thymeleaf.util.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Transactional
@@ -47,5 +52,38 @@ public class CartService {
         }
         return cartItem.getId();
     }
+
+    /* 장바구니 조회 */
+    @Transactional(readOnly = true) // DB에서 데이터 수정 작업 허용 X
+    public List<CartListForm> getCartList(String email) {
+        List<CartListForm> cartListForms = new ArrayList<>();
+
+        Member member = memberRepository.findByEmail(email);
+        Cart cart = cartRepository.findById(member.getUserNo()).orElse(null);
+
+        if (cart == null) {
+            return cartListForms;
+        }
+
+        cartListForms = cartItemRepository.findCartListForm(cart.getId());
+        return cartListForms;
+    }
+
+    /* 현재 로그인한 사용자가 장바구니 주인인지 확인 */
+    @Transactional(readOnly = true)
+    public boolean validateCartItem(Long cartItemId, String email) {
+        // 현재 로그인된 사용자
+        Member logMember = memberRepository.findByEmail(email);
+
+        CartItem cartItem = cartItemRepository.findById(cartItemId).orElseThrow(EntityNotFoundException::new);
+        Member savedmember = cartItem.getCart().getMember();
+
+        if (StringUtils.equals(logMember.getEmail(), savedmember.getEmail())) {
+            return true;
+        }
+        return false;
+    }
+
+    /* 장바구니 상품 수량 변경 */
 
 }
