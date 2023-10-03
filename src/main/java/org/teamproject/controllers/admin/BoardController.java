@@ -90,6 +90,7 @@ public class BoardController {
 
         // 서브 메뉴
         String subMenuCode = Menu.getSubMenuCode(request);
+        subMenuCode = title.equals("게시판 수정") ? "register" : subMenuCode;
         model.addAttribute("subMenuCode", subMenuCode);
 
         List<MenuDetail> submenus = Menu.gets("board");
