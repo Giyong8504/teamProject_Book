@@ -22,4 +22,6 @@ public class Cart {
 
     @OneToMany(mappedBy = "cart") // 장바구니와 장바구니 상품들
     private List<CartItem> cartItem = new ArrayList<>();
+
+    private int count; // 카트에 담긴 상품 개수
 }

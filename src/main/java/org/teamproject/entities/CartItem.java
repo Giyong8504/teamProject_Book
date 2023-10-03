@@ -23,4 +23,8 @@ public class CartItem {
     private Books bookNm;
 
     private int count; // 카트에 담긴 상품 개수
+
+    public void duplicateCount(int count) { // 이미 담겨있는 물건 또 담을 경우 수량 증가
+        this.count += count;
+    }
 }

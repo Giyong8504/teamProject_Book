@@ -6,9 +6,12 @@
         <div class="header_layout" style="top: 0px;">
             <div class="headerTop">
                 <div class="headerTopContainer">
-                    <div class="top_menu">
-                        <a th:href="@{/}" class="menu_item">장바구니</a>
-                    </div>
+                    <th:block sec:authorize="hasRole('USER')" th:action="@{/member/cart/{id}/{itemId}(id=${user.id}, itemId=${item.id}}" method="POST">
+                        <div class="top_menu">
+                            <input type="num" value="1" style="max-width: 3rem"/>
+                            <button class="menu_item" type="submit">장바구니</button>
+                        </div>
+                    </th:block>
                     <div class="top_menu">
                         <a th:href="@{/member/{id}}" class="menu_item">마이페이지</a>
                     </div>
