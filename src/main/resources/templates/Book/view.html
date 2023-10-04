@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/layouts/main}">
+<main layout:fragment="content" th:object="${data}">
+    <section class="product_top">
+        <div class="product_images dn">
+            <th:block th:if="*{mainImages != null && mainImages.size() > 0}">
+                <img th:each="file : *{mainImages}"th:src="${file.fileUrl}">
+            </th:block>
+        </div>
+        <div class="product_info">
+            <form name="frmView" method="post" th:action="@{/front/js/order/cart}">
+                <input type="hidden" name="mode" value="direct">
+                <input type="hidden" name="bookNo" th:value="*{bookNo}">
+                <dl th:if="*{category != null}">
+                    <dt>책 분류</dt>
+                    <dd th:text="*{category.cateNm}"></dd>
+                </dl>
+                <dl>
+                    <dt>도서명</dt>
+                    <dd th:text="*{bookNm}"></dd>
+                </dl>
+                <dl>
+                    <dt>판매가</dt>
+                    <dd th:if="*{price < 1000}" th:text="*{price + '원'}"></dd>
+                    <dd th:if="*{price >= 1000}" th:text="*{#numbers.formatInteger(price, 3, 'COMMA') + '원'}"></dd>
+                </dl>
+                <dl>
+                    <dt>재고</dt>
+                    <dd th:if="*{stock < 1000}" th:text="*{stock+ '개'}"></dd>
+                    <dd th:if="*{stock >= 1000}" th:text="*{#numbers.formatInteger(stock, 3, 'COMMA') + '개'}"></dd>
+                </dl>
+                <div class="btns">
+                    <button type="button" class="action_button cart" data-mode="cart" style="color: #000;">장바구니</button>
+                    <button type="button" class="action_button direct" data-mode="direct" style="color: #000;">바로구매</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    <section class="product_bottom">
+        <div class="description" th:utext="*{description}"></div>
+    </section>
+</main>
+</html>
