@@ -12,60 +12,83 @@ import org.teamproject.commons.constants.Role;
 @NoArgsConstructor @AllArgsConstructor
 public class Board extends BaseMemberEntity{
 
+    // 게시판 Id
     @Id
     @Column(length = 30)
-    private String bId; // 게시판 Id
+    private String bId;
 
+    // 게시판명
     @Column(length = 60, nullable = false)
-    private String bName; // 게시판명
+    private String bName;
 
+    // 사용 여부
     @Column(name="isUse")
-    private boolean use; // 사용 여부
+    private boolean use;
 
-    private int rowsOfPage = 20; // 1페이지당 게시글 수
+    // 1페이지당 게시글 수
+    private int rowsOfPage = 20;
 
-    private boolean showViewList; // 게시글 하단 목록 노출
+    // 게시글 하단 목록 노출
+    private boolean showViewList;
 
+    // 게시판 분류
     @Lob
-    private String category; // 게시판 분류
+    private String category;
 
+    // 목록 접근 권한
     @Enumerated(EnumType.STRING)
     @Column(length = 10, nullable = false)
-    private Role listAccessRole = Role.ALL; // 목록 접근 권한
+    private Role listAccessRole = Role.ALL;
 
+    // 글보기 접근 권한
     @Enumerated(EnumType.STRING)
     @Column(length = 10, nullable = false)
-    private Role viewAccessRole = Role.ALL; // 글보기 접근 권한
+    private Role viewAccessRole = Role.ALL;
 
+    // 글쓰기 접근 권한
     @Enumerated(EnumType.STRING)
     @Column(length = 10, nullable = false)
-    private Role writeAccessRole = Role.ALL; // 글쓰기 접근 권한
+    private Role writeAccessRole = Role.ALL;
 
+    // 답글 접근 권한
     @Enumerated(EnumType.STRING)
     @Column(length = 10, nullable = false)
-    private Role replyAccessRole = Role.ALL; // 답글 접근 권한
+    private Role replyAccessRole = Role.ALL;
 
+    // 댓글 접근 권한
     @Enumerated(EnumType.STRING)
     @Column(length = 10, nullable = false)
-    private Role commentAccessRole = Role.ALL; // 댓글 접근 권한
-    
-    private boolean useEditor; // 에디터 사용 여부
-    
-    private boolean useAttachFile; // 파일 첨부 사용 여부
+    private Role commentAccessRole = Role.ALL;
 
-    private boolean useAttachImage; // 이미저 첨부 사용 여부
+    // 에디터 사용 여부
+    private boolean useEditor;
 
+    // 파일 첨부 사용 여부
+    private boolean useAttachFile;
+
+    // 이미저 첨부 사용 여부
+    private boolean useAttachImage;
+
+    // 글 작성 후 이동
     @Column(length = 10, nullable = false)
-    private String locationAfterWriting = "view"; // 글 작성 후 이동
+    private String locationAfterWriting = "view";
 
-    private boolean useReply; // 답글 사용 여부
+    // 답글 사용 여부
+    private boolean useReply;
 
-    private boolean useComment; // 댓글 사용 여부
+    // 댓글 사용 여부
+    private boolean useComment;
 
+    // 비회원 작성, 수정 모드 여부
+    @Transient
+    private boolean isGuest;
+
+    // 게시판 스킨
     @Column(length = 20, nullable = false)
-    private String skin = "default"; // 게시판 스킨
+    private String skin = "default";
 
-    public String[] getCategories() { // 게시판 분류 목룍
+    // 게시판 분류 목룍
+    public String[] getCategories() {
 
         if (category == null) {
             return null;
