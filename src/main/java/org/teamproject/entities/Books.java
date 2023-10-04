@@ -1,10 +1,7 @@
 package org.teamproject.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.teamproject.commons.constants.BookStatus;
 import org.teamproject.commons.constants.Role;
 

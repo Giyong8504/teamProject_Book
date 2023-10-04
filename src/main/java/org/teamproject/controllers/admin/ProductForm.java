@@ -9,7 +9,6 @@ import java.util.UUID;
 public class ProductForm {
 
     private String mode; // 수정시 사용
-
     private String category;
 
     @NotBlank
