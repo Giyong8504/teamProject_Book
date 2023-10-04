@@ -23,14 +23,12 @@ public class Menu {
             menus.add(new MenuDetail("add", "상품 등록", "/admin/product/add"));
             menus.add(new MenuDetail("edit", "상품 수정", "/admin/product/edit"));
             menus.add(new MenuDetail("category", "상품 분류", "/admin/product/category"));
-        }
-
-        // 주문 관리 하위 메뉴
-        if (code.equals("order")) {
-            menus.add(new MenuDetail("order", "배송 관리", "/admin/order"));
-            menus.add(new MenuDetail("search", "주문 조회", "/admin/search"));
-            menus.add(new MenuDetail("return", "반품 관리", "admin/return"));
-            menus.add(new MenuDetail("exchange", "교환 관리", "admin/exchange"));
+        } else if (code.equals("order")) { // 주문관리 하위 메뉴
+            menus.add(new MenuDetail("order", "주문 관리", "/admin/order"));
+            menus.add(new MenuDetail("newOrder", "신규 주문", "/admin/order/newOrder"));
+            menus.add(new MenuDetail("prepare", "배송 준비중", "/admin/order/prepare"));
+            menus.add(new MenuDetail("status", "배송 현황", "/admin/order/status"));
+            menus.add(new MenuDetail("delivered", "배송 완료", "/admin/order/delivered"));
         }
 
         // 게시판 하위 메뉴
