@@ -13,23 +13,19 @@ import java.util.List;
 @Data @Builder
 @NoArgsConstructor @AllArgsConstructor
 public class Cart extends BaseEntity {
+    /* 장바구니 */
     @Id @GeneratedValue
-    private int id;
+    private Long cartNo;
 
-    @OneToOne(fetch = FetchType.EAGER) // 즉시 로딩
-    @JoinColumn(name="email")
+    @Column(length = 40, nullable = false)
+    private String buyerNm; // 주문자명
+
+    private List<Long> bookNo; // 주문한 상품 번호
+
+    private Long buyerCnt; // 주문한 상품 수량
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="userNo", nullable = false)
     private Member member; // 해당 구매자
-
-    private int count; // 카트에 담긴 총 상품 개수
-
-    @OneToMany(mappedBy = "cart") // 장바구니와 장바구니 상품들
-    private List<CartItem> cartItem = new ArrayList<>();
-
-    public static Cart createCart(Member member) {
-        Cart cart = new Cart();
-        cart.setCount(0);
-        cart.setMember(member);
-        return cart;
-    }
 }
 

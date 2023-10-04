@@ -1,8 +1,8 @@
 package org.teamproject.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.teamproject.entities.Cart;
-import org.teamproject.entities.Member;
 
-public interface CartRepository extends JpaRepository<Cart, Long> {
+public interface CartRepository extends JpaRepository<Cart, Long>, QuerydslPredicateExecutor<Cart> {
 }
