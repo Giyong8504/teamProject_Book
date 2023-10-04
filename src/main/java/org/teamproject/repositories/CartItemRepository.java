@@ -9,8 +9,5 @@ import org.teamproject.entities.CartItem;
 import java.util.List;
 import java.util.Optional;
 
-public interface CartItemRepository extends JpaRepository<CartItem, Long> {
-    CartItem findByCartIdAndBookNo(Long cartId, Long bookNo);
-
-    List<CartListForm> findCartListForm(Long cartId);
+public interface CartItemRepository extends JpaRepository<CartItem, Integer> {
 }

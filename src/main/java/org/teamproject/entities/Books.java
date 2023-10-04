@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.teamproject.commons.constants.BookStatus;
 import org.teamproject.commons.constants.Role;
-import org.teamproject.models.book.OutOfStockException;
 
 @Entity
 @Data @Builder
@@ -48,16 +47,4 @@ public class Books extends BaseEntity{
 
     @Enumerated(EnumType.STRING)
     private Role role;
-
-    public void removeStock(int stock) {
-        int restStock = this.stock - stock;
-        if (restStock < 0) {
-            throw new OutOfStockException("상품의 재고가 부족합니다. (현재 재고 수량 : "+ this.stock + ")");
-        }
-        this.stock = restStock;
-    }
-
-    public void addStock(int stock) {
-        this.stock += stock;
-    }
 }
