@@ -14,7 +14,10 @@ public class Order extends BaseEntity {
 
     @Id @GeneratedValue
     @Column(length = 40, nullable = false)
-    private Long orderNo; // 주문번호
+    private Long id; // 주문 아이디
+
+    @Column(length = 40, nullable = false)
+    private String orderNo; // 주문번호
 
     @Column(length = 50, nullable = false)
     private String courier; // 택배사
