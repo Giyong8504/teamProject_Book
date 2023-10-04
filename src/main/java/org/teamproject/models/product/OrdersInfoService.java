@@ -4,19 +4,19 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.teamproject.entities.product.Order;
+import org.teamproject.entities.product.Orders;
 import org.teamproject.models.files.FileNotFoundException;
-import org.teamproject.repositories.OrderRepository;
+import org.teamproject.repositories.OrdersRepository;
 
 
 @Service
 @RequiredArgsConstructor
-public class OrderInfoService {
+public class OrdersInfoService {
 
-    private final OrderRepository repository;
+    private final OrdersRepository repository;
 
-    public Order get(Long id) {
-        Order item = repository.findById(id).orElseThrow(FileNotFoundException::new);
+    public Orders get(Long id) {
+        Orders item = repository.findById(id).orElseThrow(FileNotFoundException::new);
 
         return item;
     }

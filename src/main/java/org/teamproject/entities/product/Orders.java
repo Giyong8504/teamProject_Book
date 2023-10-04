@@ -7,10 +7,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.teamproject.entities.BaseEntity;
 
+
 @Entity
 @Data @Builder
 @NoArgsConstructor @AllArgsConstructor
-public class Order extends BaseEntity {
+public class Orders extends BaseEntity {
 
     @Id @GeneratedValue
     @Column(length = 40, nullable = false)

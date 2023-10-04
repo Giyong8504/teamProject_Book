@@ -8,13 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.teamproject.commons.CommonProcess;
 import org.teamproject.commons.Menu;
-import org.teamproject.models.product.OrderInfoService;
 
 
 @Controller
-@RequestMapping("/admin/order")
+@RequestMapping("/admin/orders")
 @RequiredArgsConstructor
-public class OrderController implements CommonProcess {
+public class OrdersController implements CommonProcess {
 
     private final HttpServletRequest request;
 
@@ -22,31 +21,31 @@ public class OrderController implements CommonProcess {
     public String index(Model model) {
         commonProcess("list",model);
 
-        return "admin/order/index";
+        return "admin/orders/index";
     }
 
     @GetMapping("/newOrder") // 신규 주문
     public String newOrder(Model model) {
         commonProcess("newOrder", model);
-        return "admin/order/newOrder";
+        return "admin/orders/newOrder";
     }
 
     @GetMapping("/prepare") // 배송 준비중
     public String prepare(Model model) {
         commonProcess("prepare", model);
-        return "admin/order/prepare";
+        return "admin/orders/prepare";
     }
 
     @GetMapping("/status") // 배송 현황
     public String state(Model model) {
         commonProcess("status", model);
-        return "admin/order/status";
+        return "admin/orders/status";
     }
 
     @GetMapping("/delivered") // 배송 완료
     public String delivered(Model model) {
         commonProcess("delivered", model);
-        return "admin/order/delivered";
+        return "admin/orders/delivered";
     }
 
     public void commonProcess(String mode,Model model) {
@@ -65,6 +64,6 @@ public class OrderController implements CommonProcess {
 
         String subMenuCode = Menu.getSubMenuCode(request);
         model.addAttribute("subMenuCode", subMenuCode);
-        model.addAttribute("submenus", Menu.gets("order"));
+        model.addAttribute("submenus", Menu.gets("orders"));
     }
 }
