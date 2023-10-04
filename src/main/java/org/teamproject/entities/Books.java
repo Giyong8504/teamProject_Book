@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.teamproject.commons.constants.BookStatus;
 import org.teamproject.commons.constants.Role;
+import org.teamproject.entities.product.Category;
 
 import java.util.List;
 
@@ -15,14 +16,16 @@ public class Books extends BaseEntity{
     @Id @GeneratedValue
     private Long bookNo;
 
+    @ToString.Exclude
+    @ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name="cateCd")
+    private Category category;
+
     @Column(nullable = false, updatable = false)
     private String bookId;
 
     @Column(length = 100, nullable = false)
     private String bookNm;
-
-    @Column(length = 50)
-    private String category;
 
     @Column(length = 50, nullable = false)
     private String gid;
