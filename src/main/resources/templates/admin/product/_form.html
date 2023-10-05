@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <th:block th:fragment="form" th:object="${productForm}">
+        <input type="hidden" name="gid" th:field="*{gid}">
         <table class="table-cols">
             <th>상품명</th>
                 <td width="700">
-                <input type="text" name="cateCd">
+                <input type="text" name="productNm">
             </td>
         </table>
         <br>
@@ -13,7 +14,7 @@
             <tr>
                 <th>판매가</th>
                 <td width="700">
-                    <input type="text" name="cateCd">
+                    <input type="text" name="price">
                 </td>
             </tr>
             <tr>
@@ -41,7 +42,7 @@
             <tr>
                 <th>수량</th>
                 <td width="700">
-                    <input type="text" name="cateCd">
+                    <input type="text" name="stock">
                 </td>
             </tr>
         </table>
@@ -51,7 +52,7 @@
             <tr>
                 <th>대표 이미지</th>
                 <td width="700">
-                    <input type="file" id="thumb_file">
+                    <input type="file" id="file" class="dn" multiple> <!-- 파일선택 안보임 처리 -->
                     <dl>
                         <dt>상품 이미지(대표)</dt>
                         <dd>
@@ -64,12 +65,11 @@
             <tr>
                 <th>상세 이미지</th>
                 <td width="700">
-                    <input type="file" id="detail_file">
                     <dl>
                         <dt>상품 이미지(상세페이지)</dt>
                         <dd>
                             <div class="uploaded_images" id="detail_images"></div>
-                            <button type="button" class="sbtn upload_files" data-location="main" data-image-only="true">이미지 추가</button>
+                            <button type="button" class="sbtn upload_files" data-location="editor" data-image-only="true">이미지 추가</button>
                         </dd>
                     </dl>
                 </td>
@@ -81,37 +81,37 @@
             <tr>
                 <th>도서번호</th>
                 <td width="700">
-                    <input type="text" name="cateCd">
+                    <input type="text" name="bookNo">
                 </td>
             </tr>
             <tr>
                 <th>도서이름</th>
                 <td width="700">
-                    <input type="text" name="cateCd">
+                    <input type="text" name="bookNm">
                 </td>
             </tr>
             <tr>
                 <th>출간일</th>
                 <td width="700">
-                    <input type="text" name="cateCd">
+                    <input type="text" name="publicationDt">
                 </td>
             </tr>
             <tr>
                 <th>저자</th>
                 <td width="700">
-                    <input type="text" name="cateCd">
+                    <input type="text" name="author">
                 </td>
             </tr>
             <tr>
                 <th>출판사</th>
                 <td width="700">
-                    <input type="text" name="cateCd">
+                    <input type="text" name="publisher">
                 </td>
             </tr>
             <tr>
                 <th>원산지</th>
                 <td width="700">
-                    <input type="text" name="cateCd">
+                    <input type="text" name="origin">
                 </td>
             </tr>
             <tr>
