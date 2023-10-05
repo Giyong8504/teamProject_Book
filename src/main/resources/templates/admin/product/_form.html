@@ -56,7 +56,7 @@
                     <dl>
                         <dt>상품 이미지(대표)</dt>
                         <dd>
-                            <div class="uploaded_images" id="thumb_images"></div>
+                            <div class="uploaded_images" id="main_images"></div>
                             <button type="button" class="sbtn upload_files" data-location="main" data-image-only="true">이미지 추가</button>
                         </dd>
                     </dl>
@@ -68,7 +68,7 @@
                     <dl>
                         <dt>상품 이미지(상세페이지)</dt>
                         <dd>
-                            <div class="uploaded_images" id="detail_images"></div>
+                            <div class="uploaded_images" id="editor_images"></div>
                             <button type="button" class="sbtn upload_files" data-location="editor" data-image-only="true">이미지 추가</button>
                         </dd>
                     </dl>
@@ -124,6 +124,8 @@
                 </td>
             </tr>
         </table>
+        <script th:replace="~{common/_file_tpl::tpl_image1}"></script>
+        <script th:replace="~{common/_file_tpl::tpl_editor}"></script>
     </th:block>
 </html>
 
