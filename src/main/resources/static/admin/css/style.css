@@ -136,3 +136,14 @@ nav.submenus a { line-height: 60px; padding: 0 40px; font-size: 18px; }
 }
 /** 취소/교환/반품 페이지 - claim.html style E */
 
+/** 공통 파일 첨부 이미지 */
+.uploaded_images .file_images { width: 100px; height: 100px; position: relative; border: 2px solid #000; margin-right: 5px; margin-bottom: 5px; }
+.uploaded_images .file_images .bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+.uploaded_images .file_images .remove { position: absolute; top: 0; right: 0; background: #000; color: #fff; display: block; width: 15px; height: 15px; z-index: 2; background: #000; text-align: center; line-height: 15px; }
+.uploaded_images .file_images .remove * { color: #fff; font-size: 13px; }
+
+.uploaded_images { display: flex; }
+
+.file_items { display: inline-block; border: 1px solid #000; border-radius: 3px; padding: 5px 10px; margin-right: 3px; margin-bottom: 3px; }
+.file_items > a:hover { text-decoration: underline; }
+.file_items .insert_editor { cursor: pointer;  }

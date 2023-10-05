@@ -50,6 +50,20 @@ commonLib.fileManager = {
             alert(err.message);
             console.error(err);
        }
+    },
+    /**
+    * 파일등록번호로 삭제
+    * - 파일 삭제 후 fileDeleteCallback 함수 호출
+    *
+    * @params id : 파일 등록 번호
+    */
+    delete(id) {
+        const  { ajaxLoad } = commonLib;
+        ajaxLoad("GET", `/file/delete/${id}`, null, "json")
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => console.error(err));
     }
 }
 
