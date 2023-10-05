@@ -1,13 +1,15 @@
-      var rolLength = 6; // 해당 룰렛 콘텐츠 갯수
+var rolLength = 6; // 해당 룰렛 콘텐츠 갯수
 var setNum; // 랜덤숫자 담을 변수
 var hiddenInput = document.createElement("input");
 hiddenInput.className = "hidden-input";
 
 //랜덤숫자부여
 const rRandom = () => {
-  var min = Math.ceil(0);
-  var max = Math.floor(rolLength - 1);
-  return Math.floor(Math.random() * (max - min)) + min;
+ // var min = Math.ceil(0);
+ // var max = Math.floor(rolLength - 1);
+
+ return 0;
+ //Math.floor(Math.random() * (max - min)) + min;
 };
 
 const rRotate = () => {
@@ -37,7 +39,7 @@ const rRotate = () => {
       panel.style.transform = `rotate(${deg[setNum]}deg)`;
     }
   }, 50);
-};
+  };
 
 // 정해진 alert띄우기, custom modal등
 const rLayerPopup = (num) => {

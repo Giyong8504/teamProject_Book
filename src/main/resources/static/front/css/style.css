@@ -180,155 +180,49 @@ background-image: url('#');
     /* event 부분 끝   */
 }
 /* 팝업 준비중 */
-@charset "UTF-8";
-button {
-  border: 0;
-  background: none;
-  cursor: pointer;
-}
+#popup {
+  width: 500px;
+  padding: 40px;
+  background: linear-gradient(30deg, gray, lightgray);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+  box-shadow: 10px 10px 30px #888;
+  display: block; }
+  #popup .content {
+    width: 100%;
+    min-height: 150px;
+    color: #fff;
+    font-size: 30px; }
+  #popup .wrap {
+    display: inline-flex; }
+    #popup .wrap input {
+      border: none;
+      vertical-align: middle;
+      margin-right: 10px;
+      position: relative;
+      top: 4px; }
+    #popup .wrap label {
+      color: #fff;
+      vertical-align: middle; }
+  #popup .close {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    color: #fff;
+     }
 
-.main_popup {
-  position: fixed;
-  z-index: 1005;
-  -webkit-box-shadow: 0px 13px 40px -6px #061626;
-  box-shadow: 0px 13px 40px -6px #061626;
-  top: 50px;
-  left: 50px;
-  display: none;
-}
-.main_popup.on {
-  display: block;
-  background-color: #fff;
-}
-.main_popup .img_wrap {
-  width: 200px;
-  height: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.main_popup .btn_close {
-  width: 32px;
-  height: 32px;
-  position: absolute;
-  top: 17px;
-  right: 17px;
-  font-size: 0;
-  border: 0;
-  background: none;
-}
-.main_popup .btn_close::before {
-  content: "";
-  width: 2px;
-  height: 32px;
-  background-color: #333;
-  position: absolute;
-  top: 0;
-  left: 15px;
-  transform: rotate(45deg);
-}
-.main_popup .btn_close::after {
-  content: "";
-  width: 32px;
-  height: 2px;
-  background-color: #333;
-  position: absolute;
-  top: 15px;
-  left: 0;
-  transform: rotate(45deg);
-}
-.main_popup .btn_today_close {
-  width: 100%;
-  height: 45px;
-  background-color: #333;
-  text-align: center;
-  color: #fff;
-  font-size: 14px;
-  display: block;
-}
-.main_popup .btn_today_close span {
-  display: block;
-  line-height: 40px;
-  vertical-align: bottom;
-  opacity: 0.8;
   /* 팝업 끝 부분 */
-}
+
 /*룰렛 시작*/
 
-.roulette-wrapper {
-	position: relative;
-	left: 0;
-	right: 0;
-	top: 38%;
-	margin: 0 auto;
-	width: 100%;
-	max-width: 669px;
-}
-
-.resultLayer {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	display: none;
-	z-index: 10;
-	box-sizing: border-box;
-	max-width: 456px;
-	left: 0;
-	right: 0;
-	top: 10rem;
-	margin: 0 auto;
-}
-
-.resultLayer #closeLayer {
-	position: absolute;
-	top: -2rem;
-	right: -2rem;
-	margin: 0 auto;
-	width: 18.5%;
-	box-sizing: border-box;
-}
-
-.roulette-wrapper #roulette-bg {
-	position: relative;
-	z-index: 2;
-}
-
-.roulette-wrapper #roulette-gift {
-	position: absolute;
-	z-index: 2;
-	top: 40px;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	margin: 0 auto;
-	max-width: 600px;
-	width: 100%;
-}
-
-.roulette-wrapper #roulette-niddle {
-	position: absolute;
-	z-index: 3;
-	width: 6.2%;
-	top: 0;
-	left: 0;
-	right: 0;
-	margin: 0 auto;
-}
-
-.roulette-wrapper #roulette-startBtn {
-	position: absolute;
-	z-index: 3;
-	width: 36.7%;
-	top: 31.5%;
-	left: 0;
-	right: 0;
-	margin: 0 auto;
-	left: -9px;
-}
-/* 룰렛 */
-
 .rouletter {
-  position: relative;
+  position: absolute;
+  top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   width: 400px;
   height: 400px;
 
@@ -343,6 +237,9 @@ button {
   height: 350px;
   border-radius: 350px;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
 
 }
@@ -350,8 +247,8 @@ button {
   width: 100%;
   height: 100%;
   background: #f5f5f2
-    url("https://m.lifeplanet.co.kr:444/commons/slink/administrator/openInnovation/img/MO)%20360%ED%94%8C%EB%9E%98%EB%8B%9B_%EB%A3%B0%EB%A0%9B%ED%8C%90_476x476_201026.png")
-    no-repeat;
+  url("https://m.lifeplanet.co.kr:444/commons/slink/administrator/openInnovation/img/MO)%20360%ED%94%8C%EB%9E%98%EB%8B%9B_%EB%A3%B0%EB%A0%9B%ED%8C%90_476x476_201026.png")
+  no-repeat;
   background-size: 100%;
   transform-origin: center;
   transition-timing-function: ease-in-out;
@@ -416,8 +313,6 @@ to{
  left:200px;
  opacity: 1;
 }
-
-
 
 
 
