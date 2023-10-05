@@ -154,6 +154,7 @@ h2 { font-size: 18px; font-weight: bold; margin: 25px 0 10px; line-height: 1; }
 }
 
 /* header E  */
+
 /* event 부분 시작  */
 .icon-container {
   text-align: center; margin: 50px auto; justify-content: center; display: inline-block
@@ -324,11 +325,14 @@ button {
 	margin: 0 auto;
 	left: -9px;
 }
+/* 룰렛 */
 
 .rouletter {
   position: relative;
   width: 400px;
   height: 400px;
+
+
 }
 .rouletter-bg {
   position: absolute;
@@ -339,6 +343,8 @@ button {
   height: 350px;
   border-radius: 350px;
   overflow: hidden;
+
+
 }
 .rouletter-wacu {
   width: 100%;
@@ -362,6 +368,7 @@ button {
   border-left: 10px solid transparent;
   border-top: 40px solid red;
   border-bottom: 0px solid transparent;
+
 }
 .rouletter-btn {
   position: absolute;
@@ -374,11 +381,14 @@ button {
   background: #fff;
   border-image: linear-gradient(to right, #fbfcb9be, #ffcdf3aa, #65d3ffaa);
   border: 2px solid;
+
+
 }
 
 .hidden-input {
   display: none;
-  /* 두번쨰 룰렛 보류중 (룰렛 두개중 고민)*/
+
+
 }
 body{
 height: 50%;
