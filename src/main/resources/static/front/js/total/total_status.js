@@ -1,5 +1,5 @@
-var ctx = document.getElementById('myChart');
-	    var myChart = new Chart(ctx, {
+const  ctx = document.getElementById('myChart');
+	    const myChart = new Chart(ctx, {
 		type: 'bar',
 		data: {
 		        	labels: ['10대', '20대', '30대', '40대', '50대', '60대'],

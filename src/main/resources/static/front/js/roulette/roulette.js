@@ -1,33 +1,33 @@
-var rolLength = 6; // 해당 룰렛 콘텐츠 갯수
-var setNum; // 랜덤숫자 담을 변수
-var hiddenInput = document.createElement("input");
+const rolLength = 6; // 해당 룰렛 콘텐츠 갯수
+const setNum; // 랜덤숫자 담을 변수
+const hiddenInput = document.createElement("input");
 hiddenInput.className = "hidden-input";
 
 //랜덤숫자부여
 const rRandom = () => {
- // var min = Math.ceil(0);
- // var max = Math.floor(rolLength - 1);
+ // const min = Math.ceil(0);
+ // const max = Math.floor(rolLength - 1);
 
  return 0;
  //Math.floor(Math.random() * (max - min)) + min;
 };
 
 const rRotate = () => {
-  var panel = document.querySelector(".rouletter-wacu");
-  var btn = document.querySelector(".rouletter-btn");
-  var deg = [];
+  const panel = document.querySelector(".rouletter-wacu");
+  const btn = document.querySelector(".rouletter-btn");
+  const deg = [];
   // 룰렛 각도 설정(rolLength = 6)
-  for (var i = 1, len = rolLength; i <= len; i++) {
+  for (const i = 1, len = rolLength; i <= len; i++) {
     deg.push((360 / len) * i);
   }
 
   // 랜덤 생성된 숫자를 히든 인풋에 넣기
-  var num = 0;
+  const num = 0;
   document.body.append(hiddenInput);
   setNum = hiddenInput.value = rRandom();
 
   // 애니설정
-  var ani = setInterval(() => {
+  const ani = setInterval(() => {
     num++;
     panel.style.transform = "rotate(" + 360 * num + "deg)";
     btn.disabled = true; //button,input
@@ -70,7 +70,7 @@ const rReset = (ele) => {
 
 // 룰렛 이벤트 클릭 버튼
  document.addEventListener("click", function (e) {
-  var target = e.target;
+  const target = e.target;
   if (target.tagName === "BUTTON") {
     rRotate();
     rReset(target);
