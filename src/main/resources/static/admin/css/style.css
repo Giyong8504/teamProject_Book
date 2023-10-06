@@ -147,3 +147,5 @@ nav.submenus a { line-height: 60px; padding: 0 40px; font-size: 18px; }
 .file_items { display: inline-block; border: 1px solid #000; border-radius: 3px; padding: 5px 10px; margin-right: 3px; margin-bottom: 3px; }
 .file_items > a:hover { text-decoration: underline; }
 .file_items .insert_editor { cursor: pointer;  }
+
+.ck-editor__editable { min-height: 450px; }

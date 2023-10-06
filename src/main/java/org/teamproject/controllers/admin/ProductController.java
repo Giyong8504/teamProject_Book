@@ -80,6 +80,8 @@ public class ProductController implements CommonProcess, ScriptExceptionProcess 
         if (errors.hasErrors()) {
             return mode != null && mode.equals("edit") ? "admin/product/" + "add" : "admin/product/" + "edit";
         }
+
+
         return "redirect:/admin/product";
     }
 

@@ -6,7 +6,7 @@
     <h1 th:text="${pageTitle}"></h1>
 
     <!-- 같은 페이지 내에서 처리하고 갱신하기 위한 hidden 프레임 : target -->
-    <form name="frmSave" method="post" autocomplete="off" target="ifrmProcess" th:object="${productForm}">
+    <form name="frmSave" method="post" th:action="@{/admin/product/save}" autocomplete="off" target="ifrmProcess" th:object="${productForm}">
 
         <!-- 폼 내부 필드로 등록 모드와 gid 값을 전달 -->
         <input type="hidden" name="mode" value="add">
