@@ -12,7 +12,7 @@ public class ProductForm {
     private String category;
 
     @NotBlank
-    private String bookNm;
+    private String productNm;
 
     @NotBlank
     private String gid = UUID.randomUUID().toString(); // 없으면 생성.
