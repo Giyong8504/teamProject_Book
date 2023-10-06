@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <th:block th:fragment="form" th:object="${productForm}">
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+        <input type="file" id="file" class="dn" multiple>
         <input type="hidden" name="gid" th:field="*{gid}">
         <table class="table-cols">
             <th>상품명</th>
                 <td width="700">
-                <input type="text" name="productNm">
+                <input type="text" name="productNm" th:field="*{productNm}">
+                    <div class="errors" th:each="err : ${#fields.errors('productNm')}" th:text="${err}"></div>
             </td>
         </table>
         <br>
@@ -52,7 +55,6 @@
             <tr>
                 <th>대표 이미지</th>
                 <td width="700">
-                    <input type="file" id="file" class="dn" multiple> <!-- 파일선택 안보임 처리 -->
                     <dl>
                         <dt>상품 이미지(대표)</dt>
                         <dd>
@@ -63,15 +65,18 @@
                 </td>
             </tr>
             <tr>
+                <th>목록 이미지</th>
+                <td width="700">
+                    <div class="uploaded_images" id="list_images"></div>
+                    <button type="button" class="sbtn upload_files" data-location="list" data-image-only="true">이미지 추가</button>
+                </td>
+            </tr>
+            <tr>
                 <th>상세 이미지</th>
                 <td width="700">
-                    <dl>
-                        <dt>상품 이미지(상세페이지)</dt>
-                        <dd>
-                            <div class="uploaded_images" id="editor_images"></div>
-                            <button type="button" class="sbtn upload_files" data-location="editor" data-image-only="true">이미지 추가</button>
-                        </dd>
-                    </dl>
+                    <textarea name="description" id="description"></textarea>
+                    <div class="uploaded_images" id="editor_images"></div>
+                    <button type="button" class="sbtn upload_files" data-location="editor" data-image-only="true">이미지 추가</button>
                 </td>
             </tr>
         </table>

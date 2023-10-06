@@ -1,3 +1,22 @@
+window.addEventListener("DOMContentLoaded", function() {
+    ClassicEditor
+    		.create( document.querySelector( '#description' ), {
+    		    height: 350
+    		} )
+    		.then( editor => {
+    			window.editor = editor;
+    			editor.ui.view.editable.element.style.height = '450px';
+    		} )
+    		.catch( err => {
+    			console.error( err.stack );
+    		} );
+
+});
+
+function insertEditor(imgUrl) {
+    editor.execute( 'insertImage', { source: imgUrl } );
+}
+
 function fileUploadCallback(files) {
     if (!files || files.length == 0) {
         return;
@@ -10,6 +29,7 @@ function fileUploadCallback(files) {
     const tplEditor = document.getElementById("tpl_editor").innerHTML;
 
     const mainImages = document.getElementById("main_images");
+    const listImages = document.getElementById("list_images");
     const editorImages = document.getElementById("editor_images");
     const domParser = new DOMParser();
 
@@ -21,9 +41,16 @@ function fileUploadCallback(files) {
                 html = tplImage;
                 targetEl = mainImages;
                 break;
+            case "list":
+                html = tplImage;
+                targetEl = listImages;
+                break;
             case "editor" :
                 html = tplEditor;
                 targetEl = editorImages;
+
+                /** 이미지 에디터 본문 삽입 */
+                insertEditor(file.fileUrl);
                 break;
         }
 
@@ -45,5 +72,12 @@ function fileUploadCallback(files) {
             const id = this.dataset.id;
             fileManager.delete(id);
         });
+
+        const insertEditorEl = fileEl.querySelector(".insert_editor");
+        if (insertEditorEl) {
+            insertEditorEl.addEventListener("click", function() {
+                insertEditor(this.dataset.url);
+            });
+        }
     }
 }
