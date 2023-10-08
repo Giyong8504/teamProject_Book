@@ -3,6 +3,7 @@ package org.teamproject.controllers.member;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -12,6 +13,7 @@ import org.teamproject.commons.CommonProcess;
 import org.teamproject.commons.Utils;
 import org.teamproject.entities.Books;
 import org.teamproject.entities.Member;
+import org.teamproject.models.member.UserInfoService;
 import org.teamproject.models.member.UserSaveService;
 import org.teamproject.repositories.MemberRepository;
 
@@ -25,6 +27,12 @@ public class MemberController implements CommonProcess {
 
     private final UserSaveService saveService;
     private final Utils utils;
+
+    @Autowired
+    private MemberRepository memberRepository;
+
+    private final UserInfoService userInfoService;
+    private final PasswordEncoder passwordEncoder;
 
 
     @GetMapping("/join")
@@ -61,26 +69,15 @@ public class MemberController implements CommonProcess {
         commonProcess(model, "책 등록");
         return utils.tpl("member/book");
     }
-    /*
-    @GetMapping("/loginInfo")
-    public String memberInfo(Model model){
-        String UserNm = getName();
-        //Member member = MemberRepository.findByEmail(email);
-        //model.addAttribute("member", member);
 
-        return "member/myInfo";
+    @GetMapping("/UserInfo")
+    public String memberInfo(Principal principal, ModelMap modelMap){
+        String userNM = principal.getName();
+        Member member = memberRepository.findByEmail(userNM);
+        modelMap.addAttribute("member", member);
+
+        return "myInfo";
     }
-    // 회원 정보 변경 폼 (GET)
-    @GetMapping(value = "/updateForm")
-    public String updateMemberForm(Model model) {
-        String loginId =  getName();
-        Member memberId = MemberRepository.findByEmail();
-        model.addAttribute("member", memberId);
-
-        return "/member/memberUpdateForm";
-    }
-
-     */
 
 }
 

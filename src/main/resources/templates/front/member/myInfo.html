@@ -4,7 +4,7 @@
       layout:decorate="~{front/layouts/main}">
 <div layout:fragment="content">
     <br></br>
-    <h1 class="title">나의 정보</h1>
+    <h1 class="title">마이페이지</h1>
     <div class="sign-form">
         <div class="form-group">
             <label th:for="email">이메일</label>
@@ -17,11 +17,11 @@
         <br>
         <div class="form-group">
             <label th:for="zonecode">우편번호</label>
-            <input type="text" th:value="${member.address}" class="form-control" style="width:200px;">
+            <input type="text" th:value="${member.zonecode}" class="form-control" style="width:200px;">
         </div>
         <br>
         <div class="form-group">
-            <input type="text" th:value="${member.streetaddress}" class="form-control" style="margin-top: -30px">
+            <input type="text" th:value="${member.address}" class="form-control" style="margin-top: -30px">
         </div>
         <div class="form-group">
             <label th:for="detailAdr">상세 주소</label>

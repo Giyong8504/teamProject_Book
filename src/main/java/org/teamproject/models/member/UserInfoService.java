@@ -47,8 +47,8 @@ public class UserInfoService implements UserDetailsService {
     }
 
     /** 회원정보 수정 **/
-    /*public Long updateMember(MemberUpdateDto memberUpdateDto) {
-        Member member = memberRepository.findByEmail(memberUpdateDto.getEmail());
+    public Long updateMember(MemberUpdateDto memberUpdateDto) {
+        Member member = repository.findByEmail(memberUpdateDto.getEmail());
         member.updateUsername(memberUpdateDto.getUserNm());
         member.updateZonecode(memberUpdateDto.getZonecode());
         member.updateAddress(memberUpdateDto.getAddress());
@@ -57,6 +57,6 @@ public class UserInfoService implements UserDetailsService {
 
         return member.getUserNo();
     }
-     */
+
 
 }
