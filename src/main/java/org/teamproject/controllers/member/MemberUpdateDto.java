@@ -18,11 +18,11 @@ public class MemberUpdateDto {
     private String email;
 
     @NotBlank(message = "이름을 입력해주세요.")
-    private String name;
+    private String userNm;
 
     @NotEmpty(message = "비밀번호는 필수 입력 값입니다.")
     @Length(min=8, max=16, message="비밀번호는 8자 이상, 16자 이하로 입력해주세요")
-    private String password;
+    private String userPw;
 
     @NotEmpty(message = "우편번호는 필수 입력 값입니다.")
     private String zonecode;
