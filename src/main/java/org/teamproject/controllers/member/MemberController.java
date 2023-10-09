@@ -3,17 +3,21 @@ package org.teamproject.controllers.member;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.teamproject.commons.CommonProcess;
 import org.teamproject.commons.Utils;
 import org.teamproject.entities.Books;
 import org.teamproject.entities.Member;
+import org.teamproject.models.member.UserInfoService;
 import org.teamproject.models.member.UserSaveService;
 import org.teamproject.repositories.MemberRepository;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -23,6 +27,12 @@ public class MemberController implements CommonProcess {
 
     private final UserSaveService saveService;
     private final Utils utils;
+
+    @Autowired
+    private MemberRepository memberRepository;
+
+    private final UserInfoService userInfoService;
+    private final PasswordEncoder passwordEncoder;
 
 
     @GetMapping("/join")
@@ -49,8 +59,9 @@ public class MemberController implements CommonProcess {
         commonProcess(model, "로그인");
 
         return utils.tpl("member/login");
-    }
 
+
+    }
 
 
     @GetMapping("/book")
@@ -58,4 +69,15 @@ public class MemberController implements CommonProcess {
         commonProcess(model, "책 등록");
         return utils.tpl("member/book");
     }
+
+    @GetMapping("/UserInfo")
+    public String memberInfo(Principal principal, ModelMap modelMap){
+        String userNM = principal.getName();
+        Member member = memberRepository.findByEmail(userNM);
+        modelMap.addAttribute("member", member);
+
+        return "myInfo";
+    }
+
 }
+

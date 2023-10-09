@@ -37,4 +37,27 @@ public class Member extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    /**
+     * 회원수정 메소드
+     */
+    public void updateUsername(String userNm) {
+        this.userNm = userNm;
+    }
+
+    public void updatePassword(String userPw) {
+        this.userPw = userPw;
+    }
+
+    public void updateZonecode(String zonecode) {
+        this.zonecode = zonecode;
+    }
+
+    public void updateAddress(String address) {
+        this.address = address;
+    }
+
+    public void updateAddressSub(String addressSub) {
+        this.addressSub = addressSub;
+    }
 }
