@@ -13,7 +13,7 @@ public class ProductForm {
 
     private String mode; // 폼 작업(추가,수정시 사용)
 
-    private String category;
+    private String cateCd; // 도서 분류 코드
 
     @NotBlank
     private String productNm; // 상품명
