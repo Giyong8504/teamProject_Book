@@ -15,6 +15,7 @@ import org.teamproject.entities.CartInfo;
 import org.teamproject.models.cart.CartInfoSaveService;
 import org.teamproject.models.cart.CartInfoService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -42,7 +43,7 @@ public class CartController implements CommonProcess, ScriptExceptionProcess {
             saveService.save(form);
 
             String mode = form.getMode();
-            String url = mode.equals("direct") ? "/order/form" : "/order/cart";
+            String url = mode.equals("direct") ? "/order" : "/order/cart";
 
             String script = String.format("parent.location.replace('%s');", url);
             model.addAttribute("script", script);
@@ -57,5 +58,12 @@ public class CartController implements CommonProcess, ScriptExceptionProcess {
     public void commonProcess(Model model, String mode) {
         String pageTitle = "장바구니";
         CommonProcess.super.commonProcess(model, pageTitle);
+
+        List<String> addScript = new ArrayList<>();
+        if (mode.equals("cart")) {
+            addScript.add("order/cart");
+        }
+
+        model.addAttribute("addScript", addScript);
     }
 }

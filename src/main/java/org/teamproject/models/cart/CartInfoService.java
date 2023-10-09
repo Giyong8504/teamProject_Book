@@ -65,7 +65,7 @@ public class CartInfoService {
                 .leftJoin(cartInfo.book)
                 .fetchJoin()
                 .where(builder)
-                .orderBy(new OrderSpecifier(Order.ASC, pathBuilder.get("createdAt")))
+                .orderBy(new OrderSpecifier(Order.ASC, pathBuilder.get("regDt")))
                 .fetch();
 
         items.stream().forEach(this::addCartInfo);
