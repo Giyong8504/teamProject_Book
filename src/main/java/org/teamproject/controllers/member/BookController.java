@@ -11,7 +11,7 @@ import org.teamproject.commons.CommonException;
 import org.teamproject.commons.CommonProcess;
 import org.teamproject.commons.ScriptExceptionProcess;
 import org.teamproject.entities.Books;
-import org.teamproject.models.product.CategoryInfoService;
+import org.teamproject.models.categories.CategoryInfoService;
 
 import java.util.ArrayList;
 import java.util.List;
