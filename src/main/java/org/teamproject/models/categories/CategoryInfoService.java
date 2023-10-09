@@ -6,7 +6,7 @@ import org.teamproject.entities.Books;
 import org.teamproject.entities.FileInfo;
 import org.teamproject.entities.product.Category;
 import org.teamproject.models.files.FileInfoService;
-import org.teamproject.models.products.BookNotFoundException;
+import org.teamproject.models.product.BookNotFoundException;
 import org.teamproject.repositories.BooksRepository;
 import org.teamproject.repositories.CategoryRepository;
 

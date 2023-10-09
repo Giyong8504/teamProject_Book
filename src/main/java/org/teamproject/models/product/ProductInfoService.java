@@ -1,4 +1,4 @@
-package org.teamproject.models.products;
+package org.teamproject.models.product;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -7,7 +7,6 @@ import org.teamproject.entities.FileInfo;
 import org.teamproject.models.files.FileInfoService;
 import org.teamproject.repositories.BooksRepository;
 
-import java.awt.print.Book;
 import java.util.List;
 
 @Service
