@@ -6,6 +6,7 @@ import org.teamproject.commons.constants.BookStatus;
 import org.teamproject.commons.constants.Role;
 import org.teamproject.entities.product.Category;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -24,11 +25,15 @@ public class Books extends BaseEntity{
     @Column(nullable = false, updatable = false)
     private String bookId;
 
-    @Column(length = 100, nullable = false)
-    private String bookNm;
-
     @Column(length = 50, nullable = false)
     private String gid;
+
+    @Column(length = 100, nullable = false)
+    private String bookNm;
+    private String publicationDt;
+    private String author;
+    private String publisher;
+    private String origin;
 
     private String bookDesc; // 상품에 대한 설명
     private int price;

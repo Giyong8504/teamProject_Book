@@ -1,4 +1,4 @@
-package org.teamproject.models.product;
+package org.teamproject.models.products;
 
 import org.springframework.http.HttpStatus;
 import org.teamproject.commons.CommonException;
