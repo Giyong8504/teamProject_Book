@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/layouts/main}">
+<main layout:fragment="content">
+    <h1 th:text="${pageTitle}"></h1>
+    <form name="frmSave" method="POST" th:action="@{/order/save}" target="ifrmProcess" autocomplete="off">
+        <table broder="1">
+            <thead>
+            <tr>
+                <th colspan="2">상품정보</th>
+                <th>수량</th>
+                <th>판매가</th>
+                <th>합계</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${items != null && items.size() > 0}" th:each="item, status : ${items}" th:object="${item}">
+                <td>
+                    <input type="hidden" name="cartNo" th:value="*{cartNo}">
+                    <th:block th:if="*{books != null && books.listImages != null && books.listImages.size() > 0}">
+                        <a th:href="@{/product/view/{no}(no=*{books.bookNo})}" target="_blank">
+                            <img th:src="*{books.listImages[0].thumbsUrl}">
+                        </a>
+                    </th:block>
+                </td>
+                <td>
+                    <th:block th:if="*{books != null}" th:text="*{books.bookNm}"></th:block>
+                </td>
+                <td th:text="*{ea + '개'}"></td>
+                <td>
+                    <th:block th:if="*{books != null && books.price < 1000}" th:text="*{books.price + '원'}"></th:block>
+                    <th:block th:if="*{books != null && books.price >= 1000}" th:text="*{#numbers.formatInteger(books.price, 3, 'COMMA') + '원'}"></th:block>
+                </td>
+                <td>
+                    <th:block th:if="*{books != null}" th:text="*{#strings.concat(books.price * ea, '원')}"></th:block>
+                </td>
+            </tr>
+            <tr th:if="${items == null || items.isEmpty()}">
+                <td colspan="4" class="no_data">장바구니가 비어있습니다.</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h2>주문자 정보</h2>
+        <dl>
+            <dt>주문자명</dt>
+            <dd>
+                <input type="text" name="orderName">
+            </dd>
+            <dl>
+               <dt>이메일</dt>
+                <dd>
+                    <input type="text" name="orderEmail">
+                </dd>
+            </dl>
+            <dl>
+                <dt>휴대전화번호</dt>
+                <dd>
+                    <input type="text" name="orderMobile">
+                </dd>
+            </dl>
+        </dl>
+
+        <h2>배송지 정보</h2>
+        <dl>
+            <dt>받는 분</dt>
+            <dd>
+                <input type="text" name="receiverName">
+            </dd>
+        </dl>
+        <dl>
+            <dt>휴대전화번호</dt>
+            <dd>
+                <input type="text" name="receiverMobile">
+            </dd>
+        </dl>
+        <dl>
+            <dt>주소</dt>
+            <dd>
+                <div class="address_rows">
+                    <input type="text" name="zonecode" placeholder="우편번호">
+                    <button type="button" class="search_address" data-zipcode-name="zonecode" data-address-name="address">주소검색</button>
+                </div>
+                <div class="address_rows">
+                    <input type="text" name="address" placeholder="주소">
+                </div>
+                <div class="address_rows">
+                    <input type="text" name="addressSub" placeholder="나머지 주소">
+                </div>
+            </dd>
+        </dl>
+    </form>
+</main>
+</html>

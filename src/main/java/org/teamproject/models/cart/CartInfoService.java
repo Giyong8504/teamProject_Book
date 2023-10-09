@@ -47,10 +47,26 @@ public class CartInfoService {
     }
 
     public List<CartInfo> getList(String mode) {
-        mode = Objects.requireNonNullElse(mode, "cart"); // 값이 없으면 카트로
+        return getList(mode, null);
+    }
+
+    public List<CartInfo> getList(List<Long> cartNos) {
+        return getList(null, cartNos);
+    }
+
+    public List<CartInfo> getList(String mode, List<Long> cartNos) {
         QCartInfo cartInfo = QCartInfo.cartInfo;
         BooleanBuilder builder = new BooleanBuilder();
-        builder.and(cartInfo.mode.eq(mode));
+        if (mode != null && !mode.isBlank()) {
+            builder.and(cartInfo.mode.eq(mode));
+        }
+
+        /* 장바구니 등록 번호로 조회  S */
+        if (cartNos != null && !cartNos.isEmpty()) {
+            builder.and(cartInfo.cartNo.in(cartNos));
+        }
+        /* 장바구니 등록 번호로 조회  E */
+
         if (memberUtil.isLogin()) { // 회원일때
             builder.and(cartInfo.member.userNo.eq(memberUtil.getMember().getUserNo()));
         } else { // 비회원일때
