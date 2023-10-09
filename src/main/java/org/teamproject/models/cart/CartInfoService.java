@@ -9,8 +9,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.teamproject.commons.MemberUtil;
 import org.teamproject.commons.Utils;
+import org.teamproject.entities.Books;
 import org.teamproject.entities.CartInfo;
 import org.teamproject.entities.QCartInfo;
+import org.teamproject.models.product.ProductInfoService;
 import org.teamproject.repositories.CartInfoRepository;
 
 import java.util.List;
@@ -19,6 +21,7 @@ import java.util.Objects;
 @Service("cartInfoService2")
 @RequiredArgsConstructor
 public class CartInfoService {
+    private final ProductInfoService productInfoService;
     private final CartInfoRepository repository;
     private final MemberUtil memberUtil;
     private final Utils utils;
@@ -36,7 +39,8 @@ public class CartInfoService {
             Long userNo = memberUtil.getMember().getUserNo();
             builder.and(cartInfo.member.userNo.eq(userNo));
         } else {
-            builder.and(cartInfo.uid.eq(uid));
+            builder.and(cartInfo.uid.eq(uid))
+                    .and(cartInfo.member.userNo.isNull());
         }
 
         return repository.findOne(builder).orElse(null);
@@ -64,6 +68,13 @@ public class CartInfoService {
                 .orderBy(new OrderSpecifier(Order.ASC, pathBuilder.get("createdAt")))
                 .fetch();
 
+        items.stream().forEach(this::addCartInfo);
+
         return items;
+    }
+
+    private void addCartInfo(CartInfo cartInfo) {
+        Books book = cartInfo.getBook();
+        if (book != null) productInfoService.addFileInfo(book);
     }
 }
