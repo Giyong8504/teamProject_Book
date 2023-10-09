@@ -63,13 +63,6 @@ public class MemberController implements CommonProcess {
 
     }
 
-
-    @GetMapping("/book")
-    public String insert_Book(@ModelAttribute BookForm bookForm, Model model){
-        commonProcess(model, "책 등록");
-        return utils.tpl("member/book");
-    }
-
     @GetMapping("/UserInfo")
     public String memberInfo(Principal principal, ModelMap modelMap){
         String userNM = principal.getName();

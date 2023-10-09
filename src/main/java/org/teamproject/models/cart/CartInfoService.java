@@ -1,6 +1,10 @@
 package org.teamproject.models.cart;
 
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.Order;
+import com.querydsl.core.types.OrderSpecifier;
+import com.querydsl.core.types.dsl.PathBuilder;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.teamproject.commons.MemberUtil;
@@ -9,12 +13,16 @@ import org.teamproject.entities.CartInfo;
 import org.teamproject.entities.QCartInfo;
 import org.teamproject.repositories.CartInfoRepository;
 
+import java.util.List;
+import java.util.Objects;
+
 @Service("cartInfoService2")
 @RequiredArgsConstructor
 public class CartInfoService {
     private final CartInfoRepository repository;
     private final MemberUtil memberUtil;
     private final Utils utils;
+    private final JPAQueryFactory factory;
 
     // 책 번호 가져와서 조회
     public CartInfo getByBookNo(Long bookNo) {
@@ -32,5 +40,30 @@ public class CartInfoService {
         }
 
         return repository.findOne(builder).orElse(null);
+    }
+
+    public List<CartInfo> getList(String mode) {
+        mode = Objects.requireNonNullElse(mode, "cart"); // 값이 없으면 카트로
+        QCartInfo cartInfo = QCartInfo.cartInfo;
+        BooleanBuilder builder = new BooleanBuilder();
+        builder.and(cartInfo.mode.eq(mode));
+        if (memberUtil.isLogin()) { // 회원일때
+            builder.and(cartInfo.member.userNo.eq(memberUtil.getMember().getUserNo()));
+        } else { // 비회원일때
+            builder.and(cartInfo.uid.eq(utils.guestUid()))
+                    .and(cartInfo.member.userNo.isNull()); // 회원정보 == null
+        }
+
+        PathBuilder pathBuilder = new PathBuilder(CartInfo.class, "cartInfo");
+
+        List<CartInfo> items = factory.selectFrom(cartInfo)
+                .leftJoin(cartInfo.member)
+                .leftJoin(cartInfo.book)
+                .fetchJoin()
+                .where(builder)
+                .orderBy(new OrderSpecifier(Order.ASC, pathBuilder.get("createdAt")))
+                .fetch();
+
+        return items;
     }
 }
