@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layouts/main}">
+
+<section layout:fragment="content"> <!-- ClaimController 에서 값 불러오기 -->
+    <h1 th:text="${pageTitle}"></h1>
+
+</section>
+</html>
