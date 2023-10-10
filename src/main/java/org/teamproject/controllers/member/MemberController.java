@@ -3,6 +3,8 @@ package org.teamproject.controllers.member;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -69,6 +71,7 @@ public class MemberController implements CommonProcess {
         commonProcess(model, "책 등록");
         return utils.tpl("member/book");
     }
+
 
     @GetMapping("/UserInfo")
     public String memberInfo(Principal principal, ModelMap modelMap){
