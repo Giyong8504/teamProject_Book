@@ -46,6 +46,8 @@ public class ProductForm {
     private boolean sp; // 판매 기간 사용 여부
     private boolean ps; // 새제품, 중고품 여부
 
+    private List<Integer> chkNo;
+
 
 
 }
