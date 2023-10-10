@@ -67,15 +67,6 @@ public class MemberController implements CommonProcess {
 
     }
 
-
-    @GetMapping("/book")
-    public String insert_Book(@ModelAttribute BookForm bookForm, Model model){
-        commonProcess(model, "책 등록");
-        return utils.tpl("member/book");
-
-
-    }
-
     @PostMapping("/findUserNm")
     public ResponseEntity<String> findUserNmByEmail(@RequestParam String email) {
         Optional<String> userNmOptional = userInfoService.findUserNmByEmail(email);

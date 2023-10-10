@@ -19,10 +19,10 @@ public interface MemberRepository extends JpaRepository<Member, Long>, QuerydslP
     Member findByUserNmAndEmail(String userNm, String email);
 
     // 비밀번호 찾기
-    Member findByUserIdAndEmail(String userId, String email);
+    Member findByUserNoAndEmail(Long userNo, String email);
 
     // 비밀번호 변경
     @Modifying
-    @Query("update Member m set m.userPw = :newPassword where m.userId = :userId and m.email = :email")
-    void updatePassword(@Param("userId") String userId, @Param("email") String email, @Param("newPassword") String newPassword);
+    @Query("update Member m set m.userPw = :newPassword where m.userNm = :userNm and m.email = :email")
+    void updatePassword(@Param("userNm") String userId, @Param("email") String email, @Param("newPassword") String newPassword);
 }
