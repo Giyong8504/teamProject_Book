@@ -20,7 +20,9 @@ import org.teamproject.models.member.UserSaveService;
 import org.teamproject.repositories.MemberRepository;
 
 import java.security.Principal;
+import java.security.SecureRandom;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/member")
@@ -70,6 +72,48 @@ public class MemberController implements CommonProcess {
     public String insert_Book(@ModelAttribute BookForm bookForm, Model model){
         commonProcess(model, "책 등록");
         return utils.tpl("member/book");
+
+
+    }
+
+    @PostMapping("/findUserNm")
+    public ResponseEntity<String> findUserNmByEmail(@RequestParam String email) {
+        Optional<String> userNmOptional = userInfoService.findUserNmByEmail(email);
+
+        return userNmOptional
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found"));
+    }
+
+    @PostMapping("/findPassword")
+    public ResponseEntity<String> findPassword(@RequestParam String userNm, @RequestParam String email) {
+        Optional<Member> memberOptional = userInfoService.findMemberByUserNmAndEmail(userNm, email);
+
+        return memberOptional
+                .map(member -> {
+                    // 비밀번호 변경 로직 수행
+                    String newPassword = generateNewPassword();
+                    userInfoService.updatePassword(userNm, email, newPassword);
+
+                    return ResponseEntity.ok("Password reset successful. New password: " + newPassword);
+                })
+                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found"));
+    }
+
+    private String generateNewPassword() {
+        int length = 30;  // 새로운 비밀번호의 길이
+        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+";  // 사용할 문자들
+        SecureRandom random = new SecureRandom();
+
+        byte[] bytes = new byte[length];
+        random.nextBytes(bytes);
+
+        StringBuilder newPassword = new StringBuilder(length);
+        for (byte b : bytes) {
+            newPassword.append(chars.charAt(Math.abs(b % chars.length())));
+        }
+
+        return newPassword.toString();
     }
 
 
