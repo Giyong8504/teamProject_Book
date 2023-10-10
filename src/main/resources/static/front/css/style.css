@@ -162,7 +162,7 @@ h2 { font-size: 18px; font-weight: bold; margin: 25px 0 10px; line-height: 1; }
 .icon-text{
 text-align: center;
 }
-.event {
+.event
 text-align: center;
 background-image: url('#');
   background-repeat: no-repeat;
@@ -179,42 +179,6 @@ background-image: url('#');
     cursor: pointer;
     /* event 부분 끝   */
 }
-/* 팝업 준비중 */
-#popup {
-  width: 500px;
-  padding: 40px;
-  background: linear-gradient(30deg, gray, lightgray);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 15px;
-  box-shadow: 10px 10px 30px #888;
-  display: block; }
-  #popup .content {
-    width: 100%;
-    min-height: 150px;
-    color: #fff;
-    font-size: 30px; }
-  #popup .wrap {
-    display: inline-flex; }
-    #popup .wrap input {
-      border: none;
-      vertical-align: middle;
-      margin-right: 10px;
-      position: relative;
-      top: 4px; }
-    #popup .wrap label {
-      color: #fff;
-      vertical-align: middle; }
-  #popup .close {
-    position: absolute;
-    bottom: 40px;
-    right: 40px;
-    color: #fff;
-     }
-
-  /* 팝업 끝 부분 */
 
 /*룰렛 시작*/
 
@@ -278,41 +242,10 @@ background-image: url('#');
   background: #fff;
   border-image: linear-gradient(to right, #fbfcb9be, #ffcdf3aa, #65d3ffaa);
   border: 2px solid;
-
-
 }
-
 .hidden-input {
   display: none;
-
-
-}
-body{
-height: 50%;
-}
-.section_1 {
-height: 60%;
-background: url(https://image.istarbucks.co.kr/upload/common/img/main/2023/230921_1_pc_pick_bg.jpg)fixed;
-}
-h3{
-font-size: 8em;
-width:90%;
-color: black;
-font-family: sans-serif;
-position:absolute;
-animation: slide 2s ease-out;
-top:350px;
-left:200px;
-}
-@keyframes slide{
-from{
- left:-100px;
- opacity: 0;
-}
-to{
- left:200px;
- opacity: 1;
-}
+  }
 
 
 
