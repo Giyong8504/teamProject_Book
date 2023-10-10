@@ -1,4 +1,4 @@
-package org.teamproject.models.product;
+package org.teamproject.models.orders;
 
 import lombok.Builder;
 import lombok.Data;

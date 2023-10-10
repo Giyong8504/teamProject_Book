@@ -12,9 +12,9 @@ import org.teamproject.commons.Menu;
 import org.teamproject.commons.ScriptExceptionProcess;
 import org.teamproject.controllers.admin.dtos.CategoryForm;
 import org.teamproject.entities.product.Category;
-import org.teamproject.models.product.CategoryInfoService;
-import org.teamproject.models.product.CategoryRegistService;
-import org.teamproject.models.product.CategoryUpdateService;
+import org.teamproject.models.categories.CategoryInfoService;
+import org.teamproject.models.categories.CategoryRegistService;
+import org.teamproject.models.categories.CategoryUpdateService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,6 +80,8 @@ public class ProductController implements CommonProcess, ScriptExceptionProcess 
         if (errors.hasErrors()) {
             return mode != null && mode.equals("edit") ? "admin/product/" + "add" : "admin/product/" + "edit";
         }
+
+
         return "redirect:/admin/product";
     }
 
@@ -132,6 +134,7 @@ public class ProductController implements CommonProcess, ScriptExceptionProcess 
 
         CommonProcess.super.commonProcess(model, pageTitle);
 
+        // 서브 메뉴 처리
         String subMenuCode = Menu.getSubMenuCode(request);
         model.addAttribute("subMenuCode", subMenuCode);
         model.addAttribute("submenus", Menu.gets("product"));
@@ -144,6 +147,7 @@ public class ProductController implements CommonProcess, ScriptExceptionProcess 
             addScript.add("book/form");
         }
 
+        // 모델에 데이터 추가
         model.addAttribute("menuCode", "product");
         model.addAttribute("addCommonScript", addCommonScript);
         model.addAttribute("addScript", addScript);

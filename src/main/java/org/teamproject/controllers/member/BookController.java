@@ -11,7 +11,7 @@ import org.teamproject.commons.CommonException;
 import org.teamproject.commons.CommonProcess;
 import org.teamproject.commons.ScriptExceptionProcess;
 import org.teamproject.entities.Books;
-import org.teamproject.models.product.CategoryInfoService;
+import org.teamproject.models.categories.CategoryInfoService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,10 @@ import java.util.List;
 @Controller
 @RequestMapping("/product")
 @RequiredArgsConstructor
-public class BookController implements CommonProcess, ScriptExceptionProcess {
+public class BookController implements CommonProcess, ScriptExceptionProcess { // 상품 상세 페이지 구현을 위한 Controller
+    /* 상품 등록 완료 후에 테스트 진행
+        현재는 상품 등록하기가 구현이 안되어있어서 목록을 불러올 수가 없음
+    */
     private final CategoryInfoService categoryInfoService;
 
     @GetMapping("/view/{bookNo}")
@@ -56,7 +59,7 @@ public class BookController implements CommonProcess, ScriptExceptionProcess {
         List<String> addScript = new ArrayList<>();
         List<String> addCss = new ArrayList<>();
 
-        if (model.equals("view")) {
+        if (mode.equals("view")) {
             addScript.add("/front/js/book/view");
             addCss.add("/front/js/order/cart");
         }

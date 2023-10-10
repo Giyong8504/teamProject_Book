@@ -1,4 +1,4 @@
-package org.teamproject.models.product;
+package org.teamproject.models.categories;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

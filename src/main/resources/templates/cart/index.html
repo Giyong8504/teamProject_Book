@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/layouts/main}">
+<main layout:fragment="content">
+    <h1>장바구니</h1>
+    <form name="frmCart" method="post" th:action="@{/order/cart}" target="ifrmProcess" autocomplete="off">
+        <input type="hidden" name="_method" value="PATCH">
+
+        <table broder="1">
+            <thead>
+            <tr>
+                <th>
+                    <input type="checkbox" class="checkall" data-target-name="chkNo" id="checkall" checked>
+                    <label for="checkall" class="standalone"></label>
+                </th>
+                <th colspan="2">상품정보</th>
+                <th>수량</th>
+                <th>판매가</th>
+                <th>합계</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:if="${items != null && items.size() > 0}" th:each="item, status : ${items}" th:object="${item}">
+                    <td>
+                        <input type="checkbox" name="chkNo" th:value="${status.index}" th:id="${'chkNo_' + status.index}" checked>
+                        <label th:for="${'chkNo_' + status.index}"></label>
+                        <input type="hidden" th:name="${'cartNo_' + status.index}" th:value="*{cartNo}">
+                    </td>
+                    <td>
+                        <th:block th:if="*{books != null && books.listImages != null && books.listImages.size() > 0}">
+                            <a th:href="@{/product/view/{no}(no=*{books.bookNo})}">
+                                <img th:src="*{books.listImages[0].thumbsUrl}">
+                            </a>
+                        </th:block>
+                    </td>
+                    <td>
+                        <th:block th:if="*{books != null}" th:text="*{books.bookNm}"></th:block>
+                    </td>
+                    <td>
+                        <input type="number" th:name="${'ea_' + status.index}" th:value="*{ea}" min="1">개
+                    </td>
+                    <td>
+                       <th:block th:if="*{books != null && books.price < 1000}" th:text="*{books.price + '원'}"></th:block>
+                       <th:block th:if="*{books != null && books.price >= 1000}" th:text="*{#numbers.formatInteger(books.price, 3, 'COMMA') + '원'}"></th:block>
+                    </td>
+                    <td>
+                        <th:block th:if="*{books != null}" th:text="*{#strings.concat(books.price * ea, '원')}"></th:block>
+                    </td>
+                </tr>
+                <tr th:if="${items == null || items.isEmpty()}">
+                    <td colspan="5" class="no_data">장바구니가 비어있습니다.</td>
+                </tr>
+            </tbody>
+        </table>
+        <button tpye="button" class="action_button order" data-mode="order">선택상품 주문하기</button>
+        <button type="button" class="action_button edit" data-mode="edit">선택상품 수정하기</button>
+        <button type="button" class="action_button delete" data-mode="delete">선택상품 삭제하기</button>
+    </form>
+</main>
+</html>
