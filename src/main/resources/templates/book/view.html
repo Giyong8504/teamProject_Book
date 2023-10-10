@@ -10,7 +10,7 @@
             </th:block>
         </div>
         <div class="product_info">
-            <form name="frmView" method="post" th:action="@{/front/js/order/cart}">
+            <form name="frmView" method="post" th:action="@{/front/js/order/cart}" target="ifrmProcess">
                 <input type="hidden" name="mode" value="direct">
                 <input type="hidden" name="bookNo" th:value="*{bookNo}">
                 <dl th:if="*{category != null}">
@@ -30,6 +30,12 @@
                     <dt>재고</dt>
                     <dd th:if="*{stock < 1000}" th:text="*{stock+ '개'}"></dd>
                     <dd th:if="*{stock >= 1000}" th:text="*{#numbers.formatInteger(stock, 3, 'COMMA') + '개'}"></dd>
+                </dl>
+                <dl>
+                    <dt>구매수량</dt>
+                    <dd>
+                        <input type="number" name="ea" value="1">개
+                    </dd>
                 </dl>
                 <div class="btns">
                     <button type="button" class="action_button cart" data-mode="cart" style="color: #000;">장바구니</button>

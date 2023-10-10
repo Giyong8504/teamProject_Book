@@ -1,5 +1,8 @@
 package org.teamproject.configs;
 
+import com.querydsl.jpa.impl.JPAQueryFactory;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
@@ -25,6 +28,9 @@ public class MvcConfig implements WebMvcConfigurer {
 
     @Value("${file.upload.url}")
     private String fileUploadUrl;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -52,5 +58,10 @@ public class MvcConfig implements WebMvcConfigurer {
     public HiddenHttpMethodFilter httpMethodFilter() {
 
         return new HiddenHttpMethodFilter();
+    }
+
+    @Bean
+    public JPAQueryFactory jpaQueryFactory() {
+        return new JPAQueryFactory(entityManager);
     }
 }

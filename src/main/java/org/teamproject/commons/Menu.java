@@ -28,6 +28,11 @@ public class Menu {
             menus.add(new MenuDetail("prepare", "배송 준비중", "/admin/orders/prepare"));
             menus.add(new MenuDetail("status", "배송 현황", "/admin/orders/status"));
             menus.add(new MenuDetail("delivered", "배송 완료", "/admin/orders/delivered"));
+        } else if (code.equals("claim")) { // 취소/교환/반품 하위 메뉴
+            menus.add(new MenuDetail("claim", "주문 목록", "/admin/claim"));
+            menus.add(new MenuDetail("cancel", "취소", "/admin/claim/cancel"));
+            menus.add(new MenuDetail("change", "교환", "/admin/claim/change"));
+            menus.add(new MenuDetail("return", "반품", "/admin/claim/takeBack"));
         }
 
         // 게시판 하위 메뉴
