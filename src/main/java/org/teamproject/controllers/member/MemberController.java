@@ -5,23 +5,17 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.teamproject.commons.CommonProcess;
 import org.teamproject.commons.Utils;
-import org.teamproject.entities.Books;
 import org.teamproject.entities.Member;
 import org.teamproject.models.member.UserInfoService;
 import org.teamproject.models.member.UserSaveService;
-import org.teamproject.repositories.MemberRepository;
 
-import java.security.Principal;
 import java.security.SecureRandom;
-import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -33,10 +27,7 @@ public class MemberController implements CommonProcess {
     private final Utils utils;
 
     @Autowired
-    private MemberRepository memberRepository;
-
     private final UserInfoService userInfoService;
-    private final PasswordEncoder passwordEncoder;
 
 
     @GetMapping("/join")
@@ -108,11 +99,8 @@ public class MemberController implements CommonProcess {
     }
 
 
-    @GetMapping("/UserInfo")
-    public String memberInfo(Principal principal, ModelMap modelMap){
-        String userNM = principal.getName();
-        Member member = memberRepository.findByEmail(userNM);
-        modelMap.addAttribute("member", member);
+    @GetMapping("/myInfo")
+    public String memberInfo(){
 
         return "member/myInfo";
     }
