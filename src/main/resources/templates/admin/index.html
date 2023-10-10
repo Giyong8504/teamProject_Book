@@ -3,6 +3,54 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{admin/layouts/main}">
 <section layout:fragment="content">
-    <h1>관리자 메인</h1>
+   <head>
+       <link rel="stylesheet" type="text/css" th:href="@{/admin/css/admin_main/admin_main.css}">
+   </head>
+<body>
+
+<div class="prices">
+    <div class="price-order_1">
+        <div class="price-order-title_1">
+           주문/배송 지연 현황
+        </div>
+    </div>
+    <div class="price-order_2">
+        <div class="price-order-title_2">
+            지연 현황
+        </div>
+    </div>
+    <div class="price-order_3">
+        <div class="price-order-title_3">
+            교환/반품 현황
+        </div>
+    </div>
+</div>
+<div class="prices_2">
+    <div class="price-review_1">
+        상품등록 현황
+
+    </div>
+
+
+        <div class="price-review_2">
+            고객문의 현황
+        </div>
+
+            <div class="price-review_3">
+                고객후기
+            </div>
+</div>
+<div class="prices_2">
+    <div class="price-total_1">
+        정산현황
+    </div>
+    <div class="price-total_2">
+        매출현황
+    </div>
+    <div class="price-total_3">
+        특가딜 제안내역
+    </div>
+</div>
+</body>
 </section>
 </html>
