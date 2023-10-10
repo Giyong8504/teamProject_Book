@@ -15,6 +15,8 @@ public class ProductForm {
 
     private String cateCd; // 도서 분류 코드
 
+    private Long bookNo; // 도서 번호
+
     @NotBlank
     private String productNm; // 상품명
 
