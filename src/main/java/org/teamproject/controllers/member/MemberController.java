@@ -76,7 +76,7 @@ public class MemberController implements CommonProcess {
         Member member = memberRepository.findByEmail(userNM);
         modelMap.addAttribute("member", member);
 
-        return "myInfo";
+        return "member/myInfo";
     }
 
 }
