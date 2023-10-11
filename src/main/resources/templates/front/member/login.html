@@ -22,7 +22,17 @@
             <li>
                 <button type="submit" th:text="#{btn.login}"></button>
             </li>
+            <li>
+                <!-- 아이디 찾기 버튼 -->
+                <button class="button" type="submit" formaction="@{/member/findId}" th:text="#{btn.findId}"></button>
+            </li>
+            <li>
+                <!-- 비밀번호 찾기 버튼 -->
+                <button class="button" type="submit" formaction="@{/member/findPassword}" th:text="#{btn.findPassword}"></button>
+            </li>
         </ul>
 
     </form>
 </main>
+
+
