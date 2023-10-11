@@ -19,6 +19,7 @@ public class ProductSearch {
     private List<BookStatus> statuses;
     private BookStatus status;
     private Long bookNo; // 도서 번호
+    private String bookNm; // 도서명
     private String searchOpt; // 검색 옵션
     private String searchKey; // 검색 키워드
     private String sort; // 정렬
