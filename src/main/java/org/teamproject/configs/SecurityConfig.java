@@ -37,8 +37,8 @@ public class SecurityConfig {
         });
 
         http.authorizeHttpRequests(c -> {
-            c.requestMatchers("/mypage/**").authenticated() // "/mypage/" 경로 요청은 인증된 사용자만 접근 가능
                     //.requestMatchers("/admin/**").hasAuthority("ADMIN") // "/admin/" 경로 요청은 'ADMIN' 권한을 가진 사용자만 접근 가능
+            c.requestMatchers("/mypage/**", "/member/myInfo/**").authenticated() // "/mypage/" 경로 요청은 인증된 사용자만 접근 가능
                     .anyRequest().permitAll(); // 그 외 모든 요청은 누구나 접근 가능
         });
 
