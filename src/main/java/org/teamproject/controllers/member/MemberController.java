@@ -29,10 +29,7 @@ public class MemberController implements CommonProcess {
     private final Utils utils;
 
     @Autowired
-    private MemberRepository memberRepository;
-
     private final UserInfoService userInfoService;
-    private final PasswordEncoder passwordEncoder;
 
 
     @GetMapping("/join")
