@@ -2,37 +2,30 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
-<main layout:fragment="content">
-    <h1 th:text="${pageTitle}"></h1>
-    <form name="frmLogin" id="frmLogin" method="POST" th:action="@{/member/login}" autocomplete="off">
-        <div class="errors global" th:if="${session.globalError != null}" th:text="${session.globalError}"></div>
-        <input th:if="${param.redirectURL != null}" type="hidden" name="redirectURL"
-               th:value="${param.redirectURL}">
-        <ul>
-            <li>
-                <input type="text" name="email" th:placeholder="#{email}" th:value="${session.email}">
-                <div class="errors" th:if="${session.requiredEmail != null}"
-                     th:text="${session.requiredEmail}"></div>
-            </li>
-            <li>
-                <input type="password" name="userPw" th:placeholder="#{password}">
-                <div class="errors" th:if="${session.requiredUserPw != null}"
-                     th:text="${session.requiredUserPw}"></div>
-            </li>
-            <li>
-                <button type="submit" th:text="#{btn.login}"></button>
-            </li>
-            <li>
-                <!-- 아이디 찾기 버튼 -->
-                <button class="button" type="submit" formaction="@{/member/findId}" th:text="#{btn.findId}"></button>
-            </li>
-            <li>
-                <!-- 비밀번호 찾기 버튼 -->
-                <button class="button" type="submit" formaction="@{/member/findPassword}" th:text="#{btn.findPassword}"></button>
-            </li>
-        </ul>
+<section layout:fragment="content">
+    <div class='member_box'>
+        <h1 th:text="${pageTitle}"></h1>
+        <form name="frmLogin" id="frmLogin" method="POST" th:action="@{/member/login}" autocomplete="off">
+            <div class="errors global" th:if="${session.globalError != null}" th:text="${session.globalError}"></div>
+            <input th:if="${param.redirectURL != null}" type="hidden" name="redirectURL"
+                   th:value="${param.redirectURL}">
 
-    </form>
-</main>
+            <input type="text" name="email" th:placeholder="#{email}" th:value="${session.email}">
+            <div class="errors" th:if="${session.requiredEmail != null}"
+                         th:text="${session.requiredEmail}"></div>
+
+            <input type="password" name="userPw" th:placeholder="#{password}">
+            <div class="errors" th:if="${session.requiredUserPw != null}"
+                         th:text="${session.requiredUserPw}"></div>
+            <button type="submit" th:text="#{btn.login}"></button>
+        </form>
+        <div class="links">
+            <a th:href="@{/member/findId}" th:text="#{btn.findId}"></a>
+            <a th:href="@{/member/findPassword}" th:text="#{btn.findPassword}"></a>
+            <a th:href="@{/member/join}" th:text="#{title.join}"></a>
+        </div>
+    </div>
+</section>
+</html>
 
 

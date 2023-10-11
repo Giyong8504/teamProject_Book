@@ -5,6 +5,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.teamproject.commons.constants.Role;
+import org.teamproject.controllers.member.JoinForm;
 import org.teamproject.entities.Member;
 import org.teamproject.models.member.UserInfo;
 
@@ -57,5 +58,13 @@ public class MemberUtil {
         }
 
         return null;
+    }
+
+    public JoinForm getJoinForm() {
+        if (!isLogin()) {
+            return null;
+        }
+
+        return new ModelMapper().map(getEntity(), JoinForm.class);
     }
 }

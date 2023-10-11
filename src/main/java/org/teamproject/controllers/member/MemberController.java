@@ -10,12 +10,16 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.teamproject.commons.CommonProcess;
+import org.teamproject.commons.MemberUtil;
 import org.teamproject.commons.Utils;
 import org.teamproject.entities.Member;
 import org.teamproject.models.member.UserInfoService;
 import org.teamproject.models.member.UserSaveService;
 
 import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Controller
@@ -25,6 +29,7 @@ public class MemberController implements CommonProcess {
 
     private final UserSaveService saveService;
     private final Utils utils;
+    private final MemberUtil memberUtil;
 
     @Autowired
     private final UserInfoService userInfoService;
@@ -32,13 +37,13 @@ public class MemberController implements CommonProcess {
 
     @GetMapping("/join")
     public String join(@ModelAttribute JoinForm form, Model model) {
-        commonProcess(model, "회원가입");
+        commonProcess("join", model);
         return utils.tpl("member/join");
     }
 
     @PostMapping("/join")
     public String joinPs(@Valid JoinForm form, Errors errors, Model model) {
-        commonProcess(model, "회원가입");
+        commonProcess("join", model);
 
         saveService.save(form, errors);
 
@@ -51,7 +56,7 @@ public class MemberController implements CommonProcess {
 
     @GetMapping("/login")
     public String login(Model model) {
-        commonProcess(model, "로그인");
+        commonProcess("login", model);
 
         return utils.tpl("member/login");
 
@@ -100,10 +105,56 @@ public class MemberController implements CommonProcess {
 
 
     @GetMapping("/myInfo")
-    public String memberInfo(){
+    public String memberInfo(Model model){
+        commonProcess("info", model);
 
-        return "member/myInfo";
+        JoinForm joinForm = memberUtil.getJoinForm();
+        joinForm.setMode("update");
+        model.addAttribute("joinForm", joinForm);
+        model.addAttribute("mode", "update");
+
+        return utils.tpl("member/myInfo");
     }
 
+    @PostMapping("/myInfo")
+    public String memberInfoPs(@Valid JoinForm form, Errors errors, Model model) {
+        commonProcess("info", model);
+        form.setMode("update");
+        form.setEmail(memberUtil.getMember().getEmail());
+
+        saveService.update(form, errors);
+
+        if (errors.hasErrors()) {
+            errors.getAllErrors().stream().forEach(System.out::println);
+            return utils.tpl("member/myInfo");
+        }
+
+
+
+        return "redirect:/mypage";
+    }
+
+    public void commonProcess(String mode, Model model) {
+        String pageTitle = "";
+        mode = Objects.requireNonNullElse(mode, "");
+        if (mode.equals("join")) {
+            pageTitle = "회원가입";
+        } else if (mode.equals("info")) {
+            pageTitle = "회원정보수정";
+        } else if (mode.equals("login")) {
+            pageTitle = "로그인";
+        } else if (mode.equals("findId")) {
+            pageTitle = "아이디 찾기";
+        } else if (mode.equals("findPw")) {
+            pageTitle = "비밀번호 찾기";
+        }
+            
+        CommonProcess.super.commonProcess(model, pageTitle);
+
+        List<String> addCss = new ArrayList<>();
+        addCss.add("member/style");
+
+        model.addAttribute("addCss", addCss);
+    }
 }
 

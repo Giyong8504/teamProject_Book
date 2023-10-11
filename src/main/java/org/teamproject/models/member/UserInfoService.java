@@ -6,12 +6,11 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.teamproject.controllers.member.MemberUpdateDto;
 import org.teamproject.entities.Member;
 import org.teamproject.repositories.MemberRepository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.List;
@@ -41,6 +40,9 @@ public class UserInfoService implements UserDetailsService {
                 .userPw(member.getUserPw())
                 .userNm(member.getUserNm())
                 .mobile(member.getMobile())
+                .zonecode(member.getZonecode())
+                .address(member.getAddress())
+                .addressSub(member.getAddressSub())
                 .role(member.getRole())
                 .authorities(authorities)
                 .build();

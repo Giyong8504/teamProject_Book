@@ -16,6 +16,9 @@ public class UserInfo implements UserDetails {
     private String userNm;
     private String mobile;
     private Role role;
+    private String zonecode;
+    private String address;
+    private String addressSub;
     private Collection<GrantedAuthority> authorities;
 
     @Override
