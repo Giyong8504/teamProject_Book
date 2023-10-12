@@ -33,10 +33,7 @@ public class Menu {
             menus.add(new MenuDetail("cancel", "취소", "/admin/claim/cancel"));
             menus.add(new MenuDetail("change", "교환", "/admin/claim/change"));
             menus.add(new MenuDetail("return", "반품", "/admin/claim/takeBack"));
-        }
-
-        // 게시판 하위 메뉴
-        if (code.equals("board")){
+        }else if (code.equals("board")){// 게시판 하위 메뉴
             menus.add(new MenuDetail("board", "게시판 목록", "/admin/board"));
             menus.add(new MenuDetail("register", "게시판 등록/수정", "/admin/board/register"));
             menus.add(new MenuDetail("posts", "게시글 관리", "/admin/board/posts"));
