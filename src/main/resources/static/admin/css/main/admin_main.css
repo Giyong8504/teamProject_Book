@@ -6,9 +6,10 @@
 }
 
 .price-order_1 {
+  position: relative;
   flex: 1;
   max-width: 650px;
-  height: 230px;
+  height: 160px;
   border: 1px solid black;
   margin: 20px;
   border-radius: 4px;
@@ -16,7 +17,7 @@
 .price-order_2 {
   flex: 1;
   max-width: 300px;
-  height: 230px;
+  height: 160px;
   border: 1px solid black;
   margin: 20px;
   border-radius: 4px;
@@ -24,13 +25,11 @@
 .price-order_3 {
   flex: 1;
   max-width: 500px;
-  height: 230px;
+  height: 160px;
   border: 1px solid black;
   margin: 20px;
   border-radius: 4px;
 }
-
-
 .price-order-title_1 {
   font-size: 1.5rem;
   background-color: #6699ff;
@@ -77,6 +76,11 @@ flex: 1;
   border: 1px solid black;
   margin: 20px;
   border-radius: 4px;
+
+  display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 .price-review_2{
 flex: 1;
@@ -86,6 +90,33 @@ flex: 1;
   margin: 20px;
   border-radius: 4px;
 }
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.plus-button {
+    font-size: 24px;
+    text-decoration: none;
+}
+.plus-button_2{
+font-size: 15px;
+text-decoration:none;
+}
+.inquiry_button {
+color: orange;
+font-size: 20px;
+}
+.inquiry_button_2{
+color: #64CD3C;
+font-size: 20px;
+}
+.inquiry_button_3{
+color: red;
+font-size: 20px;
+}
 .price-review_3{
 flex: 1;
   max-width: 650px;
@@ -93,9 +124,6 @@ flex: 1;
   border: 1px solid black;
   margin: 20px;
   border-radius: 4px;
-}
-.product-item-button{
-color: white;
 }
 .price-total_1{
 flex: 1;
@@ -121,4 +149,19 @@ flex: 1;
   margin: 20px;
   border-radius: 4px;
 }
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+}
+h1{
+font-size: 2em;
+}
 
+.admin_main .status { display: flex; align-items: center; position: absolute; left: 0; bottom: 0; width: 100%; height: calc(100% - 70px); }
+.admin_main .status > li { width: 0; flex-grow: 1; }
+.admin_main .status > li > * { text-align: center; }
+.admin_main .status .txt { font-size: 12px; letter-spacing: -1px; }
+.admin_main .status .no { font-weight: bold; font-size: 1.3rem; color: #6699ff; }
