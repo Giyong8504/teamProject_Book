@@ -111,7 +111,10 @@
         </dl>
         <dl>
             <dt>결제금액</dt>
-            <dd></dd>
+            <dd>
+                <th:block th:if="*{totalPrice < 1000}" th:text="*{totalPrice + '원'}"></th:block>
+                <th:block th:if="*{totalPrice >= 1000}" th:text="*{#numbers.formatInteger(totalPrice, 3, 'COMMA') + '원'}"></th:block>
+            </dd>
         </dl>
         <dl>
             <dt>결제방법</dt>

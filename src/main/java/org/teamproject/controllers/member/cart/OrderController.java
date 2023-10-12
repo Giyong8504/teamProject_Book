@@ -10,16 +10,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.teamproject.commons.AlertBackException;
-import org.teamproject.commons.CommonException;
-import org.teamproject.commons.CommonProcess;
-import org.teamproject.commons.ScriptExceptionProcess;
+import org.teamproject.commons.*;
 import org.teamproject.entities.CartInfo;
 import org.teamproject.models.cart.CartInfoService;
 import org.teamproject.models.cart.CartItemNotFoundException;
+import org.teamproject.models.member.UserInfo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Slf4j
 @Controller
@@ -27,6 +26,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrderController implements CommonProcess, ScriptExceptionProcess { // admin이 아닌 member의 주문 Controller (장바구니 -> 주문)
     private final CartInfoService cartInfoService;
+    private final MemberUtil memberUtil;
 
     @GetMapping
     public String index(@ModelAttribute OrderForm form, Model model) {
@@ -80,9 +80,19 @@ public class OrderController implements CommonProcess, ScriptExceptionProcess { 
                 throw new CartItemNotFoundException();
             }
 
+            int totalPrice = cartInfoService.getTotalPrice(items);
+            form.setTotalPrice(totalPrice);
+
             model.addAttribute("items", items);
             /* 주문서 양식인 경우 장바구니 상품 조회 E */
 
+            /* 로그인한 경우 - 회원정보로 주문자 정보 완성 */
+            if (memberUtil.isLogin()) {
+                UserInfo member = memberUtil.getMember();
+                form.setOrderName(Objects.requireNonNullElse(form.getOrderName(), member.getUserNm()));
+                form.setOrderEmail(Objects.requireNonNullElse(form.getOrderEmail(), member.getEmail()));
+                form.setOrderMobile(Objects.requireNonNullElse(form.getOrderMobile(), member.getMobile()));
+            }
 
         }
 

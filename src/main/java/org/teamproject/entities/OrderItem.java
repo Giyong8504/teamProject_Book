@@ -32,4 +32,8 @@ public class OrderItem extends BaseMemberEntity { // 주문 상품에 대한 정
     @Enumerated(EnumType.STRING)
     @Column(length = 15, nullable = false)
     private OrdersStatus status = OrdersStatus.READY;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "orderNo")
+    private OrderInfo orderInfo;
 }

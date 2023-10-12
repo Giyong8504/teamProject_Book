@@ -12,7 +12,7 @@ import org.teamproject.commons.constants.PaymentType;
 @NoArgsConstructor @AllArgsConstructor
 public class OrderInfo { // 주문자에 대한 정보
     @Id @GeneratedValue
-    private Long id;
+    private Long orderNo;
 
     @Column(length = 40, nullable = false)
     private String orderName;

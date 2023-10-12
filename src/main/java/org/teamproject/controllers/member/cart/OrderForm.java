@@ -37,4 +37,6 @@ public class OrderForm {
 
     @NotBlank
     private String paymentType = "LBT";
+
+    private int totalPrice;
 }
