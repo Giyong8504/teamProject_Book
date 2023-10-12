@@ -140,6 +140,7 @@
         </dl>
         <button type="submit">주문하기</button>
     </form>
+    <script th:if="${script != null}" type="text/javascript" src="https://stdpay.inicis.com/stdjs/INIStdPay.js" charset="UTF-8"></script>
     <script th:if="${script != null}" th:utext="${script}"></script>
 </main>
 </html>
