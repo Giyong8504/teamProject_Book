@@ -11,13 +11,9 @@ import org.teamproject.commons.AlertBackException;
 import org.teamproject.commons.CommonException;
 import org.teamproject.commons.CommonProcess;
 import org.teamproject.commons.ScriptExceptionProcess;
-import org.teamproject.entities.CartInfo;
 import org.teamproject.models.cart.CartInfoService;
-import org.teamproject.models.cart.CartItemNotFoundException;
 
-import java.sql.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
@@ -29,6 +25,7 @@ public class OrderController implements CommonProcess, ScriptExceptionProcess { 
 
     @GetMapping
     public String index(@ModelAttribute OrderForm form, Model model) {
+        commonProcess(model, "form");
         try {
 //            List<CartInfo> items = null;
 //            if (cartNo == null && cartNo.length == 0) { // 바로구매
@@ -57,10 +54,13 @@ public class OrderController implements CommonProcess, ScriptExceptionProcess { 
         CommonProcess.super.commonProcess(model, pageTitle);
 
         List<String> addScript = new ArrayList<>();
+        List<String> addCommonScript = new ArrayList<>();
         if (mode.equals("form")) {
+            addCommonScript.add("address");
             addScript.add("order/order");
         }
 
+        model.addAttribute("addCommonScript", addCommonScript);
         model.addAttribute("addScript", addScript);
     }
 }

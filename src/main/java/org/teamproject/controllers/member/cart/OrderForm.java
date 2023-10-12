@@ -1,7 +1,9 @@
 package org.teamproject.controllers.member.cart;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import org.teamproject.commons.constants.PaymentType;
 
 import java.util.List;
 
@@ -9,6 +11,7 @@ import java.util.List;
 public class OrderForm {
     private Long orderNo;
 
+    @NotNull
     private List<Long> cartNo;
 
     @NotBlank
@@ -33,4 +36,6 @@ public class OrderForm {
     @NotBlank
     private String addressSub;
 
+    @NotBlank
+    private String paymentType = "LBT";
 }

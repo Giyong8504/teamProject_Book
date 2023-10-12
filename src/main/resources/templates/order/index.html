@@ -4,7 +4,7 @@
       layout:decorate="~{front/layouts/main}">
 <main layout:fragment="content">
     <h1 th:text="${pageTitle}"></h1>
-    <form name="frmSave" method="POST" th:action="@{/order/save}" target="ifrmProcess" autocomplete="off">
+    <form name="frmSave" method="POST" th:action="@{/order/save}" autocomplete="off">
         <table broder="1">
             <thead>
             <tr>
@@ -63,6 +63,10 @@
         </dl>
 
         <h2>배송지 정보</h2>
+        <div>
+            <input type="checkbox" class="make_same_orderInfo" value="true" id="make_same_orderInfo">
+            <label for="make_same_orderInfo">주문자 정보와 동일</label>
+        </div>
         <dl>
             <dt>받는 분</dt>
             <dd>
@@ -90,6 +94,38 @@
                 </div>
             </dd>
         </dl>
+
+        <h2>결제 정보</h2>
+        <dl>
+            <dt>배송비</dt>
+            <dd>3000</dd>
+        </dl>
+        <dl>
+            <dt>결제금액</dt>
+            <dd></dd>
+        </dl>
+        <dl>
+            <dt>결제방법</dt>
+            <dd>
+                <sapn>
+                    <input type="radio" name="paymentType" value="LBT" id="paymentType_lbt" checked>
+                    <label for="paymentType_lbt">무통장 입금</label>
+                    <input type="radio" name="paymentType" value="DIRECT" id="paymentType_direct">
+                    <label for="paymentType_direct">계좌이체</label>
+                    <input type="radio" name="paymentType" value="VACCOUNT" id="paymentType_vaccount">
+                    <label for="paymentType_vaccount">가상계좌</label>
+                    <input type="radio" name="paymentType" value="CARD" id="paymentType_card">
+                    <label for="paymentType_card">신용카드</label>
+                </sapn>
+            </dd>
+            <dl class="lbt_account_info dn">
+                <dt>입금계좌번호</dt>
+                <dd>
+                    국민 0000-00-0000 / 입금자명
+                </dd>
+            </dl>
+        </dl>
+        <button type="submit">주문하기</button>
     </form>
 </main>
 </html>
