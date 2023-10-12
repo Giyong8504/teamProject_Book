@@ -4,7 +4,8 @@
       layout:decorate="~{front/layouts/main}">
 <main layout:fragment="content">
     <h1 th:text="${pageTitle}"></h1>
-    <form name="frmSave" method="POST" th:action="@{/order/save}" autocomplete="off">
+    <form name="frmSave" method="POST" th:action="@{/order}" autocomplete="off" th:object="${orderForm}">
+        <div class="errors global" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
         <table broder="1">
             <thead>
             <tr>
@@ -46,18 +47,21 @@
         <dl>
             <dt>주문자명</dt>
             <dd>
-                <input type="text" name="orderName">
+                <input type="text" name="orderName" th:field="*{orderName}">
+                <div class="errors" th:each="err : ${#fields.errors('orderName')}" th:text="${err}"></div>
             </dd>
             <dl>
                <dt>이메일</dt>
                 <dd>
-                    <input type="text" name="orderEmail">
+                    <input type="text" name="orderEmail" th:field="*{orderEmail}">
+                    <div class="errors" th:each="err : ${#fields.errors('orderEmail')}" th:text="${err}"></div>
                 </dd>
             </dl>
             <dl>
                 <dt>휴대전화번호</dt>
                 <dd>
-                    <input type="text" name="orderMobile">
+                    <input type="text" name="orderMobile" th:field="*{orderMobile}">
+                    <div class="errors" th:each="err : ${#fields.errors('orderMobile')}" th:text="${err}"></div>
                 </dd>
             </dl>
         </dl>
@@ -70,28 +74,33 @@
         <dl>
             <dt>받는 분</dt>
             <dd>
-                <input type="text" name="receiverName">
+                <input type="text" name="receiverName" th:field="*{receiverName}">
+                <div class="errors" th:each="err : ${#fields.errors('receiverName')}" th:text="${err}"></div>
             </dd>
         </dl>
         <dl>
             <dt>휴대전화번호</dt>
             <dd>
-                <input type="text" name="receiverMobile">
+                <input type="text" name="receiverMobile" th:field="*{receiverMobile}">
+                <div class="errors" th:each="err : ${#fields.errors('receiverMobile')}" th:text="${err}"></div>
             </dd>
         </dl>
         <dl>
             <dt>주소</dt>
             <dd>
                 <div class="address_rows">
-                    <input type="text" name="zonecode" placeholder="우편번호">
+                    <input type="text" name="zonecode" placeholder="우편번호" th:field="*{zonecode}">
                     <button type="button" class="search_address" data-zipcode-name="zonecode" data-address-name="address">주소검색</button>
                 </div>
                 <div class="address_rows">
-                    <input type="text" name="address" placeholder="주소">
+                    <input type="text" name="address" placeholder="주소" th:field="*{address}">
                 </div>
                 <div class="address_rows">
-                    <input type="text" name="addressSub" placeholder="나머지 주소">
+                    <input type="text" name="addressSub" placeholder="나머지 주소" th:field="*{addressSub}">
                 </div>
+                <div class="errors" th:each="err : ${#fields.errors('zonecode')}" th:text="${err}"></div>
+                <div class="errors" th:each="err : ${#fields.errors('address')}" th:text="${err}"></div>
+                <div class="errors" th:each="err : ${#fields.errors('addressSub')}" th:text="${err}"></div>
             </dd>
         </dl>
 
@@ -108,17 +117,18 @@
             <dt>결제방법</dt>
             <dd>
                 <sapn>
-                    <input type="radio" name="paymentType" value="LBT" id="paymentType_lbt" checked>
+                    <input type="radio" name="paymentType" value="LBT" id="paymentType_lbt" th:field="*{paymentType}" checked>
                     <label for="paymentType_lbt">무통장 입금</label>
-                    <input type="radio" name="paymentType" value="DIRECT" id="paymentType_direct">
+                    <input type="radio" name="paymentType" value="DIRECT" id="paymentType_direct" th:field="*{paymentType}">
                     <label for="paymentType_direct">계좌이체</label>
-                    <input type="radio" name="paymentType" value="VACCOUNT" id="paymentType_vaccount">
+                    <input type="radio" name="paymentType" value="VACCOUNT" id="paymentType_vaccount" th:field="*{paymentType}">
                     <label for="paymentType_vaccount">가상계좌</label>
-                    <input type="radio" name="paymentType" value="CARD" id="paymentType_card">
+                    <input type="radio" name="paymentType" value="CARD" id="paymentType_card" th:field="*{paymentType}">
                     <label for="paymentType_card">신용카드</label>
                 </sapn>
+                <div class="errors" th:each="err : ${#fields.errors('paymentType')}" th:text="${err}"></div>
             </dd>
-            <dl class="lbt_account_info dn">
+            <dl class="lbt_account_info">
                 <dt>입금계좌번호</dt>
                 <dd>
                     국민 0000-00-0000 / 입금자명
