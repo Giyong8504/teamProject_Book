@@ -1,10 +1,7 @@
 package org.teamproject.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.teamproject.commons.constants.OrdersStatus;
 
 @Entity
@@ -33,6 +30,7 @@ public class OrderItem extends BaseMemberEntity { // 주문 상품에 대한 정
     @Column(length = 15, nullable = false)
     private OrdersStatus status = OrdersStatus.READY;
 
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "orderNo")
     private OrderInfo orderInfo;

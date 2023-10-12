@@ -10,7 +10,7 @@ import org.teamproject.commons.constants.PaymentType;
 @Entity
 @Data @Builder
 @NoArgsConstructor @AllArgsConstructor
-public class OrderInfo { // 주문자에 대한 정보
+public class OrderInfo extends BaseMemberEntity{ // 주문자에 대한 정보
     @Id @GeneratedValue
     private Long orderNo;
 
@@ -43,4 +43,8 @@ public class OrderInfo { // 주문자에 대한 정보
     private PaymentType paymentType;
 
     private int payPrice; // 결제 금액
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userNo") // 로그인 했을때만 / 로그인하지 않았을 때는 null
+    private Member member;
 }

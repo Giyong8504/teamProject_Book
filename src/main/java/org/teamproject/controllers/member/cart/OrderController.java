@@ -14,6 +14,7 @@ import org.teamproject.commons.*;
 import org.teamproject.entities.CartInfo;
 import org.teamproject.models.cart.CartInfoService;
 import org.teamproject.models.cart.CartItemNotFoundException;
+import org.teamproject.models.cart.OrderSaveService;
 import org.teamproject.models.member.UserInfo;
 
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class OrderController implements CommonProcess, ScriptExceptionProcess { // admin이 아닌 member의 주문 Controller (장바구니 -> 주문)
     private final CartInfoService cartInfoService;
+    private final OrderSaveService saveService;
     private final MemberUtil memberUtil;
 
     @GetMapping
@@ -47,7 +49,12 @@ public class OrderController implements CommonProcess, ScriptExceptionProcess { 
             return "order/index";
         }
 
-        return "commons/_execute_script";
+        saveService.save(form);
+
+        // 예외발생 -> alter / 예외발생 X -> 결제 진행
+        // 결제 진행
+        model.addAttribute("script", "processPay()");
+        return "order/index";
     }
 
     public void commonProcess(Model model, String mode) {

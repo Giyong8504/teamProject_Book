@@ -72,7 +72,7 @@
             <label for="make_same_orderInfo">주문자 정보와 동일</label>
         </div>
         <dl>
-            <dt>받는 분</dt>
+            <dt>받는분</dt>
             <dd>
                 <input type="text" name="receiverName" th:field="*{receiverName}">
                 <div class="errors" th:each="err : ${#fields.errors('receiverName')}" th:text="${err}"></div>
@@ -140,5 +140,6 @@
         </dl>
         <button type="submit">주문하기</button>
     </form>
+    <script th:if="${script != null}" th:utext="${script}"></script>
 </main>
 </html>
