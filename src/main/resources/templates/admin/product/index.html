@@ -4,6 +4,61 @@
       layout:decorate="~{admin/layouts/main}">
 <section layout:fragment="content">
     <h1 th:text="${pageTitle}"></h1>
+    <form name="frmSearch" method="get" autocomplete="off" th:object="${productSearch}">
+        <table class="table-cols">
+            <tr>
+                <th>검색어</th>
+                <td>도서명<input type="text" name="bookNm"><td>
+                <td>도서번호<input type="text" id="bookNo"><td>
+                <td>저자<input type="text" id="author"></td>
+                <td>출판사<input type="text" id="publisher"></td>
 
+            </tr>
+            <tr>
+                <th>판매상태</th>
+            </tr>
+            <tr>
+                <th>분류</th>
+            </tr>
+            <tr>
+                <th>기간</th>
+            </tr>
+
+        </table>
+    </form>
+    <br>
+    <h2>상품목록</h2>
+    <form name="frmList" method="post" target="ifrmProcess" autocomplete="off">
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+        <input type="hidden" name="mode" value="edit">
+        <table class="table-rows">
+            <thead>
+            <tr>
+                <th width="30">
+                    <input type="checkbox" class="check_all" id="check_all" data-target-name="chkNo">
+                    <label for="check_all" class="standalone"></label>
+                </th>
+                <th width="50">수정</th>
+                <th width="70">도서번호</th>
+                <th width="100">도서명</th>
+                <th width="100">판매상태</th>
+                <th width="100">재고수량</th>
+                <th width="100">판매가</th>
+                <th width="100">출판일</th>
+                <th width="100">저자</th>
+                <th width="100">출판사</th>
+                <th width="100">원산지</th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:if="${items == null || items.isEmpty()}">
+                <tr>
+                    <td colspan="11" class="no_data">등록된 상품이 없습니다.</td>
+                </tr>
+            </th:block>
+            </th:block>
+            </tbody>
+        </table>
+    </form>
 </section>
 </html>

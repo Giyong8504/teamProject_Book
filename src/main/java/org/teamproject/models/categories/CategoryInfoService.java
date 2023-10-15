@@ -27,6 +27,20 @@ public class CategoryInfoService {
         return book;
     }
 
+    /**
+     * 카테고리 조회
+     * @param cateCd
+     * @return
+     */
+    public Category getCateCd(String cateCd) {
+        return categoryRepository.findById(cateCd).orElse(null);
+    }
+
+    /**
+     * 분류 전체 목록 조회
+     * @param mode
+     * @return
+     */
     public List<Category> getAll(String mode) {
         return categoryRepository.getAll(mode);
     }

@@ -34,7 +34,7 @@ public class ProductSaveService implements RequiredValidator {
             System.out.println("bookNo1 = " + bookNo);
         }
 
-//        books.setCategory(categoryInfoService.get(form.getCateCd()));
+        books.setCategory(categoryInfoService.getCateCd(form.getCateCd()));
         books.setBookNm(form.getProductNm());
         books.setAuthor(form.getAuthor());
         books.setPublisher(form.getPublisher());
