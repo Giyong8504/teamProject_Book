@@ -30,7 +30,7 @@ public class JoinValidator implements Validator, MobileValidator {
 
         // 1. 이메일 중복 여부
         String email = form.getEmail();
-        if (email != null && !email.isBlank() && repository.exists(email)) {
+        if (email != null && !email.isBlank() && repository.existsByEmail(email)) {
             errors.rejectValue("email", "Duplicated");
         }
 

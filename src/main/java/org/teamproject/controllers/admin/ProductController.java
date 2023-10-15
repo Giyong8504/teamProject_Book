@@ -122,7 +122,7 @@ public class ProductController implements CommonProcess, ScriptExceptionProcess 
     }
 
     public void commonProcess(String mode, Model model) {
-        String pageTitle = "상품 관리";
+        String pageTitle = "상품 조회/수정";
         if (mode.equals("category")) {
             pageTitle = "상품 분류";
         }else if (mode.equals("add")) {

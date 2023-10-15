@@ -28,4 +28,7 @@ public class CartInfo extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="userNo")
     private Member member;
+
+    @Transient
+    private int totalPrice;
 }

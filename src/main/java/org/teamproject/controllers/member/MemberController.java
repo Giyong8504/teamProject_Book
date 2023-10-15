@@ -3,22 +3,20 @@ package org.teamproject.controllers.member;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.teamproject.commons.CommonProcess;
 import org.teamproject.commons.Utils;
-import org.teamproject.entities.Books;
 import org.teamproject.entities.Member;
 import org.teamproject.models.member.UserInfoService;
 import org.teamproject.models.member.UserSaveService;
-import org.teamproject.repositories.MemberRepository;
 
-import java.security.Principal;
-import java.util.List;
+import java.security.SecureRandom;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/member")
@@ -29,10 +27,7 @@ public class MemberController implements CommonProcess {
     private final Utils utils;
 
     @Autowired
-    private MemberRepository memberRepository;
-
     private final UserInfoService userInfoService;
-    private final PasswordEncoder passwordEncoder;
 
 
     @GetMapping("/join")
@@ -63,13 +58,51 @@ public class MemberController implements CommonProcess {
 
     }
 
-    @GetMapping("/UserInfo")
-    public String memberInfo(Principal principal, ModelMap modelMap){
-        String userNM = principal.getName();
-        Member member = memberRepository.findByEmail(userNM);
-        modelMap.addAttribute("member", member);
+    @PostMapping("/findUserNm")
+    public ResponseEntity<String> findUserNmByEmail(@RequestParam String email) {
+        Optional<String> userNmOptional = userInfoService.findUserNmByEmail(email);
 
-        return "myInfo";
+        return userNmOptional
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found"));
+    }
+
+    @PostMapping("/findPassword")
+    public ResponseEntity<String> findPassword(@RequestParam String userNm, @RequestParam String email) {
+        Optional<Member> memberOptional = userInfoService.findMemberByUserNmAndEmail(userNm, email);
+
+        return memberOptional
+                .map(member -> {
+                    // 비밀번호 변경 로직 수행
+                    String newPassword = generateNewPassword();
+                    userInfoService.updatePassword(userNm, email, newPassword);
+
+                    return ResponseEntity.ok("Password reset successful. New password: " + newPassword);
+                })
+                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found"));
+    }
+
+    private String generateNewPassword() {
+        int length = 30;  // 새로운 비밀번호의 길이
+        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+";  // 사용할 문자들
+        SecureRandom random = new SecureRandom();
+
+        byte[] bytes = new byte[length];
+        random.nextBytes(bytes);
+
+        StringBuilder newPassword = new StringBuilder(length);
+        for (byte b : bytes) {
+            newPassword.append(chars.charAt(Math.abs(b % chars.length())));
+        }
+
+        return newPassword.toString();
+    }
+
+
+    @GetMapping("/myInfo")
+    public String memberInfo(){
+
+        return "member/myInfo";
     }
 
 }

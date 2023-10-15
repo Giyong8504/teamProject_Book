@@ -27,9 +27,10 @@ public class UserSaveService {
     }
 
     public void save(Member member) {
-        String userPw = member.getUserPw();
-        if (userPw != null && !userPw.isBlank()) {
-            member.setUserPw(encoder.encode(userPw));
+        String mobile = member.getMobile();
+        if (mobile != null && !mobile.isBlank()) {
+            mobile = mobile.replaceAll("\\D", "");
+            member.setMobile(mobile);
         }
 
         repository.saveAndFlush(member);
