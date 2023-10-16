@@ -1,55 +1,238 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html"
       layout:decorate="~{admin/layouts/main}">
-<section layout:fragment="content">
-   <head>
-       <link rel="stylesheet" type="text/css" th:href="@{/admin/css/admin_main/admin_main.css}">
-   </head>
-<body>
-<div class="prices">
-    <div class="price-order_1">
-        <div class="price-order-title_1">
-           주문/배송 지연 현황
-        </div>
-    </div>
-    <div class="price-order_2">
-        <div class="price-order-title_2">
-            지연 현황
-        </div>
-    </div>
-    <div class="price-order_3">
-        <div class="price-order-title_3">
-            교환/반품 현황
-        </div>
-    </div>
-</div>
-<div class="prices_2">
-    <div class="price-review_1">
-        상품등록 현황
+<section layout:fragment="content" class="admin_main">
+    <link rel="stylesheet" type="text/css" th:href="@{/admin/css/main/admin_main.css}">
+    <div class="prices">
+        <div class="price-order_1">
+            <div class="price-order-title_1">
+                주문/배송 지연 현황
+            </div>
+            <ul class="status">
+                <li>
+                    <div class="no">0</div>
+                    <div class="txt">신규주문</div>
+                </li>
 
-    </div>
+                <li>
+                    <div class="no">0</div>
+                    <div class="txt">배송준비중</div>
+                </li>
 
+                <li>
+                    <div class="no">0</div>
+                    <div class="txt">배송중</div>
+                </li>
+
+                <li>
+                    <div class="no">0</div>
+                    <div class="txt">배송완료</div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="price-order_2">
+            <div class="price-order-title_2">
+                지연 현황
+            </div>
+        </div>
+
+        <div class="price-order_3">
+            <div class="price-order-title_3">
+                교환/반품 현황
+            </div>
+        </div>
+    </div>
+    <div class="prices_2">
+        <div class="price-review_1">
+            <div class="header">
+                <span class="inquiry_button_0">상품등록 현황</span>
+            </div>
+            <ul>
+                <li>
+                    <div class="header">
+                        <a th:href="@{/}" class="plus-button_2">
+                            <span class="bottom">판매중</span></a>
+                        <p>
+                            <span class="uid">0</span>
+                        </p>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="header">
+                        <a th:href="@{/}" class="plus-button_2">
+                            <span class="bottom">승인대기</span></a>
+                        <p>
+                            <span class="uid">0</span>
+                        </p>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="header">
+                        <a th:href="@{/}" class="plus-button_2">
+                            <span class="bottom">수정신청</span>
+                        </a>
+                        <p>
+                            <span class="id">0</span>
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
 
         <div class="price-review_2">
-            고객문의 현황
+            <div class="header">
+                <span class="inquiry_button_1">고객 문의 현황</span>
+                <a th:href="@{/}" class="plus-button">+</a>
+            </div>
+
+            <ul>
+                <li>
+                    <div class="header">
+                        <a th:href="@{/}" class="plus-button_2">
+                            <span class="bottom">[문의]오류가 뜨네요.</span></a>
+
+                        <p>
+                            <span class="id">kim**</span>
+                            <span class="date">23.12.**</span>
+                        </p>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="header">
+                        <a th:href="@{/}" class="plus-button_2">
+                            <span class="bottom">[문의]IT 관련 책을 사고 싶어요.</span>
+                        </a>
+                        <p>
+                            <span class="id">yoon**</span>
+                            <span class="date">23.12.**</span>
+                        </p>
+                    </div>
+                </li>
+                <li>
+                    <div class="header">
+                        <a th:href="@{/}" class="plus-button_2">
+                            <span class="bottom">[문의]배송이 언제되나요.</span></a>
+                        <p>
+                            <span class="id">lee**</span>
+                            <span class="date">23.12.**</span>
+                        </p>
+                    </div>
+                </li>
+            </ul>
         </div>
 
-            <div class="price-review_3">
-                고객후기
+        <div class="price-review_3">
+            <div class="header">
+                <span class="inquiry_button_2">고객후기</span>
+                <a th:href="@{/}" class="plus-button">+</a>
             </div>
-</div>
-<div class="prices_2">
-    <div class="price-total_1">
-        정산현황
+
+            <ul>
+                <li>
+                    <div class="header">
+                        <a th:href="@{/}" class="plus-button_2">
+                            <span class="bottom">[후기]너무 좋습니다.</span>
+                        </a>
+
+                        <p>
+                            <span class="id">kim**</span>
+                            <span class="date">23.12.**</span>
+                        </p>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="header">
+                        <a th:href="@{/}" class="plus-button_2">
+                            <span class="bottom">[후기]읽고 싶은 책을 찾았습니다 감사합니다.</span>
+                        </a>
+
+
+                        <p>
+                            <span class="id">yoon**</span>
+                            <span class="date">23.12.**</span>
+                        </p>
+                    </div>
+                </li>
+
+
+                <li>
+                    <div class="header">
+                        <a th:href="@{/}" class="plus-button_2">
+                            <span class="bottom">[후기]잘 받았습니다.</span>
+                        </a>
+
+                        <p>
+                            <span class="id">lee**</span>
+                            <span class="date">23.12.**</span>
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div class="price-total_2">
-        매출현황
+
+    <div class="prices_2">
+        <div class="price-total_1">
+            <div class="header">
+                <span class="inquiry_button_4">정산현황</span>
+            </div>
+
+
+            <ul>
+                <li>
+                    <div class="header">
+                        <a th:href="@{/}" class="plus-button_2">
+                            <span class="bottom">정산대기중</span>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="price-total_2">
+            <div class="header">
+                <span class="inquiry_button_5">매출현황</span>
+            </div>
+            <ul>
+                <li>
+                    <div class="header">
+                        <a th:href="@{/}" class="plus-button_2">
+                            <span class="bottom">2023.12</span></a>
+                        <p>
+                            <span class="id">정산대기중</span>
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="price-total_3">
+            <div class="header">
+                <span class="inquiry_button_5">특가딜 제한내역</span>
+            </div>
+
+
+            <ul>
+                <li>
+                    <div class="header">
+                        <a th:href="@{/}" class="plus-button_2">
+                            <span class="bottom">2023.12</span></a>
+                        <p>
+                            <span class="id">업데이트 예정</span>
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div class="price-total_3">
-        특가딜 제안내역
     </div>
-</div>
-</body>
 </section>
 </html>
