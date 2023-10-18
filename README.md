@@ -93,6 +93,6 @@
 
 # 유스케이스 다이어그램
 [click! 확대 페이지](https://gitmind.com/app/docs/fi33cfss)
-<img src="https://postfiles.pstatic.net/MjAyMzEwMThfMjUg/MDAxNjk3NjA5OTQ3NTY3.OS17M7o4w4afiFUtrAXjDO821mflnpNniiUWIPQetrog.w_QWTylXYNIEdY_rfflIpfLuUN2ObOog0KMKBSPFCsAg.PNG.kky5163/image.png?type=w966" wight="700" height="743">
+<img src="https://postfiles.pstatic.net/MjAyMzEwMThfMjUg/MDAxNjk3NjA5OTQ3NTY3.OS17M7o4w4afiFUtrAXjDO821mflnpNniiUWIPQetrog.w_QWTylXYNIEdY_rfflIpfLuUN2ObOog0KMKBSPFCsAg.PNG.kky5163/image.png?type=w966">
 
 # ERD 다이어그램
