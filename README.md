@@ -92,5 +92,6 @@
 - 통계, 이벤트 : 김형석
 
 # 유스케이스 다이어그램
+[click! 확대 페이지](https://gitmind.com/app/docs/fi33cfss)
 
 # ERD 다이어그램
