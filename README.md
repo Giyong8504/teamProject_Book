@@ -1,13 +1,12 @@
 # 📚 프로젝트 소개
 ## 1. 개요
 - 프로젝트명 : Book' (북따옴)
-- 개발 기간 : 2023.09.16 ~ 2023.10.10
+- 개발 기간 : 2023.09.16 ~ 2023.10.30
 - 개발 인원 : 6명
 <br>
 
 📌[click! 프로젝트 협업 관리 페이지 (notion)](https://low-fisherman-ad6.notion.site/Team-Project_Book-845242c6cf794c498a449a01a79072e6?pvs=4)
-
-<img src="https://blogfiles.pstatic.net/MjAyMzA5MjhfMTEz/MDAxNjk1ODQxOTQ4MDA2.uLPLvFcfGnvAbGFXCvj3QawjfEDEG46I730AhcjFnlAg.VAnivc5MENfYDTcU0AgfVCTBXYb_xMfXzPvqpaZl2yIg.JPEG.kky5163/readme1.jpg" wight="700" height="743">
+![image](https://github.com/Giyong8504/teamProject_Book/assets/128211712/72e3c7a6-182b-4186-a886-30d8e7feb69f)
 
 <br>
 
@@ -51,11 +50,14 @@
 ## 3. 상품
 ### 상품 등록
 - 상품 조회
-  - 전체 조회
+  - 통합 조회
+  - 판매 상태별 조회
+  - 분류조회
   - 개별 조회
 - 상품 수정
 - 상품 등록
-
+  - 파일 이미지 추가 시 이미지 파일 확인
+  - 상세페이지 이미지 추가 (ckeditor5)
 ## 4. 주문
 ### 주문 관리
 - 주문 통합 검색
@@ -93,6 +95,6 @@
 
 # 유스케이스 다이어그램
 [click! 확대 페이지](https://gitmind.com/app/docs/fi33cfss)
-<img src="https://postfiles.pstatic.net/MjAyMzEwMThfMjUg/MDAxNjk3NjA5OTQ3NTY3.OS17M7o4w4afiFUtrAXjDO821mflnpNniiUWIPQetrog.w_QWTylXYNIEdY_rfflIpfLuUN2ObOog0KMKBSPFCsAg.PNG.kky5163/image.png?type=w966">
+![image](https://github.com/Giyong8504/teamProject_Book/assets/128211712/01b3d2ef-f3e1-4c1c-8e51-87d764f3e506)
 
 # ERD 다이어그램
