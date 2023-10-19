@@ -1,4 +1,4 @@
-package org.teamproject.models.cart;
+package org.teamproject.models.orders;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

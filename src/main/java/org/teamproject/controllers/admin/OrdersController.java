@@ -5,9 +5,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.teamproject.commons.CommonProcess;
 import org.teamproject.commons.Menu;
+import org.teamproject.controllers.orders.OrdersSearch;
+import org.teamproject.models.product.ProductSearch;
 
 
 @Controller
@@ -18,7 +21,7 @@ public class OrdersController implements CommonProcess {
     private final HttpServletRequest request;
 
     @GetMapping
-    public String index(Model model) {
+    public String index(@ModelAttribute OrdersSearch ordersSearch, Model model, @ModelAttribute ProductSearch productSearch) {
         commonProcess("list",model);
 
         return "admin/orders/index";

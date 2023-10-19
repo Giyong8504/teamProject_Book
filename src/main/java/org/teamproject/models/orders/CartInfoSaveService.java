@@ -1,15 +1,13 @@
-package org.teamproject.models.cart;
+package org.teamproject.models.orders;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 import org.teamproject.commons.MemberUtil;
 import org.teamproject.commons.Utils;
 import org.teamproject.controllers.member.cart.CartForm;
 import org.teamproject.entities.Books;
 import org.teamproject.entities.CartInfo;
-import org.teamproject.entities.Member;
 import org.teamproject.models.product.ProductInfoService;
 import org.teamproject.repositories.CartInfoRepository;
 
