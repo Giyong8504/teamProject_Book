@@ -1,4 +1,4 @@
-package org.teamproject.controllers.member.cart;
+package org.teamproject.controllers.orders;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

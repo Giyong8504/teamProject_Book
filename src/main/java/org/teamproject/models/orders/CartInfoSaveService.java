@@ -5,7 +5,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.teamproject.commons.MemberUtil;
 import org.teamproject.commons.Utils;
-import org.teamproject.controllers.member.cart.CartForm;
+import org.teamproject.controllers.orders.CartForm;
 import org.teamproject.entities.Books;
 import org.teamproject.entities.CartInfo;
 import org.teamproject.models.product.ProductInfoService;

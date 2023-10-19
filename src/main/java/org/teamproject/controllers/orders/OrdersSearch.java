@@ -7,7 +7,7 @@ import org.teamproject.commons.constants.OrdersStatus;
 public class OrdersSearch {
     private int page = 1;
     private int limit = 20;
-    private String sort = "createdAt_DESC";
+    private String sort = "createdAt_DESC"; // 정렬
 
     // 단일 주문 번호 조회
     private Long id;
