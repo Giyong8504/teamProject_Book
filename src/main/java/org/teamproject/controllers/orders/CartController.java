@@ -1,4 +1,4 @@
-package org.teamproject.controllers.member.cart;
+package org.teamproject.controllers.orders;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
