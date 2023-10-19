@@ -1,4 +1,4 @@
-package org.teamproject.models.cart;
+package org.teamproject.models.orders;
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Order;
