@@ -6,8 +6,7 @@
 <br>
 
 📌[click! 프로젝트 협업 관리 페이지 (notion)](https://low-fisherman-ad6.notion.site/Team-Project_Book-845242c6cf794c498a449a01a79072e6?pvs=4)
-
-<img src="https://blogfiles.pstatic.net/MjAyMzA5MjhfMTEz/MDAxNjk1ODQxOTQ4MDA2.uLPLvFcfGnvAbGFXCvj3QawjfEDEG46I730AhcjFnlAg.VAnivc5MENfYDTcU0AgfVCTBXYb_xMfXzPvqpaZl2yIg.JPEG.kky5163/readme1.jpg" wight="700" height="743">
+![image](https://github.com/Giyong8504/teamProject_Book/assets/128211712/72e3c7a6-182b-4186-a886-30d8e7feb69f)
 
 <br>
 
@@ -96,6 +95,6 @@
 
 # 유스케이스 다이어그램
 [click! 확대 페이지](https://gitmind.com/app/docs/fi33cfss)
-<img src="https://postfiles.pstatic.net/MjAyMzEwMThfMjUg/MDAxNjk3NjA5OTQ3NTY3.OS17M7o4w4afiFUtrAXjDO821mflnpNniiUWIPQetrog.w_QWTylXYNIEdY_rfflIpfLuUN2ObOog0KMKBSPFCsAg.PNG.kky5163/image.png?type=w966">
+![image](https://github.com/Giyong8504/teamProject_Book/assets/128211712/01b3d2ef-f3e1-4c1c-8e51-87d764f3e506)
 
 # ERD 다이어그램
