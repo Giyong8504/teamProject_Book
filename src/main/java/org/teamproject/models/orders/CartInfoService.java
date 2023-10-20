@@ -16,7 +16,6 @@ import org.teamproject.models.product.ProductInfoService;
 import org.teamproject.repositories.CartInfoRepository;
 
 import java.util.List;
-import java.util.Objects;
 
 @Service("cartInfoService2")
 @RequiredArgsConstructor

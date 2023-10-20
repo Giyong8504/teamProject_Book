@@ -58,12 +58,12 @@ commonLib.fileManager = {
     * @params id : 파일 등록 번호
     */
     delete(id) {
-        const  { ajaxLoad } = commonLib;
-        ajaxLoad("GET", `/file/delete/${id}`, null, "json")
-            .then((res) => {
-                console.log(res);
-            })
-            .catch((err) => console.error(err));
+        return new Promise((resolve, reject) => {
+            const  { ajaxLoad } = commonLib;
+            ajaxLoad("GET", `/file/delete/${id}`, null, "json")
+                .then(res => resolve(res))
+                .catch(err => reject(err));
+        });
     }
 }
 

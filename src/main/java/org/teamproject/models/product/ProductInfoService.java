@@ -8,13 +8,16 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.teamproject.commons.ListData;
 import org.teamproject.commons.Pagination;
 import org.teamproject.commons.constants.BookStatus;
+import org.teamproject.controllers.admin.dtos.ProductForm;
 import org.teamproject.entities.Books;
 import org.teamproject.entities.FileInfo;
 import org.teamproject.entities.QBooks;
+import org.teamproject.entities.product.Category;
 import org.teamproject.models.files.FileInfoService;
 import org.teamproject.repositories.BooksRepository;
 
@@ -39,10 +42,27 @@ public class ProductInfoService {
      * @return
      */
     public Books get(Long bookNo) {
-        Books books = booksRepository.findById(bookNo).orElseThrow(BookNotFoundException::new);
-        addFileInfo(books);
+        Books book = booksRepository.findById(bookNo).orElseThrow(BookNotFoundException::new);
+        addFileInfo(book);
 
-        return books;
+        String gid = book.getGid();
+        book.setMainImages(fileInfoService.getListDone(gid, "main"));
+        book.setListImages(fileInfoService.getListDone(gid, "list"));
+        book.setEditorImages(fileInfoService.getListDone(gid, "editor"));
+
+        return book;
+    }
+
+    public ProductForm getFormData(Long bookNo) {
+        Books book = get(bookNo);
+
+        ProductForm form = new ModelMapper().map(book, ProductForm.class);
+        form.setStatus(book.getStatus().name());
+        Category category = book.getCategory();
+        if (category != null) {
+            form.setCateCd(category.getCateCd());
+        }
+        return form;
     }
 
 

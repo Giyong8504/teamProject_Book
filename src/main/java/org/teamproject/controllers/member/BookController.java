@@ -25,6 +25,7 @@ public class BookController implements CommonProcess, ScriptExceptionProcess { /
     */
     private final CategoryInfoService categoryInfoService;
 
+    /* 확인해주세요.(오류로 인해 주석 처리함.)
     @GetMapping("/view/{bookNo}")
     public String view(@PathVariable Long bookNo, Model model) {
         try {
@@ -40,6 +41,7 @@ public class BookController implements CommonProcess, ScriptExceptionProcess { /
 
         return "book/view";
     }
+    */
 
 
     @Override

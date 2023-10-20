@@ -44,7 +44,7 @@ public class FileController {
 
     /* 파일 삭제 처리 */
     @RequestMapping("/delete/{id}")
-    public ResponseEntity<JSONData<Long>> delete(Long id) {
+    public ResponseEntity<JSONData<Long>> delete(@PathVariable Long id) {
         deleteService.delete(id);
 
         JSONData<Long> data = new JSONData<>();

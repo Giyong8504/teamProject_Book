@@ -6,7 +6,9 @@
     <h1 th:text="${pageTitle}"></h1>
 
     <!-- 같은 페이지 내에서 처리하고 갱신하기 위한 hidden 프레임 : target -->
-    <form name="frmSave" method="post" th:action="@{/admin/product/save}" autocomplete="off" target="ifrmProcess">
+    <form name="frmSave" method="post" th:action="@{/admin/product/save}" autocomplete="off" target="ifrmProcess" th:object="${productForm}">
+        <input type="hidden" name="mode" value="edit">
+        <input type="hidden" name="bookNo" th:field="*{bookNo}">
 
         <!-- _form을 가져와 사용. -->
         <th:block th:replace="~{admin/product/_form::form}"></th:block>
