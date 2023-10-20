@@ -3,10 +3,8 @@ package org.teamproject.entities;
 import jakarta.persistence.*;
 import lombok.*;
 import org.teamproject.commons.constants.BookStatus;
-import org.teamproject.commons.constants.Role;
 import org.teamproject.entities.product.Category;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -24,9 +22,6 @@ public class Books extends BaseEntity{
 
     private String isbn;
 
-    @Column(nullable = false, updatable = false)
-    private String bookId;
-
     @Column(length = 50, nullable = false)
     private String gid;
 
@@ -37,7 +32,6 @@ public class Books extends BaseEntity{
     private String publisher;
     private String origin;
 
-    private String bookDesc; // 상품에 대한 설명
     private int price;
     private int stock; // 재고
 
@@ -58,7 +52,4 @@ public class Books extends BaseEntity{
 
     @Transient
     private List<FileInfo> editorImages; // 에디터 이미지
-
-    @Enumerated(EnumType.STRING)
-    private Role role;
 }

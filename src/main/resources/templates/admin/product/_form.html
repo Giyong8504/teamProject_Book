@@ -1,136 +1,137 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <th:block th:fragment="form" th:object="${productForm}">
-        <input type="hidden" name="_csrf" th:value="${_csrf.token}">
-        <input type="file" id="file" class="dn" multiple>
-        <input type="hidden" name="gid" th:field="*{gid}">
-        <table class="table-cols">
-            <th>상품명</th>
-                <td width="700">
-                <input type="text" name="productNm" th:field="*{productNm}">
-                    <div class="errors" th:each="err : ${#fields.errors('productNm')}" th:text="${err}"></div>
+<th:block th:fragment="form" th:object="${productForm}">
+    <div class="errors global" th:each="err: ${#fields.globalErrors()}" th:text="${err}"></div>
+    <input type="file" id="file" class="dn">
+    <input type="hidden" name="gid" th:field="*{gid}">
+    <div class="errors" th:each="err : ${#fields.errors('gid')}" th:text="${err}"></div>
+    <table class="table-cols">
+        <tr>
+            <th>도서 분류</th>
+            <td>
+                <th:block th:if="${categories != null}" th:each="category, status : ${categories}">
+                    <span>
+                    <input type="radio" name="cateCd" th:value="${category.cateCd}" th:field="*{cateCd}" th:id="${'cateCd_' + status.index}">
+                    <label th:for="${'cateCd_' + status.index}" th:text="${category.cateNm}"></label>
+                    </span>
+                </th:block>
             </td>
-        </table>
-        <br>
-        <h2>판매가</h2>
-        <table class="table-cols">
-            <tr>
-                <th>판매가</th>
-                <td width="700">
-                    <input type="text" name="price">
-                </td>
-            </tr>
-            <tr>
-                <th>할인</th>
-                <td width="700">
-                    <input type="radio" name="discount" value="true" id="dc_true" th:field="*{dc}">
-                    <label for="dc_true">설정함</label>
-                    <input type="radio" name="discount" value="false" id="dc_false" th:field="*{dc}">
-                    <label for="dc_false">설정안함</label>
-                </td>
-            </tr>
-            <tr>
-                <th>판매기간</th>
-                <td width="700">
-                    <input type="radio" name="sales_period" value="true" id="sp_true" th:field="*{sp}">
-                    <label for="sp_true">설정함</label>
-                    <input type="radio" name="sales_period" value="false" id="sp_false" th:field="*{sp}">
-                    <label for="sp_false">설정안함</label>
-                </td>
-            </tr>
-        </table>
-        <br>
-        <h2>재고수량</h2>
-        <table class="table-cols">
-            <tr>
-                <th>수량</th>
-                <td width="700">
-                    <input type="text" name="stock">
-                </td>
-            </tr>
-        </table>
-        <br>
-        <h2>상품 이미지</h2>
-        <table class="table-cols">
-            <tr>
-                <th>대표 이미지</th>
-                <td width="700">
-                    <dl>
-                        <dt>상품 이미지(대표)</dt>
-                        <dd>
-                            <div class="uploaded_images" id="main_images"></div>
-                            <button type="button" class="sbtn upload_files" data-location="main" data-image-only="true">이미지 추가</button>
-                        </dd>
-                    </dl>
-                </td>
-            </tr>
-            <tr>
-                <th>목록 이미지</th>
-                <td width="700">
-                    <div class="uploaded_images" id="list_images"></div>
-                    <button type="button" class="sbtn upload_files" data-location="list" data-image-only="true">이미지 추가</button>
-                </td>
-            </tr>
-            <tr>
-                <th>상세 이미지</th>
-                <td width="700">
-                    <textarea name="description" id="description"></textarea>
-                    <div class="uploaded_images" id="editor_images"></div>
-                    <button type="button" class="sbtn upload_files" data-location="editor" data-image-only="true">이미지 추가</button>
-                </td>
-            </tr>
-        </table>
-        <br>
-        <h2>도서</h2>
-        <table class="table-cols">
-            <tr>
-                <th>도서번호</th>
-                <td width="700">
-                    <input type="text" name="bookId">
-                </td>
-            </tr>
-            <tr>
-                <th>도서이름</th>
-                <td width="700">
-                    <input type="text" name="bookNm">
-                </td>
-            </tr>
-            <tr>
-                <th>출간일</th>
-                <td width="700">
-                    <input type="text" name="publicationDt">
-                </td>
-            </tr>
-            <tr>
-                <th>저자</th>
-                <td width="700">
-                    <input type="text" name="author">
-                </td>
-            </tr>
-            <tr>
-                <th>출판사</th>
-                <td width="700">
-                    <input type="text" name="publisher">
-                </td>
-            </tr>
-            <tr>
-                <th>원산지</th>
-                <td width="700">
-                    <input type="text" name="origin">
-                </td>
-            </tr>
-            <tr>
-                <th>상품상태</th>
-                <td width="700">
-                    <input type="radio" name="product_status" value="true" id="ps_true" th:field="*{ps}">
-                    <label for="ps_true">설정함</label>
-                    <input type="radio" name="product_status" value="false" id="ps_false" th:field="*{ps}">
-                    <label for="ps_false">설정안함</label>
-                </td>
-            </tr>
-        </table>
-        <script th:replace="~{common/_file_tpl::tpl_image1}"></script>
-        <script th:replace="~{common/_file_tpl::tpl_editor}"></script>
-    </th:block>
-</html>
+        </tr>
+        <tr>
+            <th>도서명</th>
+            <td>
+                <input type="text" name="bookNm" th:field="*{bookNm}">
+                <div class="errors" th:each="err : ${#fields.errors('bookNm')}" th:text="${err}"></div>
+            </td>
+        </tr>
+        <tr>
+            <th>ISBN</th>
+            <td>
+                <input type="text" name="isbn" th:field="*{isbn}">
+                <div class="errors" th:each="err : ${#fields.errors('isbn')}" th:text="${err}"></div>
+            </td>
+        </tr>
+        <tr>
+            <th>판매상태</th>
+            <td>
+                <th:block th:each="s, status : ${statusList}">
+                    <span>
+                        <input type="radio" name="status" th:value="${s[0]}" th:id="${'status_' + status.index}" th:field="*{status}">
+                        <label th:for="${'status_' + status.index}" th:text="${s[1]}"></label>
+                    </span>
+                </th:block>
+            </td>
+        </tr>
+        <tr>
+            <th>출판일</th>
+            <td>
+                <input type="text" name="publicationDt" th:field="*{publicationDt}">
+                <div class="errors" th:each="err : ${#fields.errors('publicationDt')}" th:text="${err}"></div>
+            </td>
+        </tr>
+        <tr>
+            <th>저자</th>
+            <td>
+                <input type="text" name="author" th:field="*{author}">
+                <div class="errors" th:each="err : ${#fields.errors('author')}" th:text="${err}"></div>
+            </td>
+        </tr>
+        <tr>
+            <th>출판사</th>
+            <td>
+                <input type="text" name="publisher" th:field="*{publisher}">
+                <div class="errors" th:each="err : ${#fields.errors('publisher')}" th:text="${err}"></div>
+            </td>
+        </tr>
+        <tr>
+            <th>출판국가</th>
+            <td>
+                <input type="text" name="origin" th:field="*{origin}">
+                <div class="errors" th:each="err : ${#fields.errors('origin')}" th:text="${err}"></div>
+            </td>
+        </tr>
+        <tr>
+            <th>판매가</th>
+            <td>
+                <input type="number" name="price" th:field="*{price}">
+                <div class="errors" th:each="err : ${#fields.errors('price')}" th:text="${err}"></div>
+            </td>
+        </tr>
+        <tr>
+            <th>재고</th>
+            <td>
+                <input type="number" name="stock" th:field="*{stock}">
+                <div class="errors" th:each="err : ${#fields.errors('stock')}" th:text="${err}"></div>
+            </td>
+        </tr>
+        <tr>
+            <th>메인이미지</th>
+            <td>
+                <div class="uploaded_images" id="main_images">
+                    <div th:if="*{mainImages != null}" th:each="file : *{mainImages}" th:object="${file}" class="file_images" th:id="*{'file_' + id}">
+                        <span th:data-id="*{id}" class="remove">
+                            <i class="xi-close-min"></i>
+                        </span>
+                        <div class="bg view_image" th:data-id="*{id}" th:style="*{'background:url(' + thumbsUrl[0] + ') no-repeat center center; background-size:cover;'}"></div>
+                    </div>
+                </div>
+                <button type="button" class="sbtn upload_files" data-location="main" data-image-only="true">이미지 추가</button>
+            </td>
+        </tr>
+        <tr>
+            <th>목록이미지</th>
+            <td>
+                <div class="uploaded_images" id="list_images">
+                    <div th:if="*{listImages != null}" th:each="file : *{listImages}" th:object="${file}" class="file_images" th:id="*{'file_' + id}">
+                        <span th:data-id="*{id}" class="remove">
+                            <i class="xi-close-min"></i>
+                        </span>
+                        <div class="bg view_image" th:data-id="*{id}" th:style="*{'background:url(' + thumbsUrl[0] + ') no-repeat center center; background-size:cover;'}"></div>
+                    </div>
+                </div>
+                <button type="button" class="sbtn upload_files" data-location="list" data-image-only="true">이미지 추가</button>
+            </td>
+        </tr>
+        <tr>
+            <th>상세설명</th>
+            <td>
+                <textarea name="description" th:field="*{description}" id="description"></textarea>
+                <div class="errors" th:each="err : ${#fields.errors('description')}" th:text="${err}"></div>
+                <div class="uploaded_images" id="editor_images">
+                    <span th:if="*{editorImages != null}" th:each="file : *{editorImages}" th:object="${file}" class="file_items" th:id="*{'file_' + id}">
+                        <a th:href="@{/file/download/{id}(id=*{id})}" th:text="*{fileName}"></a>
+                        <i class="xi-arrow-top insert_editor" th:data-url="*{fileUrl}"></i>
+                       <span th:data-id="*{id}" class="remove">
+                           <i class="xi-close-min"></i>
+                       </span>
+                    </span>
+                </div>
+                <button type="button" class="sbtn upload_files" data-location="editor" data-image-only="true">이미지 추가</button>
 
+            </td>
+        </tr>
+    </table>
+    <script th:replace="~{common/_file_tpl::tpl_image1}"></script>
+    <script th:replace="~{common/_file_tpl::tpl_editor}"></script>
+</th:block>
+</html>

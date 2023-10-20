@@ -1,8 +1,9 @@
-package org.teamproject.controllers.admin;
+package org.teamproject.controllers.admin.products;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -62,9 +63,6 @@ public class ProductController implements CommonProcess, ScriptExceptionProcess 
     public String add(@ModelAttribute ProductForm form, Model model) {
         commonProcess("add", model);
 
-        List<Category> items = categoryInfoService.getAll("all");
-        model.addAttribute("items", items);
-
         return "admin/product/add";
     }
 
@@ -75,8 +73,8 @@ public class ProductController implements CommonProcess, ScriptExceptionProcess 
      * @return
      */
 
-    @GetMapping("/edit/{bookNo}")
-    public String edit(@PathVariable Long bookNo, Model model) {
+    @GetMapping("/{bookNo}")
+    public String update(@PathVariable Long bookNo, Model model) {
         commonProcess("edit", model);
 
         ProductForm form = productInfoService.getFormData(bookNo);

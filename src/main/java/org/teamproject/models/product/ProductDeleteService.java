@@ -28,11 +28,10 @@ public class ProductDeleteService implements RequiredValidator {
             repository.flush();
         }
     }
-
     /**
      * 목록 삭제
      */
-
+    /*
     public void deleteList(ProductForm form) {
         List<Books> items = new ArrayList<>();
         List<Integer> checks = form.getChkNo();
@@ -49,4 +48,5 @@ public class ProductDeleteService implements RequiredValidator {
         repository.deleteAll();
         repository.flush();
     }
+    */
 }
