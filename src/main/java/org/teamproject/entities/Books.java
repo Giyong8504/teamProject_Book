@@ -22,6 +22,8 @@ public class Books extends BaseEntity{
     @JoinColumn(name="cateCd")
     private Category category;
 
+    private String isbn;
+
     @Column(nullable = false, updatable = false)
     private String bookId;
 

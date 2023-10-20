@@ -3,7 +3,7 @@ package org.teamproject.models.product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.teamproject.commons.Utils;
-import org.teamproject.controllers.admin.ProductForm;
+import org.teamproject.controllers.admin.dtos.ProductForm;
 import org.teamproject.entities.Books;
 import org.teamproject.repositories.BooksRepository;
 import org.teamproject.commons.validators.RequiredValidator;

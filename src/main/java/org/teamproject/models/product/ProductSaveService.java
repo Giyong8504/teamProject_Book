@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.teamproject.commons.Utils;
 import org.teamproject.commons.constants.BookStatus;
 import org.teamproject.commons.validators.RequiredValidator;
-import org.teamproject.controllers.admin.ProductForm;
+import org.teamproject.controllers.admin.dtos.ProductForm;
 import org.teamproject.entities.Books;
 import org.teamproject.models.categories.CategoryInfoService;
 import org.teamproject.repositories.BooksRepository;
