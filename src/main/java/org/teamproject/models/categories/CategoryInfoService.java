@@ -19,14 +19,6 @@ public class CategoryInfoService {
     private final BooksRepository booksRepository;
     private final FileInfoService fileInfoService;
 
-    /* 개별 조회 */
-    public Books get(Long bookNo) {
-        Books book = booksRepository.findById(bookNo).orElseThrow(BookNotFoundException::new);
-        addFileInfo(book);
-
-        return book;
-    }
-
     /**
      * 카테고리 조회
      * @param cateCd
@@ -43,19 +35,6 @@ public class CategoryInfoService {
      */
     public List<Category> getAll(String mode) {
         return categoryRepository.getAll(mode);
-    }
-
-
-    public void addFileInfo(Books book) {
-        String gid = book.getGid();
-        List<FileInfo> mainImages = fileInfoService.getListDone(gid, "main");
-        List<FileInfo> listImages = fileInfoService.getListDone(gid, "list");
-        List<FileInfo> editorImages = fileInfoService.getListDone(gid, "editor");
-        book.setMainImages(mainImages);
-        book.setListImages(listImages);
-        book.setEditorImages(editorImages);
-        System.out.println("여기?");
-        System.out.println(book);
     }
 
 }

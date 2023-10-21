@@ -3,7 +3,7 @@ package org.teamproject.models.product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.teamproject.commons.Utils;
-import org.teamproject.controllers.admin.ProductForm;
+import org.teamproject.controllers.admin.dtos.ProductForm;
 import org.teamproject.entities.Books;
 import org.teamproject.repositories.BooksRepository;
 import org.teamproject.commons.validators.RequiredValidator;
@@ -28,11 +28,10 @@ public class ProductDeleteService implements RequiredValidator {
             repository.flush();
         }
     }
-
     /**
      * 목록 삭제
      */
-
+    /*
     public void deleteList(ProductForm form) {
         List<Books> items = new ArrayList<>();
         List<Integer> checks = form.getChkNo();
@@ -49,4 +48,5 @@ public class ProductDeleteService implements RequiredValidator {
         repository.deleteAll();
         repository.flush();
     }
+    */
 }

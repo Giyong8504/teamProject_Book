@@ -4,27 +4,49 @@
       layout:decorate="~{admin/layouts/main}">
 <section layout:fragment="content">
     <h1 th:text="${pageTitle}"></h1>
-    <form name="frmSearch" method="get" autocomplete="off" th:object="${productSearch}">
+    <form name="frmSearch" method="get" th:action="@{/admin/product}" autocomplete="off" th:object="${productSearch}">
         <table class="table-cols">
             <tr>
-                <th>검색어</th>
-                <td>도서명<input type="text" name="bookNm"><td>
-                <td>도서번호<input type="text" id="bookNo"><td>
-                <td>저자<input type="text" id="author"></td>
-                <td>출판사<input type="text" id="publisher"></td>
-
-            </tr>
-            <tr>
                 <th>판매상태</th>
-            </tr>
-            <tr>
+                <td class="sale_status" height="70">
+                    <input type="checkbox" name="itemAll" id="item_all" value="true">
+                    <label for="item_all">전체</label>
+                    <input type="checkbox" name="itemReady" id="item_ready" value="false">
+                    <label for="item_ready">상품준비중</label>
+                    <input type="checkbox" name="itemOnSale" id="item_on_sale" value="false">
+                    <label for="item_on_sale">판매중</label>
+                    <input type="checkbox" name="itemSoldOut" id="item_soldOut" value="false">
+                    <label for="item_soldOut">품절</label>
+                    <input type="checkbox" name="itemStop" id="item_stop" value="false">
+                    <label for="item_stop">판매중지</label>
                 <th>분류</th>
+                <td>
+                    <select name="cateCd">
+                        <option value>분류 선택</option>
+                    </select>
+                </td>
             </tr>
             <tr>
-                <th>기간</th>
+                <th>도서번호</th>
+                <td>
+                    <input type="text" name="bookNo">
+                </td>
+                <th>키워드검색</th>
+                <td>
+                    <div class="input_grp">
+                        <select name="sort">
+                            <option value="all">통합검색</option>
+                            <option value="bookNm">도서명</option>
+                            <option value="bookNo">도서번호</option>
+                        </select>
+                        <input type="text" name="searchKey" placeholder="검색어 입력">
+                    </div>
+                </td>
             </tr>
-
         </table>
+        <div class="search_btn">
+            <button type="submit">검색하기</button>
+        </div>
     </form>
     <br>
     <h2>상품목록</h2>

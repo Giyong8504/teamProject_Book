@@ -1,4 +1,4 @@
-package org.teamproject.controllers.member.cart;
+package org.teamproject.controllers.orders;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -12,8 +12,8 @@ import org.teamproject.commons.CommonException;
 import org.teamproject.commons.CommonProcess;
 import org.teamproject.commons.ScriptExceptionProcess;
 import org.teamproject.entities.CartInfo;
-import org.teamproject.models.cart.CartInfoSaveService;
-import org.teamproject.models.cart.CartInfoService;
+import org.teamproject.models.orders.CartInfoSaveService;
+import org.teamproject.models.orders.CartInfoService;
 
 import java.util.ArrayList;
 import java.util.List;

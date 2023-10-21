@@ -1,4 +1,4 @@
-package org.teamproject.models.cart;
+package org.teamproject.models.orders;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.teamproject.commons.MemberUtil;
 import org.teamproject.commons.constants.OrdersStatus;
 import org.teamproject.commons.constants.PaymentType;
-import org.teamproject.controllers.member.cart.OrderForm;
+import org.teamproject.controllers.orders.OrderForm;
 import org.teamproject.entities.Books;
 import org.teamproject.entities.CartInfo;
 import org.teamproject.entities.OrderInfo;

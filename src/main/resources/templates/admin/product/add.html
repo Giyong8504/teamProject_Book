@@ -11,20 +11,12 @@
         <!-- 폼 내부 필드로 등록 모드와 gid 값을 전달 -->
         <input type="hidden" name="mode" value="add">
 
-<!--        <input type="hidden" name="gid" th:field="*{gid}">-->
-
     <!-- _form을 가져와 사용. -->
     <th:block th:replace="~{admin/product/_form::form}"></th:block>
     <div class="btns">
         <button type="reset">다시입력</button>
         <button type="submit">등록하기</button>
     </div>
-        <br>
-        <br>
-    <!-- <form name="frmSave" id=frmSave method="post" th:action="@{/admin/product/save"} autocomplete="off" th:object="${productForm}">
-     <input type="hidden" name="mode" value="add">
-     <input type="hidden" name="gid" th:field="*{gid}">
-     </div> -->
     </form>
 </section>
 </html>

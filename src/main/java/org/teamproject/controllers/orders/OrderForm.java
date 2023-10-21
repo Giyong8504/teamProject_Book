@@ -1,15 +1,14 @@
-package org.teamproject.controllers.member.cart;
+package org.teamproject.controllers.orders;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-import org.teamproject.commons.constants.PaymentType;
+import org.teamproject.entities.OrderItem;
 
 import java.util.List;
 
 @Data
 public class OrderForm {
-    private Long orderNo;
+    private Long id; // 주문 번호
 
     private List<Long> cartNo;
 
@@ -39,4 +38,12 @@ public class OrderForm {
     private String paymentType = "LBT";
 
     private int totalPrice;
+    private int payPrice;
+
+    private String deliveryCompany;
+    private String invoice;
+
+    private List<OrderItem> orderItems;
+
+    private List<Long> itemId;
 }

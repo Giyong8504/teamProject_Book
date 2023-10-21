@@ -5,21 +5,31 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.teamproject.commons.CommonProcess;
+import org.teamproject.commons.ListData;
 import org.teamproject.commons.Menu;
+import org.teamproject.controllers.orders.OrdersSearch;
+import org.teamproject.entities.OrderInfo;
+import org.teamproject.models.orders.OrdersInfoService;
+import org.teamproject.models.product.ProductSearch;
 
 
 @Controller
 @RequestMapping("/admin/orders")
 @RequiredArgsConstructor
-public class OrdersController implements CommonProcess {
+public class OrdersController implements CommonProcess { /** 관리자 페이지 */
 
     private final HttpServletRequest request;
+    private final OrdersInfoService ordersInfoService;
 
     @GetMapping
-    public String index(Model model) {
+    public String index(@ModelAttribute OrdersSearch ordersSearch, Model model, @ModelAttribute ProductSearch productSearch) {
         commonProcess("list",model);
+        ListData<OrderInfo> data = ordersInfoService.getList(ordersSearch);
+        model.addAttribute("items", data.getContent());
+        model.addAttribute("pagination", data.getPagination());
 
         return "admin/orders/index";
     }

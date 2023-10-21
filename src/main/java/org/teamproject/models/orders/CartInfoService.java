@@ -1,4 +1,4 @@
-package org.teamproject.models.cart;
+package org.teamproject.models.orders;
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Order;
@@ -16,7 +16,6 @@ import org.teamproject.models.product.ProductInfoService;
 import org.teamproject.repositories.CartInfoRepository;
 
 import java.util.List;
-import java.util.Objects;
 
 @Service("cartInfoService2")
 @RequiredArgsConstructor
