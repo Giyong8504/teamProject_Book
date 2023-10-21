@@ -72,6 +72,8 @@ public class BoardConfigInfoService {
 
         if ((role == Role.USER && !memberUtil.isLogin()) || (role == Role.ADMIN && !memberUtil.isAdmin())) {
             throw new BoardNotAllowAccessException();
+            // 사용자 로그인 화면이 아니거나
+            // 관리자가 아닌경우
         }
     }
 }

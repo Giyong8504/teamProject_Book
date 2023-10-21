@@ -17,18 +17,29 @@ public class BoardConfigSaveService {
 
     public void save(BoardForm boardForm) {
         save(boardForm, null);
-    }
+    } // Controller -> boardForm
 
     public void save(BoardForm boardForm, Errors errors) {
 
         if (errors != null && errors.hasErrors()) {
             return;
+            // 에러가 NULL 값이 아니고 NULL 값이면
+            // 실행하지 않기 위함
         }
 
-        // 게시판 설정 조회 -> 없으면 중복 여부 체크 후 엔티티 생성
-        
+        /**
+         * 게시판 설정 조회 -> 없으면 중복 여부 체크 후 엔티티 생성
+         * 게시판 등록모드인 경우는 중복여부 체크
+         *
+         */
+
+
+
         String bId = boardForm.getBId();
         Board board = boardRepository.findById(bId).orElseGet(Board::new);
+        // 엔티티를 불러오는것
+        // orElseGet ==  조회가 안될경우 대비
+
         String mode = boardForm.getMode();
         if ((mode == null || !mode.equals("update")) && board.getBId() != null) { // 게시판 등록 -> 중복 여부 체크
             throw new DuplicateBoardConfigException();

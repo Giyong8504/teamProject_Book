@@ -1,0 +1,7 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="title">
+    <h1 th:if="$board != null}" th:text="${board.bName}"></h1>
+</th:block>
+
+</html>

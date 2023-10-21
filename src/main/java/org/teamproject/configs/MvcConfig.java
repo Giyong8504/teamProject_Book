@@ -56,7 +56,9 @@ public class MvcConfig implements WebMvcConfigurer {
 
     @Bean
     public HiddenHttpMethodFilter httpMethodFilter() {
-
+    // board -> index.html name_method -> value="" 로 인해
+    //  post 방식이 아닌 patch 형식으로 전달
+    // -> MvcConfig -> HiddenHttpMethodFilter로 인해 변경됨
         return new HiddenHttpMethodFilter();
     }
 
