@@ -52,6 +52,7 @@ public class BoardConfigListService {
                 andBuilder.and(board.bName.contains(skey));
             }
         }
+        /**검색 조건 처리 */
 
         Pageable pageable = PageRequest.of(page - 1, limit, Sort.by(desc("createdBy")));
         Page<Board> data = boardRepository.findAll(andBuilder, pageable);

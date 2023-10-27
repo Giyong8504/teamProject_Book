@@ -87,13 +87,16 @@ public class Board extends BaseMemberEntity{
     @Column(length = 20, nullable = false)
     private String skin = "default";
 
-    // 게시판 분류 목룍
-    public String[] getCategories() {
+    /**
+     * 게시판 분류 목룍
+     *
+      * @return
+     */
 
+    public String[] getCategories() {
         if (category == null) {
             return null;
         }
-
         String[] categories = category.replaceAll("\\r", "").trim().split("\\n");
         return categories;
     }

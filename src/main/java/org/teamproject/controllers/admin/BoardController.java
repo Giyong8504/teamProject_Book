@@ -24,6 +24,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BoardController {
 
+    // 의존성 추가
     private final HttpServletRequest request;
     private final BoardConfigSaveService configSaveService;
     private final BoardConfigInfoService boardconfigInfoService;
@@ -44,13 +45,20 @@ public class BoardController {
     @GetMapping("/register")
     public String register(@ModelAttribute BoardForm boardForm, Model model) {
         commonProcess(model, "게시판 등록");
-
+    // 커멘드 객체에 기본값 완성
         return "admin/board/config";
+    }
+    @GetMapping("/posts")
+    public String newOrder(Model model) {
+        commonProcess(model, "게시판 관리");
+        return "admin/board/posts";
     }
 
     @GetMapping("/{bId}/update")
     public String update(@PathVariable String bId, Model model) {
+
         commonProcess(model, "게시판 수정");
+
 
         Board board = boardconfigInfoService.get(bId, true);
         BoardForm boardForm = new ModelMapper().map(board, BoardForm.class);

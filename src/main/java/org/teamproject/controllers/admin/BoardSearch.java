@@ -2,7 +2,11 @@ package org.teamproject.controllers.admin;
 
 import lombok.Data;
 
-// 게시판 설정 검색
+/**
+ * 게시판 설정 검색
+ *
+ *
+ */
 @Data 
 public class BoardSearch {
     private int page = 1;

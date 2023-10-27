@@ -7,7 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.teamproject.commons.CommonException;
+import org.teamproject.commons.MemberUtil;
 import org.teamproject.entities.Board;
+import org.teamproject.entities.Member;
 import org.teamproject.models.board.config.BoardConfigInfoService;
 
 import java.util.ArrayList;
@@ -19,7 +21,8 @@ import java.util.List;
 public class BoardController {
 
     private final BoardConfigInfoService boardConfigInfoService;
-
+   // private final HttpServletResponse response;
+      private  final MemberUtil memberUtil;
     // 게시글 목록
     @GetMapping("/list/{bId}")
     public String list(@PathVariable String bId, Model model) {
@@ -44,17 +47,15 @@ public class BoardController {
         return "board/update";
     }
 
-    @PostMapping("/save")
+    @PostMapping("/save") // get post
     public String save(Model model) {
-        // commonProcess(bId, "list", model);
-
-        return null;
+        commonProcess(null, "list", model);
+         return "board/save";
     }
 
     @GetMapping("/view/{id}")
     public String view(@PathVariable Long id, Model model) {
         commonProcess(null, "view", model);
-
         return "board/view";
     }
 

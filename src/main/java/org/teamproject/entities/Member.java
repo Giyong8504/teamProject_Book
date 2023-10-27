@@ -38,6 +38,7 @@ public class Member extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+
     /**
      * 회원수정 메소드
      */
@@ -60,4 +61,6 @@ public class Member extends BaseEntity {
     public void updateAddressSub(String addressSub) {
         this.addressSub = addressSub;
     }
+
 }
+
