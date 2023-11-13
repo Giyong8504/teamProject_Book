@@ -6,10 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.teamproject.commons.*;
 import org.teamproject.commons.constants.PaymentType;
 import org.teamproject.entities.CartInfo;
@@ -79,6 +76,21 @@ public class OrderController implements CommonProcess, ScriptExceptionProcess { 
         model.addAttribute("data", data);
 
         return "order/end";
+    }
+
+    @GetMapping("/view/{id}")
+    public String view(@PathVariable Long id, Model model) {
+        commonProcess(model, "view");
+
+        if (id == null) {
+            throw new BadRequestException(); // 뒤로 back
+        }
+
+        OrderInfo data = ordersInfoService.get(id);
+
+        model.addAttribute("data", data);
+        
+        return "order/view";
     }
 
     public void commonProcess(Model model, String mode) {

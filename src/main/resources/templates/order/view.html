@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/layouts/main}">
+<main layout:fragment="content" th:object="${data}">
+    <h1 th:text="${pageTitle}"></h1>
+    <h2>주문 상품</h2>
+    <th:block th:replace="~{order/_items::items}"></th:block>
+
+    <h2>주문자 정보</h2>
+    <dl>
+        <dt>주문자명</dt>
+        <dd th:text="*{orderName}"></dd>
+    </dl>
+    <dl>
+        <dt>이메일</dt>
+        <dd th:text="*{orderEmail}"></dd>
+    </dl>
+    <dl>
+        <dt>휴대전화번호</dt>
+        <dd th:text="*{orderMobile}"></dd>
+    </dl>
+
+    <h2>배송지 정보</h2>
+    <dl>
+        <dt>받는분</dt>
+        <dd th:text="*{receiverName}"></dd>
+    </dl>
+    <dl>
+        <dt>휴대전화번호</dt>
+        <dd th:text="*{receiverMobile}"></dd>
+    </dl>
+    <dl>
+        <dt>주소</dt>
+        <dd>
+            <th:block th:text="*{zonecode}"></th:block>
+            <th:block th:text="*{address}"></th:block>
+            <th:block th:text="*{addressSub}"></th:block>
+        </dd>
+    </dl>
+
+    <h2>결제 정보</h2>
+    <dl>
+        <dt>배송비</dt>
+        <dd>3000</dd>
+    </dl>
+    <dl>
+        <dt>결제금액</dt>
+        <dd>
+            <th:block th:if="*{payPrice < 1000}" th:text="*{payPrice + '원'}"></th:block>
+            <th:block th:if="*{payPrice >= 1000}" th:text="*{#numbers.formatInteger(payPrice, 3, 'COMMA') + '원'}"></th:block>
+        </dd>
+    </dl>
+    <dl>
+        <dt>결제방법</dt>
+        <dd th:text="*{paymentType.title}"></dd>
+    </dl>
+</main>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <th:block th:fragment="items" th:object="${data}">
+        <ul>
+            <li th:if="*{orderItems != null && !orderItems.isEmpty()}"
+                th:each="item : *{orderItems}" th:object="${item}">
+                <a th:if="*{books != null && books.listImages != null && !books.listImages.isEmpty()}"
+                   th:href="@{/book/view/{bookNo}(bookNo=*{books.bookNo})}" class="product_image">
+                   <img th:src="${books.listImages[0].thumbsUrl[0]}">
+                </a>
+                <div class="product_info">
+                    <div th:text="*{bookNm}"></div>
+                    <div>
+                        주문상태 : <th:block th:text="*{status.title}"></th:block>
+                    </div>
+                    <div>
+                        판매가 :
+                        <th:block th:if="*{price < 1000}" th:text="*{price}"></th:block>
+                        <th:block th:if="*{price >= 1000}" th:text="*{#numbers.formatInteger(price, 3, 'COMMA')}"></th:block>
+                    </div>
+                    <div th:text="*{'구매수량 : ' + ea}"></div>
+                    <div>
+                        합계 :
+                        <th:block th:if="*{totalPrice < 1000}" th:text="*{totalPrice}"></th:block>
+                        <th:block th:if="*{totalPrice >= 1000}" th:text="*{#numbers.formatInteger(totalPrice, 3, 'COMMA')}"></th:block>
+                    </div>
+                </div>
+            </li>
+            <li th:unless="*{orderItems != null && !orderItems.isEmpty()}" class="no_data">
+                주문 상품이 없습니다.
+            </li>
+
+        </ul>
+    </th:block>
+</html>
