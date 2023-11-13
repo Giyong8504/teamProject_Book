@@ -48,7 +48,7 @@ public class ClaimController implements CommonProcess {
     }
 
     public void commonProcess(String mode, Model model) {
-        String pageTitle = "취소/교환/반품";
+        String pageTitle = "주문목록";
         if (mode.equals("cancel")) {
             pageTitle = "취소";
         } else if (mode.equals("change")) {
