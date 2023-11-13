@@ -38,6 +38,15 @@
             <th:block th:text="*{addressSub}"></th:block>
         </dd>
     </dl>
+    <dl th:if="*{deliveryCompany != null && invoice != null}">
+        <dt>운송장정보</dt>
+        <dd>
+            <th:block th:text="*{deliveryCompany}"></th:block>
+            <th:block th:text="*{invoice}"></th:block>
+            <button type="button" th:data-delivery-company="*{deliveryCompany}" th:data-invoice="*{invoice}" class="trace_delivery">배송조회</button>
+            <!-- 자바스크립트 이용해서 택배회사 조회 -->
+        </dd>
+    </dl>
 
     <h2>결제 정보</h2>
     <dl>

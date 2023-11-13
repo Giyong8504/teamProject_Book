@@ -16,13 +16,19 @@
                     <div>
                         판매가 :
                         <th:block th:if="*{price < 1000}" th:text="*{price}"></th:block>
-                        <th:block th:if="*{price >= 1000}" th:text="*{#numbers.formatInteger(price, 3, 'COMMA')}"></th:block>
+                        <th:block th:if="*{price >= 1000}" th:text="*{#numbers.formatInteger(price, 3, 'COMMA')}"></th:block>원
                     </div>
-                    <div th:text="*{'구매수량 : ' + ea}"></div>
+                    <div th:text="*{#strings.concat('구매수량 : ', ea, '개')}"></div>
                     <div>
                         합계 :
                         <th:block th:if="*{totalPrice < 1000}" th:text="*{totalPrice}"></th:block>
-                        <th:block th:if="*{totalPrice >= 1000}" th:text="*{#numbers.formatInteger(totalPrice, 3, 'COMMA')}"></th:block>
+                        <th:block th:if="*{totalPrice >= 1000}" th:text="*{#numbers.formatInteger(totalPrice, 3, 'COMMA')}"></th:block>원
+                    </div>
+                    <div th:if="*{deliveryCompany != null && invoice != null}">
+                        운송장정보 :
+                        <th:block th:text="*{deliveryCompany}"></th:block>
+                        <th:block th:text="*{invoice}"></th:block>
+                        <button type="button" th:data-delivery-company="*{deliveryCompany}" th:data-invoice="*{invoice}" class="trace_delivery">배송조회</button>
                     </div>
                 </div>
             </li>
