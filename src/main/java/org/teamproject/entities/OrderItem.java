@@ -30,6 +30,11 @@ public class OrderItem extends BaseMemberEntity { // 주문 상품에 대한 정
     @Column(length = 15, nullable = false)
     private OrdersStatus status = OrdersStatus.READY;
 
+    @Column(length=50)
+    private String deliveryCompany; // 배송 업체
+    @Column(length=50)
+    private String invoice; // 운송장 번호
+
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "orderNo")

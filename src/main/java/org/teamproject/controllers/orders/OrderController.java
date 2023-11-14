@@ -6,15 +6,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.teamproject.commons.*;
+import org.teamproject.commons.constants.PaymentType;
 import org.teamproject.entities.CartInfo;
-import org.teamproject.models.orders.CartInfoService;
-import org.teamproject.models.orders.CartItemNotFoundException;
-import org.teamproject.models.orders.OrderSaveService;
+import org.teamproject.entities.OrderInfo;
+import org.teamproject.models.orders.*;
 import org.teamproject.models.member.UserInfo;
 
 import java.util.ArrayList;
@@ -27,7 +24,9 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class OrderController implements CommonProcess, ScriptExceptionProcess { // admin이 아닌 member의 주문 Controller (장바구니 -> 주문)
     private final CartInfoService cartInfoService;
+    private final CartInfoDeleteService cartInfoDeleteService;
     private final OrderSaveService saveService;
+    private final OrdersInfoService ordersInfoService;
     private final MemberUtil memberUtil;
 
     @GetMapping
@@ -50,11 +49,48 @@ public class OrderController implements CommonProcess, ScriptExceptionProcess { 
         }
 
         saveService.save(form);
+        PaymentType type = PaymentType.valueOf(form.getPaymentType());
+        if (type == PaymentType.LBT) { // 무통장 입금 -> 주문 완료
+            cartInfoDeleteService.delete(form.getCartNo()); // 주문완료된 후 장바구니 정보 삭제
+
+            return "redirect:/order/end?orderNo=";
+        } else { // 무통장 입금 이외 // PG사를 통한 결제
+
+        }
 
         // 예외발생 -> alter / 예외발생 X -> 결제 진행
         // 결제 진행
-        model.addAttribute("script", "processPay()");
         return "order/index";
+    }
+
+    @GetMapping("/end")
+    public String orderEnd(Long id, Model model) {
+        commonProcess(model, "end");
+
+        if (id == null) {
+            throw new BadRequestException(); // 뒤로 back
+        }
+
+        OrderInfo data = ordersInfoService.get(id);
+
+        model.addAttribute("data", data);
+
+        return "order/end";
+    }
+
+    @GetMapping("/view/{id}")
+    public String view(@PathVariable Long id, Model model) {
+        commonProcess(model, "view");
+
+        if (id == null) {
+            throw new BadRequestException(); // 뒤로 back
+        }
+
+        OrderInfo data = ordersInfoService.get(id);
+
+        model.addAttribute("data", data);
+        
+        return "order/view";
     }
 
     public void commonProcess(Model model, String mode) {

@@ -28,5 +28,10 @@ public class JoinForm {
     @NotBlank
     private String addressSub;
     @AssertTrue
-    private boolean agree;
+    private Boolean agree;
+
+    /* agree 필드에 null값이 들어가는 에러가 발생하여 setter 메서드 이용하여 false로 초기화 */
+    public void setAgree(Boolean agree) {
+        this.agree = agree;
+    }
 }
